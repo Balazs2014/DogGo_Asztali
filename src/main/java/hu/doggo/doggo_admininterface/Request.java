@@ -5,9 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Request {
-    public static final String BASE_URL = "https://retoolapi.dev/REPpUZ/doggoAPI";
+    public static final String BASE_URL = "https://retoolapi.dev/b9Ou4n/doggoAPI";
 
     public static String getData() throws IOException {
         URL url = new URL(BASE_URL);
@@ -24,12 +26,13 @@ public class Request {
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 (conn.getInputStream())));
 
+        String s = "";
         String output;
         while ((output = br.readLine()) != null) {
-            System.out.println(output);
+            s += output;
+            s += System.lineSeparator();
         }
-        conn.disconnect();
 
-        return output;
+        return s;
     }
 }

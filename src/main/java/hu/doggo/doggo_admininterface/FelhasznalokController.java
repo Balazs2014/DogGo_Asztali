@@ -1,9 +1,12 @@
 package hu.doggo.doggo_admininterface;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.util.Date;
 
 public class FelhasznalokController {
@@ -20,5 +23,13 @@ public class FelhasznalokController {
     private TableView<Felhasznalo> felhasznalokTableView;
     @FXML
     private TableColumn<Felhasznalo, Boolean> adminCol;
+
+    public void initialize() {
+        felhnevCol.setCellValueFactory(new PropertyValueFactory<>("felhasznalonev"));
+        emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        regDateCol.setCellValueFactory(new PropertyValueFactory<>("regisztracio_datum"));
+        adminCol.setCellValueFactory(new PropertyValueFactory<>("admin"));
+        tiltvaCol.setCellValueFactory(new PropertyValueFactory<>("tiltva"));
+    }
 
 }
