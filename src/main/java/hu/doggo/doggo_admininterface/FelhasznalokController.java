@@ -3,7 +3,7 @@ package hu.doggo.doggo_admininterface;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class FelhasznalokController {
     @FXML
     private Label welcomeText;
 

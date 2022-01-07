@@ -1,0 +1,62 @@
+.menuButton {
+    -fx-background-color: #4A6A21;
+    -fx-border-radius: 0;
+}
+
+.menuButton:hover {
+    -fx-background-color: #61892F;
+    -fx-border-color: white;
+    -fx-border-width: 0px 5px 0px 0px;
+}
+
+.menuButton:pressed {
+    -fx-background-color: #557A24;
+}
+
+.keresesButton {
+    -fx-background-color: #4A6A21;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.keresesButton:hover {
+    -fx-background-color: #517423;
+}
+
+.keresesButton:pressed {
+    -fx-background-color: #557A24;
+}
+
+.keresesBeviteliMezo {
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+}
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-cell-size: 20;
+    -fx-background-color: #474A4F;
+}
+
+.table-view .column-header .label {
+
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-view .cell {
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+    -fx-text-fill: #000000;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: rgb(127, 172, 243);
+}
+
+.table-row-cell:selected .text {
+    -fx-fill: #474A4F;
+
+}
