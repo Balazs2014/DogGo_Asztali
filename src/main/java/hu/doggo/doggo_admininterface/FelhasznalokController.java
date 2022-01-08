@@ -8,7 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class FelhasznalokController extends SceneController {
+public class FelhasznalokController {
 
     @FXML
     private TableColumn<Felhasznalo, LocalDate> regDateCol;

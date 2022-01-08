@@ -53,7 +53,7 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: rgb(127, 172, 243);
+    -fx-background-color: #D6EABA;
 }
 
 .table-row-cell:selected .text {
