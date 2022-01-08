@@ -1,18 +1,17 @@
 package hu.doggo.doggo_admininterface;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.util.Date;
+import java.time.LocalDate;
 
-public class FelhasznalokController {
+public class FelhasznalokController extends SceneController {
 
     @FXML
-    private TableColumn<Felhasznalo, Date> regDateCol;
+    private TableColumn<Felhasznalo, LocalDate> regDateCol;
     @FXML
     private TableColumn<Felhasznalo, Boolean> tiltvaCol;
     @FXML
@@ -30,6 +29,9 @@ public class FelhasznalokController {
         regDateCol.setCellValueFactory(new PropertyValueFactory<>("regisztracio_datum"));
         adminCol.setCellValueFactory(new PropertyValueFactory<>("admin"));
         tiltvaCol.setCellValueFactory(new PropertyValueFactory<>("tiltva"));
+
+        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
+                LocalDate.of(2022, 1, 8), false, false));
     }
 
 }

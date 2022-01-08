@@ -1,16 +1,17 @@
 package hu.doggo.doggo_admininterface;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Felhasznalo {
     private int id;
     private String felhasznalonev;
     private String email;
-    private Date regisztracio_datum;
+    private LocalDate regisztracio_datum;
     private Boolean admin;
     private Boolean tiltva;
 
-    public Felhasznalo(int id, String felhasznalonev, String email, Date regisztracio_datum, Boolean admin, Boolean tiltva) {
+    public Felhasznalo(int id, String felhasznalonev, String email, LocalDate regisztracio_datum, Boolean admin, Boolean tiltva) {
         this.id = id;
         this.felhasznalonev = felhasznalonev;
         this.email = email;
@@ -31,7 +32,7 @@ public class Felhasznalo {
         return email;
     }
 
-    public Date getRegisztracio_datum() {
+    public LocalDate getRegisztracio_datum() {
         return regisztracio_datum;
     }
 
