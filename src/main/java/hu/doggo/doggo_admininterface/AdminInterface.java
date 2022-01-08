@@ -18,7 +18,6 @@ public class AdminInterface extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 700);
-        stage.setTitle("DogGo - Admin Interface");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.setMinWidth(1200);
