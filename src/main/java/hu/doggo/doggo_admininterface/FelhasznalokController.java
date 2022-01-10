@@ -1,9 +1,19 @@
 package hu.doggo.doggo_admininterface;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -33,5 +43,4 @@ public class FelhasznalokController {
         felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
                 LocalDate.of(2022, 1, 8), false, false));
     }
-
 }

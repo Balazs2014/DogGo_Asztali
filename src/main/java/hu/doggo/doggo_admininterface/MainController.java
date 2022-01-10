@@ -1,8 +1,11 @@
 package hu.doggo.doggo_admininterface;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -20,6 +23,8 @@ public class MainController {
     private Button statisztikakButton;
     @FXML
     private BorderPane borderPane;
+
+    private Scene scene;
 
     private double x = 0;
     private double y = 0;
