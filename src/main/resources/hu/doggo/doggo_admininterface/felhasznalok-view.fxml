@@ -27,18 +27,18 @@
             <children>
                 <TableView fx:id="felhasznalokTableView" prefHeight="391.0" prefWidth="1110.0" stylesheets="@../../../style/style.css" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="felhnevCol" prefWidth="75.0" text="FELHASZNÁLÓNÉV" />
-                        <TableColumn fx:id="emailCol" prefWidth="75.0" text="EMAIL" />
-                  <TableColumn fx:id="regDateCol" prefWidth="75.0" text="REGISZTRÁCIÓ DÁTUMA" />
-                  <TableColumn fx:id="adminCol" prefWidth="75.0" text="ADMIN" />
-                  <TableColumn fx:id="tiltvaCol" prefWidth="75.0" text="TILTVA" />
+                        <TableColumn fx:id="felhnevCol" prefWidth="232.0" text="FELHASZNÁLÓNÉV" />
+                        <TableColumn fx:id="emailCol" prefWidth="183.0" text="EMAIL" />
+                  <TableColumn fx:id="regDateCol" prefWidth="302.0" text="REGISZTRÁCIÓ DÁTUMA" />
+                  <TableColumn fx:id="adminCol" prefWidth="76.0" text="ADMIN" />
+                  <TableColumn fx:id="tiltvaCol" minWidth="0.0" prefWidth="75.0" text="TILTVA" />
                     </columns>
-                    <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                    </columnResizePolicy>
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
                 </TableView>
                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                     <children>
@@ -53,7 +53,7 @@
         </GridPane>
         <Pane layoutY="48.0" prefHeight="150.0" prefWidth="931.0" style="-fx-background-color: #86C232;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label layoutX="14.0" layoutY="36.0" text="Helyszínek" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="36.0" text="Felhasználók" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="40.0" />
                     </font>

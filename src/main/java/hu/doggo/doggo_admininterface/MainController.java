@@ -29,6 +29,11 @@ public class MainController {
     private double x = 0;
     private double y = 0;
 
+    public void initialize() throws IOException {
+        AnchorPane view = FXMLLoader.load(getClass().getResource("statisztikak-view.fxml"));
+        borderPane.setCenter(view);
+    }
+
     @FXML
     private void onFelhasznalokButtonClick(ActionEvent event) throws IOException {
         AnchorPane view = FXMLLoader.load(getClass().getResource("felhasznalok-view.fxml"));
