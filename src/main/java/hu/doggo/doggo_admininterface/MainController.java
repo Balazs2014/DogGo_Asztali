@@ -97,4 +97,10 @@ public class MainController extends Ablakok {
         stage.setMaxHeight(primaryScreenBounds.getHeight());
         stage.setMinHeight(primaryScreenBounds.getHeight());
     }
+
+    @FXML
+    public void onMinimizeClick(Event event) {
+        stage = (Stage) mainAnchor.getScene().getWindow();
+        stage.setIconified(true);
+    }
 }

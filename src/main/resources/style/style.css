@@ -113,7 +113,7 @@
     -fx-background-color: #F1707A;
 }
 
-.maximizeButton:hover {
+.maxMinButton:hover {
     -fx-background-color: #4F5254;
 }
 

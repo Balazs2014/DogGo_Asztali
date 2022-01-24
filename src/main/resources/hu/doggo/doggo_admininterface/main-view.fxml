@@ -56,11 +56,20 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="1120.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maximizeButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="1120.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../icons/teljes_meret.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="1080.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.rightAnchor="80.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/kis_meret.png" />
                            </image>
                         </ImageView>
                      </children>
