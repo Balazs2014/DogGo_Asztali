@@ -1,5 +1,6 @@
-package hu.doggo.doggo_admininterface;
+package hu.doggo.doggo_admininterface.controllers;
 
+import hu.doggo.doggo_admininterface.Felhasznalo;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

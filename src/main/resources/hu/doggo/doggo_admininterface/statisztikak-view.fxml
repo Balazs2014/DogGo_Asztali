@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1200.0" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.StatisztikakController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="980.0" prefHeight="680.0" prefWidth="980.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.StatisztikakController">
     <children>
         <Pane layoutY="48.0" prefHeight="150.0" prefWidth="931.0" style="-fx-background-color: #86C232;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>

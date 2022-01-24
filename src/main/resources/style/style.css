@@ -104,3 +104,11 @@
 .table-view .virtual-flow .scroll-bar:horizontal .thumb {
     -fx-background-color:  #474A4F;
 }
+
+.closeButton:hover {
+    -fx-background-color: #E81123;
+}
+
+.cimPane {
+    -fx-background-radius: 0 100 100 0;
+}

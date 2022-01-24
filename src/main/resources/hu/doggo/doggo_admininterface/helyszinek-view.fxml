@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="650.0" minWidth="100.0" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.HelyszinekController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="650.0" minWidth="100.0" prefHeight="650.0" prefWidth="1000.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.HelyszinekController">
     <children>
         <GridPane layoutX="18.0" layoutY="216.0" prefHeight="414.0" prefWidth="960.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="216.0">
             <columnConstraints>
