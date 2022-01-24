@@ -22,7 +22,7 @@ public class AdminInterface extends Application {
             Scene scene = new Scene(fxmlLoader.load(), 1300, 700);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
-        stage.setMinWidth(1200);
+        stage.setMinWidth(1300);
         stage.setMinHeight(700);
         stage.show();
     }

@@ -1,20 +1,18 @@
 package hu.doggo.doggo_admininterface;
 
 import hu.doggo.doggo_admininterface.controllers.Ablakok;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -29,14 +27,20 @@ public class MainController extends Ablakok {
     private Button statisztikakButton;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private AnchorPane mainAnchor;
+    @FXML
+    private ImageView maximizeImage;
+
+    private Image newIcon;
 
     private Stage stage;
     private Scene scene;
 
     private double x = 0;
     private double y = 0;
-    @FXML
-    private AnchorPane mainAnchor;
+
+    private boolean teljesKepernyo = false;
 
 
     public void initialize() throws IOException {
@@ -87,15 +91,35 @@ public class MainController extends Ablakok {
     @FXML
     public void onMaximizeClick(Event event) {
         stage = (Stage) mainAnchor.getScene().getWindow();
-        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
-        stage.setX(primaryScreenBounds.getMinX());
-        stage.setY(primaryScreenBounds.getMinY());
+        if (!teljesKepernyo) {
+            Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX(primaryScreenBounds.getMinX());
+            stage.setY(primaryScreenBounds.getMinY());
 
-        stage.setMaxWidth(primaryScreenBounds.getWidth());
-        stage.setMinWidth(primaryScreenBounds.getWidth());
+            stage.setMaxWidth(primaryScreenBounds.getWidth());
+            stage.setMinWidth(primaryScreenBounds.getWidth());
 
-        stage.setMaxHeight(primaryScreenBounds.getHeight());
-        stage.setMinHeight(primaryScreenBounds.getHeight());
+            stage.setMaxHeight(primaryScreenBounds.getHeight());
+            stage.setMinHeight(primaryScreenBounds.getHeight());
+
+            newIcon = new Image(getClass().getResource("/icons/elozo_nezet.png").toExternalForm());
+            maximizeImage.setImage(newIcon);
+
+            teljesKepernyo = true;
+        } else {
+            stage.setMaxWidth(1300);
+            stage.setMinWidth(1300);
+
+            stage.setMaxHeight(700);
+            stage.setMinHeight(700);
+
+            stage.centerOnScreen();
+
+            newIcon = new Image(getClass().getResource("/icons/teljes_meret.png").toExternalForm());
+            maximizeImage.setImage(newIcon);
+
+            teljesKepernyo = false;
+        }
     }
 
     @FXML

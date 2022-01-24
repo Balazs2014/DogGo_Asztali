@@ -37,7 +37,7 @@
                 </VBox>
             </left>
          <top>
-            <AnchorPane onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="16.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
+            <AnchorPane onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="20.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutY="1.0" prefHeight="24.0" prefWidth="158.0" text="DogGo - Admin Interfész" textFill="#6b6e70">
                      <font>
@@ -56,16 +56,16 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="1120.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="1120.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="maximizeImage" fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../icons/teljes_meret.png" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="1080.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.rightAnchor="80.0">
+                  <Pane layoutX="1080.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>
