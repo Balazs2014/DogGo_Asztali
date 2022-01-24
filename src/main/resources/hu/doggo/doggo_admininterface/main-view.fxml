@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1200.0" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.MainController">
+<AnchorPane fx:id="mainAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1200.0" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.MainController">
     <children>
         <BorderPane fx:id="borderPane" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -37,7 +37,7 @@
                 </VBox>
             </left>
          <top>
-            <AnchorPane onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="18.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
+            <AnchorPane onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="16.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutY="1.0" prefHeight="24.0" prefWidth="158.0" text="DogGo - Admin Interfész" textFill="#6b6e70">
                      <font>
@@ -47,7 +47,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Pane layoutX="1154.0" layoutY="1.0" minHeight="25.0" minWidth="40.0" onMouseClicked="#onCloseClick" prefHeight="25.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1160.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="1154.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onCloseClick" prefHeight="24.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -56,13 +56,19 @@
                         </ImageView>
                      </children>
                   </Pane>
+                  <Pane layoutX="1120.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maximizeButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/teljes_meret.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
                   <!--<FontAwesomeIconView fill="WHITE" glyphName="MINUS" layoutX="1156.0" layoutY="21.0" size="1.3em" wrappingWidth="12.257143020629883" AnchorPane.rightAnchor="31.742856979370117" />-->
                </children>
             </AnchorPane>
          </top>
-         <right>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </right>
         </BorderPane>
     </children>
 </AnchorPane>

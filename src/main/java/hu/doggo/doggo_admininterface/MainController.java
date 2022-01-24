@@ -8,12 +8,14 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -33,6 +35,8 @@ public class MainController extends Ablakok {
 
     private double x = 0;
     private double y = 0;
+    @FXML
+    private AnchorPane mainAnchor;
 
 
     public void initialize() throws IOException {
@@ -78,5 +82,19 @@ public class MainController extends Ablakok {
             return;
         }
         javafx.application.Platform.exit();
+    }
+
+    @FXML
+    public void onMaximizeClick(Event event) {
+        stage = (Stage) mainAnchor.getScene().getWindow();
+        Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
+        stage.setX(primaryScreenBounds.getMinX());
+        stage.setY(primaryScreenBounds.getMinY());
+
+        stage.setMaxWidth(primaryScreenBounds.getWidth());
+        stage.setMinWidth(primaryScreenBounds.getWidth());
+
+        stage.setMaxHeight(primaryScreenBounds.getHeight());
+        stage.setMinHeight(primaryScreenBounds.getHeight());
     }
 }

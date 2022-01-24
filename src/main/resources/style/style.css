@@ -109,6 +109,14 @@
     -fx-background-color: #E81123;
 }
 
+.closeButton:pressed {
+    -fx-background-color: #F1707A;
+}
+
+.maximizeButton:hover {
+    -fx-background-color: #4F5254;
+}
+
 .cimPane {
     -fx-background-radius: 0 100 100 0;
 }
