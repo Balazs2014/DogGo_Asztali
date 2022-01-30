@@ -7,6 +7,7 @@
     -fx-background-color: #61892F;
     -fx-border-color: white;
     -fx-border-width: 0px 5px 0px 0px;
+    -fx-padding: 0px 0px 0px 25px;
 }
 
 .menuButton:pressed {
@@ -15,8 +16,7 @@
 
 .keresesButton {
     -fx-background-color: #4A6A21;
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+    -fx-background-radius: 0;
 }
 
 .keresesButton:hover {
@@ -27,9 +27,26 @@
     -fx-background-color: #557A24;
 }
 
+.kijelentkezesButton {
+    -fx-background-color: #405B1F;
+    -fx-background-radius: 0;
+}
+
+.kijelentkezesButton:hover {
+    -fx-background-color: #E81123;
+}
+
+.kijelentkezesButton:pressed {
+    -fx-background-color: #F1707A;
+}
+
 .keresesBeviteliMezo {
-    -fx-border-radius: 10px;
-    -fx-background-radius: 10px;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: white;
+    -fx-text-fill: white;
 }
 
 .table-view .column-header,
@@ -115,8 +132,4 @@
 
 .maxMinButton:hover {
     -fx-background-color: #4F5254;
-}
-
-.cimPane {
-    -fx-background-radius: 0 100 100 0;
 }

@@ -18,21 +18,67 @@
                 <VBox prefHeight="675.0" prefWidth="250.0" style="-fx-background-color: #4A6A21;" stylesheets="@../../../style/style.css" BorderPane.alignment="CENTER">
                     <children>
                   <Pane prefHeight="200.0" prefWidth="121.0" />
-                        <Button fx:id="statisztikakButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
+                        <Button fx:id="statisztikakButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
                             <font>
-                                <Font size="17.0" />
+                                <Font name="Verdana Bold" size="15.0" />
                             </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/statistics.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                         </Button>
-                        <Button fx:id="felhasznalokButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFelhasznalokButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Felhasználók" textAlignment="RIGHT" textFill="WHITE">
+                        <Button fx:id="felhasznalokButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFelhasznalokButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Felhasználók" textAlignment="RIGHT" textFill="WHITE">
                             <font>
-                                <Font size="17.0" />
+                                <Font name="Verdana Bold" size="15.0" />
                             </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/user.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                         </Button>
-                        <Button fx:id="helyszinekButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Helyszínek" textAlignment="RIGHT" textFill="WHITE">
+                        <Button fx:id="helyszinekButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Helyszínek" textAlignment="RIGHT" textFill="WHITE">
                             <font>
-                                <Font size="17.0" />
+                                <Font name="Verdana Bold" size="15.0" />
                             </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/location.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
                         </Button>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="280.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="helyszinekButton1" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../../../style/style.css" textAlignment="RIGHT" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana Bold" size="17.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../icons/logout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
                     </children>
                 </VBox>
             </left>

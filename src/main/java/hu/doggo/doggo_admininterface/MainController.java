@@ -46,7 +46,6 @@ public class MainController extends Ablakok {
     public void initialize() throws IOException {
         AnchorPane view = FXMLLoader.load(getClass().getResource("statisztikak-view.fxml"));
         borderPane.setCenter(view);
-
     }
 
     @FXML
@@ -85,7 +84,7 @@ public class MainController extends Ablakok {
         if(!(confirm("Ki szeretne lépni a programból?"))) {
             return;
         }
-        javafx.application.Platform.exit();
+        System.exit(0);
     }
 
     @FXML
