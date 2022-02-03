@@ -17,7 +17,14 @@
             <left>
                 <VBox prefHeight="675.0" prefWidth="250.0" style="-fx-background-color: #4A6A21;" stylesheets="@../../../style/style.css" BorderPane.alignment="CENTER">
                     <children>
-                  <Pane prefHeight="200.0" prefWidth="121.0" />
+                  <Pane prefHeight="200.0" prefWidth="121.0">
+                     <children>
+                        <ImageView fitHeight="117.0" fitWidth="126.0" layoutX="67.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/logo.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
                         <Button fx:id="statisztikakButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
@@ -65,7 +72,7 @@
                         </Button>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="280.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="helyszinekButton1" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../../../style/style.css" textAlignment="RIGHT" textFill="WHITE">
+                        <Button fx:id="kijelentkezesButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onKijelentkezesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../../../style/style.css" textAlignment="RIGHT" textFill="WHITE">
                            <font>
                               <Font name="Verdana Bold" size="17.0" />
                            </font>

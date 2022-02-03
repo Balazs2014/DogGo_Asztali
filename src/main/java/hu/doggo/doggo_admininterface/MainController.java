@@ -1,6 +1,5 @@
 package hu.doggo.doggo_admininterface;
 
-import hu.doggo.doggo_admininterface.controllers.Ablakok;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController extends Ablakok {
+public class MainController extends Controllers {
     @FXML
     private Button felhasznalokButton;
     @FXML
@@ -31,6 +30,8 @@ public class MainController extends Ablakok {
     private AnchorPane mainAnchor;
     @FXML
     private ImageView maximizeImage;
+    @FXML
+    private Button kijelentkezesButton;
 
     private Image newIcon;
 
@@ -44,26 +45,22 @@ public class MainController extends Ablakok {
 
 
     public void initialize() throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("statisztikak-view.fxml"));
-        borderPane.setCenter(view);
+        changeStage("statisztikak-view.fxml");
     }
 
     @FXML
-    private void onFelhasznalokButtonClick(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("felhasznalok-view.fxml"));
-        borderPane.setCenter(view);
+    public void onFelhasznalokButtonClick(ActionEvent event) throws IOException {
+        changeStage("felhasznalok-view.fxml");
     }
 
     @FXML
-    private void onHelyszinekButtonClick(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("helyszinek-view.fxml"));
-        borderPane.setCenter(view);
+    public void onHelyszinekButtonClick(ActionEvent event) throws IOException {
+        changeStage("helyszinek-view.fxml");
     }
 
     @FXML
-    private  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource("statisztikak-view.fxml"));
-        borderPane.setCenter(view);
+    public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
+        changeStage("statisztikak-view.fxml");
     }
 
     @FXML
@@ -124,6 +121,19 @@ public class MainController extends Ablakok {
     @FXML
     public void onMinimizeClick(Event event) {
         stage = (Stage) mainAnchor.getScene().getWindow();
-        stage.setIconified(true);
+        minimizeWindow(stage);
+    }
+
+    @FXML
+    public void onKijelentkezesButtonClick(ActionEvent actionEvent) {
+        if(!(confirm("Ki szeretne jelentkezni?"))) {
+            return;
+        }
+        System.exit(0);
+    }
+
+    private void changeStage(String fxml) throws IOException {
+        AnchorPane view = FXMLLoader.load(getClass().getResource(fxml));
+        borderPane.setCenter(view);
     }
 }

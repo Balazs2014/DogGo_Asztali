@@ -1,13 +1,13 @@
 .menuButton {
     -fx-background-color: #4A6A21;
     -fx-border-radius: 0;
+    -fx-background-radius: 0;
 }
 
 .menuButton:hover {
     -fx-background-color: #61892F;
     -fx-border-color: white;
     -fx-border-width: 0px 5px 0px 0px;
-    -fx-padding: 0px 0px 0px 25px;
 }
 
 .menuButton:pressed {
