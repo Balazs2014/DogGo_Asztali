@@ -27,8 +27,9 @@
             <children>
                 <TableView fx:id="helyszinekTableView" prefHeight="391.0" prefWidth="1110.0" stylesheets="@../../../style/style.css" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="nevCol" prefWidth="75.0" text="NÉV" />
-                        <TableColumn fx:id="koordinataCol" prefWidth="75.0" text="KOORDINÁTA" />
+                        <TableColumn fx:id="nameCol" prefWidth="75.0" text="NÉV" />
+                        <TableColumn fx:id="latCol" prefWidth="75.0" text="LATITUDE" />
+                  <TableColumn fx:id="lngCol" prefWidth="75.0" text="LONGITUDE" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
