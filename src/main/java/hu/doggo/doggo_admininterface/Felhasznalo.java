@@ -5,42 +5,42 @@ import java.util.Date;
 
 public class Felhasznalo {
     private int id;
-    private String felhasznalonev;
+    private String username;
     private String email;
-    private LocalDate regisztracio_datum;
-    private Boolean admin;
-    private Boolean tiltva;
+    private int permission;
 
-    public Felhasznalo(int id, String felhasznalonev, String email, LocalDate regisztracio_datum, Boolean admin, Boolean tiltva) {
+    public Felhasznalo(int id, String username, String email, int permission) {
         this.id = id;
-        this.felhasznalonev = felhasznalonev;
+        this.username = username;
         this.email = email;
-        this.regisztracio_datum = regisztracio_datum;
-        this.admin = admin;
-        this.tiltva = tiltva;
+        this.permission = permission;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getFelhasznalonev() {
-        return felhasznalonev;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public LocalDate getRegisztracio_datum() {
-        return regisztracio_datum;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Boolean getAdmin() {
-        return admin;
+    public int getPermission() {
+        return permission;
     }
 
-    public Boolean getTiltva() {
-        return tiltva;
+    public void setPermission(int permission) {
+        this.permission = permission;
     }
 }

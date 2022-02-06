@@ -1,6 +1,10 @@
 package hu.doggo.doggo_admininterface.controllers;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import hu.doggo.doggo_admininterface.Felhasznalo;
+import hu.doggo.doggo_admininterface.RequestHandler;
+import hu.doggo.doggo_admininterface.Response;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,69 +21,51 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.util.List;
 
 public class FelhasznalokController {
 
     @FXML
-    private TableColumn<Felhasznalo, LocalDate> regDateCol;
+    private TableColumn<Felhasznalo, LocalDate> created_atCol;
     @FXML
-    private TableColumn<Felhasznalo, Boolean> tiltvaCol;
-    @FXML
-    private TableColumn<Felhasznalo, String> felhnevCol;
+    private TableColumn<Felhasznalo, String> usernameCol;
     @FXML
     private TableColumn<Felhasznalo, String> emailCol;
     @FXML
     private TableView<Felhasznalo> felhasznalokTableView;
     @FXML
-    private TableColumn<Felhasznalo, Boolean> adminCol;
+    private TableColumn<Felhasznalo, Integer> permissionCol;
 
     public void initialize() {
-        felhnevCol.setCellValueFactory(new PropertyValueFactory<>("felhasznalonev"));
+        usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        regDateCol.setCellValueFactory(new PropertyValueFactory<>("regisztracio_datum"));
-        adminCol.setCellValueFactory(new PropertyValueFactory<>("admin"));
-        tiltvaCol.setCellValueFactory(new PropertyValueFactory<>("tiltva"));
+        permissionCol.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
-        felhasznalokTableView.getItems().add(new Felhasznalo(1, "Test", "test@example.com",
-                LocalDate.of(2022, 1, 8), false, false));
+        felhasznaloListaFeltoltes();
+
+    }
+
+    private void felhasznaloListaFeltoltes() {
+        try {
+            Response response = RequestHandler.get("http://127.0.0.1:8000/api/users");
+            String json = response.getContent();
+            if(response.getResponseCode() >= 400) {
+                System.out.println(json);
+                return;
+            }
+
+            Gson jsonConverter = new Gson();
+            Type type = new TypeToken<List<Felhasznalo>>(){}.getType();
+            List<Felhasznalo> felhasznaloLista = jsonConverter.fromJson(json, type);
+            felhasznalokTableView.getItems().clear();
+            for (Felhasznalo felhasznalo : felhasznaloLista) {
+                felhasznalokTableView.getItems().add(felhasznalo);
+            }
+
+        } catch (IOException e) {
+            e.getMessage();
+        }
     }
 }
