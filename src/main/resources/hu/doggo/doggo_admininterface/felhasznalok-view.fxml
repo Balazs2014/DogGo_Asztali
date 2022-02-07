@@ -52,7 +52,10 @@
                               <Image url="@../../../icons/search.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font></Button>
                </children></HBox>
             </children>
             <padding>

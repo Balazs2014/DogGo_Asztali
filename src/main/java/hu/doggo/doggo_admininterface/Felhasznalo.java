@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -7,12 +8,14 @@ public class Felhasznalo {
     private int id;
     private String username;
     private String email;
+    private Date created_at;
     private int permission;
 
-    public Felhasznalo(int id, String username, String email, int permission) {
+    public Felhasznalo(int id, String username, String email, Date created_at, int permission) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.created_at = created_at;
         this.permission = permission;
     }
 
@@ -42,5 +45,13 @@ public class Felhasznalo {
 
     public void setPermission(int permission) {
         this.permission = permission;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

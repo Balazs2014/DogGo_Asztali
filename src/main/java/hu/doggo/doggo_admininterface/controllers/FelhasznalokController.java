@@ -23,12 +23,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class FelhasznalokController {
 
     @FXML
-    private TableColumn<Felhasznalo, LocalDate> created_atCol;
+    private TableColumn<Felhasznalo, Date> created_atCol;
     @FXML
     private TableColumn<Felhasznalo, String> usernameCol;
     @FXML
@@ -41,10 +42,10 @@ public class FelhasznalokController {
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        created_atCol.setCellValueFactory(new PropertyValueFactory<>("created_at"));
         permissionCol.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
         felhasznaloListaFeltoltes();
-
     }
 
     private void felhasznaloListaFeltoltes() {
