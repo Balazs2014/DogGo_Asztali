@@ -25,7 +25,7 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                        <Button fx:id="statisztikakButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>
@@ -40,7 +40,7 @@
                         <Insets left="20.0" />
                      </padding>
                         </Button>
-                        <Button fx:id="felhasznalokButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFelhasznalokButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Felhasználók" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFelhasznalokButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Felhasználók" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>
@@ -55,7 +55,7 @@
                         <Insets left="20.0" />
                      </padding>
                         </Button>
-                        <Button fx:id="helyszinekButton" alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Helyszínek" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Helyszínek" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>
@@ -70,9 +70,24 @@
                         <Insets left="20.0" />
                      </padding>
                         </Button>
+                  <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVisszajelzesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../../../style/style.css" text="Visszajelzések" textAlignment="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana Bold" size="15.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../icons/feedback.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Button>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="280.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="kijelentkezesButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onKijelentkezesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../../../style/style.css" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onKijelentkezesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../../../style/style.css" textAlignment="RIGHT" textFill="WHITE">
                            <font>
                               <Font name="Verdana Bold" size="17.0" />
                            </font>

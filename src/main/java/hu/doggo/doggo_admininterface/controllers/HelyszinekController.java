@@ -2,13 +2,14 @@ package hu.doggo.doggo_admininterface.controllers;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import hu.doggo.doggo_admininterface.Felhasznalo;
-import hu.doggo.doggo_admininterface.Helyszin;
+import hu.doggo.doggo_admininterface.classes.Helyszin;
 import hu.doggo.doggo_admininterface.RequestHandler;
 import hu.doggo.doggo_admininterface.Response;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class HelyszinekController {
     private TableColumn<Helyszin, String> nameCol;
     @FXML
     private TableColumn<Helyszin, Double> latCol;
+    @FXML
+    private TextField textFieldHelyszinKereses;
 
     public void initialize() {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -55,5 +58,9 @@ public class HelyszinekController {
         } catch (IOException e) {
             e.getMessage();
         }
+    }
+
+    @FXML
+    public void onHelyszinKeresesClick(ActionEvent actionEvent) {
     }
 }

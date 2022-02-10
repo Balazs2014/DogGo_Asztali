@@ -26,7 +26,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="336.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-            <TableView prefHeight="383.0" prefWidth="564.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TableView fx:id="hozzaszolasokTableView" prefHeight="383.0" prefWidth="564.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
               <columns>
                 <TableColumn prefWidth="75.0" text="HOZZÁSZÓLÁSOK" />
               </columns>
@@ -38,11 +38,6 @@
                <children>
                   <VBox alignment="TOP_RIGHT" prefHeight="150.0" prefWidth="110.0">
                      <children>
-                        <Label text="Felhasználónév:" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
                         <Label text="Email:" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -68,11 +63,6 @@
                   </VBox>
                   <VBox prefHeight="150.0" prefWidth="100.0">
                      <children>
-                        <Label text="{felhasználónév}" textFill="WHITE">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
                         <Label text="{email}" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
@@ -94,7 +84,7 @@
             </HBox>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="229.0" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Hozzászólás törlése" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="229.0" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Hozzászólás törlése" textFill="WHITE">
                      <font>
                         <Font size="13.0" />
                      </font>

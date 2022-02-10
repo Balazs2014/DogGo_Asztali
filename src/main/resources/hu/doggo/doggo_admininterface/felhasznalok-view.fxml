@@ -28,7 +28,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="380.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <TableView fx:id="felhasznalokTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" prefHeight="380.0" prefWidth="880.0" stylesheets="@../../../style/style.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+                <TableView fx:id="felhasznalokTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" onMouseClicked="#onFelhasznaloDoubleClick" prefHeight="380.0" prefWidth="880.0" stylesheets="@../../../style/style.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                     <columns>
                         <TableColumn fx:id="usernameCol" prefWidth="232.0" text="FELHASZNÁLÓNÉV" />
                         <TableColumn fx:id="emailCol" prefWidth="183.0" text="EMAIL" />
@@ -44,8 +44,8 @@
                 </TableView>
                 <HBox alignment="BOTTOM_CENTER" maxHeight="40.0" maxWidth="1500.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
                <children>
-                  <TextField maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES" />
-                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Keresés" textFill="WHITE">
+                  <TextField fx:id="textFieldFelhKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES" />
+                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onFelhKeresesClick" prefHeight="25.0" prefWidth="122.0" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Keresés" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>

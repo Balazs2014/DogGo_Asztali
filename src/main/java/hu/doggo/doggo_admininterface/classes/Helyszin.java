@@ -1,4 +1,4 @@
-package hu.doggo.doggo_admininterface;
+package hu.doggo.doggo_admininterface.classes;
 
 public class Helyszin {
     private int id;

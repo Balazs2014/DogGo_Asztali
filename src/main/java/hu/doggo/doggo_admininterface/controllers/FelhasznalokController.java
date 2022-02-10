@@ -1,43 +1,33 @@
 package hu.doggo.doggo_admininterface.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import hu.doggo.doggo_admininterface.Felhasznalo;
-import hu.doggo.doggo_admininterface.RequestHandler;
-import hu.doggo.doggo_admininterface.Response;
-import javafx.event.EventHandler;
+import hu.doggo.doggo_admininterface.Controller;
+import hu.doggo.doggo_admininterface.classes.Felhasznalo;
+import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
-public class FelhasznalokController {
+public class FelhasznalokController extends Controller {
 
     @FXML
-    private TableColumn<Felhasznalo, Date> created_atCol;
+    private TableColumn created_atCol;
     @FXML
-    private TableColumn<Felhasznalo, String> usernameCol;
+    private TableColumn usernameCol;
     @FXML
-    private TableColumn<Felhasznalo, String> emailCol;
+    private TableColumn permissionCol;
     @FXML
-    private TableView<Felhasznalo> felhasznalokTableView;
+    private TableColumn emailCol;
     @FXML
-    private TableColumn<Felhasznalo, Integer> permissionCol;
+    private TableView felhasznalokTableView;
+    @FXML
+    private TextField textFieldFelhKereses;
 
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -50,23 +40,31 @@ public class FelhasznalokController {
 
     private void felhasznaloListaFeltoltes() {
         try {
-            Response response = RequestHandler.get("http://127.0.0.1:8000/api/users");
-            String json = response.getContent();
-            if(response.getResponseCode() >= 400) {
-                System.out.println(json);
-                return;
-            }
-
-            Gson jsonConverter = new Gson();
-            Type type = new TypeToken<List<Felhasznalo>>(){}.getType();
-            List<Felhasznalo> felhasznaloLista = jsonConverter.fromJson(json, type);
+            List<Felhasznalo> felhasznaloLista = FelhasznaloApi.getFelhasznalok();
             felhasznalokTableView.getItems().clear();
             for (Felhasznalo felhasznalo : felhasznaloLista) {
                 felhasznalokTableView.getItems().add(felhasznalo);
             }
-
         } catch (IOException e) {
-            e.getMessage();
+            hibaKiir(e);
         }
+    }
+
+    @FXML
+    public void onFelhasznaloDoubleClick(MouseEvent mouseEvent) {
+        int selectedIndex = felhasznalokTableView.getSelectionModel().getSelectedIndex();
+        if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
+            try {
+                Controller modositas = ujAblak("felhasznalok-reszletes-view.fxml", "Felhasznalo kezelése", 650, 750);
+                modositas.getStage().setOnCloseRequest(event -> felhasznaloListaFeltoltes());
+                modositas.getStage().show();
+            } catch (Exception e) {
+                hibaKiir(e);
+            }
+        }
+    }
+
+    @FXML
+    public void onFelhKeresesClick(ActionEvent actionEvent) {
     }
 }

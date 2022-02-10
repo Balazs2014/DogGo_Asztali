@@ -85,6 +85,10 @@
     -fx-fill: #474A4F;
 }
 
+.table-row-cell:hover .text {
+    -fx-fill: #474A4F;
+}
+
 .table-view .table-cell{
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
@@ -99,11 +103,11 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #86C232;
+    -fx-background-color: #F4F4F4;
 }
 
 .table-row-cell:hover {
-    -fx-background-color: #77A638;
+    -fx-background-color: #BCBCBC;
 }
 
 .table-view .virtual-flow .scroll-bar:vertical,
