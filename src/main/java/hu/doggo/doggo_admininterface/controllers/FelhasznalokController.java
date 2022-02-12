@@ -3,6 +3,11 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
+import javafx.beans.binding.FloatExpression;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -12,22 +17,27 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class FelhasznalokController extends Controller {
 
     @FXML
-    private TableColumn created_atCol;
+    private TableColumn<Felhasznalo, Date> created_atCol;
     @FXML
-    private TableColumn usernameCol;
+    private TableColumn<Felhasznalo, String> usernameCol;
     @FXML
-    private TableColumn permissionCol;
+    private TableColumn<Felhasznalo, Integer> permissionCol;
     @FXML
-    private TableColumn emailCol;
+    private TableColumn<Felhasznalo, String> emailCol;
     @FXML
-    private TableView felhasznalokTableView;
+    private TableView<Felhasznalo> felhasznalokTableView;
     @FXML
     private TextField textFieldFelhKereses;
+
+    private ObservableList<Felhasznalo> felhasznaloLista = FXCollections.observableArrayList();
+
 
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -36,14 +46,40 @@ public class FelhasznalokController extends Controller {
         permissionCol.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
         felhasznaloListaFeltoltes();
+
+        FilteredList<Felhasznalo> filteredList = new FilteredList<>(felhasznaloLista, b -> true);
+        textFieldFelhKereses.textProperty().addListener((observable, oldValue, newValue ) -> {
+            filteredList.setPredicate(felhasznalo -> {
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return true;
+                }
+
+                String kereses = newValue.toLowerCase();
+
+                if (felhasznalo.getUsername().toLowerCase().indexOf(kereses) > -1) {
+                    return true;
+                } else if (felhasznalo.getEmail().toLowerCase().indexOf(kereses) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Felhasznalo> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(felhasznalokTableView.comparatorProperty());
+
+        felhasznalokTableView.setItems(sortedList);
     }
 
     private void felhasznaloListaFeltoltes() {
         try {
-            List<Felhasznalo> felhasznaloLista = FelhasznaloApi.getFelhasznalok();
+            felhasznaloLista.addAll(FelhasznaloApi.getFelhasznalok());
+            //List<Felhasznalo> felhasznaloLista = FelhasznaloApi.getFelhasznalok();
             felhasznalokTableView.getItems().clear();
             for (Felhasznalo felhasznalo : felhasznaloLista) {
-                felhasznalokTableView.getItems().add(felhasznalo);
+               felhasznalokTableView.getItems().add(felhasznalo);
             }
         } catch (IOException e) {
             hibaKiir(e);

@@ -31,6 +31,7 @@
                 <TableView fx:id="visszajelzesekTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" prefHeight="380.0" prefWidth="880.0" stylesheets="@../../../style/style.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                     <columns>
                         <TableColumn fx:id="commentCol" prefWidth="232.0" text="VISSZAJELZÉSEK" />
+                  <TableColumn fx:id="created_atCol" prefWidth="232.0" text="DÁTUM" />
                     </columns>
                     <GridPane.margin>
                         <Insets />
