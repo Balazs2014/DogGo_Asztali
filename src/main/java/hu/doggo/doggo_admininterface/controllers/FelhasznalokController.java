@@ -1,6 +1,7 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
+import hu.doggo.doggo_admininterface.api.Api;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import javafx.beans.binding.FloatExpression;
@@ -76,7 +77,6 @@ public class FelhasznalokController extends Controller {
     private void felhasznaloListaFeltoltes() {
         try {
             felhasznaloLista.addAll(FelhasznaloApi.getFelhasznalok());
-            //List<Felhasznalo> felhasznaloLista = FelhasznaloApi.getFelhasznalok();
             felhasznalokTableView.getItems().clear();
             for (Felhasznalo felhasznalo : felhasznaloLista) {
                felhasznalokTableView.getItems().add(felhasznalo);
@@ -98,9 +98,5 @@ public class FelhasznalokController extends Controller {
                 hibaKiir(e);
             }
         }
-    }
-
-    @FXML
-    public void onFelhKeresesClick(ActionEvent actionEvent) {
     }
 }

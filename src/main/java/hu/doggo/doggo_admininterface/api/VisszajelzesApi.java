@@ -13,15 +13,10 @@ import java.util.List;
 
 public class VisszajelzesApi extends Controller {
     private static final String API_URL = "http://127.0.0.1:8000/api/feedbacks";
+    private static Gson jsonConverter = new Gson();
 
     public static List<Visszajelzes> getVisszajelzesek() throws IOException {
-        Response response = RequestHandler.get(API_URL);
-        String json = response.getContent();
-        Gson jsonConverter = new Gson();
-        if (response.getResponseCode() >= 400) {
-            String message = jsonConverter.fromJson(json, ApiError.class).getMessage();
-            throw new IOException(message);
-        }
+        String json = Api.get(API_URL);
 
         Type type = new TypeToken<List<Visszajelzes>>() {
         }.getType();

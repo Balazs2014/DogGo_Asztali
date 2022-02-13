@@ -17,6 +17,4 @@ module hu.doggo.doggo_admininterface {
     opens hu.doggo.doggo_admininterface.controllers to com.google.gson, javafx.fxml;
     exports hu.doggo.doggo_admininterface.classes;
     opens hu.doggo.doggo_admininterface.classes to com.google.gson, javafx.fxml;
-    //exports hu.doggo.doggo_admininterface.controllers;
-    //opens hu.doggo.doggo_admininterface.controllers to com.google.gson, javafx.fxml;
 }

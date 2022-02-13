@@ -1,10 +1,12 @@
 package hu.doggo.doggo_admininterface.controllers;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import hu.doggo.doggo_admininterface.api.Api;
+import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
-import hu.doggo.doggo_admininterface.RequestHandler;
-import hu.doggo.doggo_admininterface.Response;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -13,8 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.List;
 
 public class HelyszinekController {
 
@@ -29,6 +29,8 @@ public class HelyszinekController {
     @FXML
     private TextField textFieldHelyszinKereses;
 
+    private ObservableList<Helyszin> helyszinLista = FXCollections.observableArrayList();
+
     public void initialize() {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         latCol.setCellValueFactory(new PropertyValueFactory<>("lat"));
@@ -36,20 +38,34 @@ public class HelyszinekController {
 
         helyszinListaFeltoltes();
 
+        FilteredList<Helyszin> filteredList = new FilteredList<>(helyszinLista, b -> true);
+        textFieldHelyszinKereses.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(helyszin -> {
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return true;
+                }
+
+                String kereses = newValue.toLowerCase();
+
+                if (helyszin.getName().toLowerCase().indexOf(kereses) > -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Helyszin> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(helyszinekTableView.comparatorProperty());
+
+        helyszinekTableView.setItems(sortedList);
+
     }
 
     private void helyszinListaFeltoltes() {
         try {
-            Response response = RequestHandler.get("http://127.0.0.1:8000/api/locations");
-            String json = response.getContent();
-            if(response.getResponseCode() >= 400) {
-                System.out.println(json);
-                return;
-            }
-
-            Gson jsonConverter = new Gson();
-            Type type = new TypeToken<List<Helyszin>>(){}.getType();
-            List<Helyszin> helyszinLista = jsonConverter.fromJson(json, type);
+            helyszinLista.addAll(HelyszinApi.getHelyszin());
             helyszinekTableView.getItems().clear();
             for (Helyszin helyszin : helyszinLista) {
                 helyszinekTableView.getItems().add(helyszin);
@@ -58,9 +74,5 @@ public class HelyszinekController {
         } catch (IOException e) {
             e.getMessage();
         }
-    }
-
-    @FXML
-    public void onHelyszinKeresesClick(ActionEvent actionEvent) {
     }
 }

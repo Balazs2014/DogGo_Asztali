@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -24,7 +23,7 @@
             <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="40.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="100.0" minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="380.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
@@ -41,20 +40,21 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                 </TableView>
-                <HBox alignment="BOTTOM_CENTER" maxHeight="40.0" maxWidth="1500.0" minHeight="40.0" minWidth="200.0" prefHeight="40.0" prefWidth="200.0" spacing="10.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
+                <HBox alignment="BOTTOM_CENTER" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
                <children>
-                  <TextField fx:id="textFieldHelyszinKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#onHelyszinKeresesClick" prefHeight="25.0" prefWidth="122.0" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Keresés" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                  <Pane minHeight="30.0" minWidth="40.0" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: white;">
+                     <children>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../icons/search.png" />
+                              <Image url="@../../../icons/search_black.png" />
                            </image>
                         </ImageView>
-                     </graphic>
+                     </children>
+                  </Pane>
+                  <TextField fx:id="textFieldHelyszinKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" promptText="Név" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES">
                      <font>
-                        <Font size="13.0" />
-                     </font></Button>
+                        <Font size="14.0" />
+                     </font></TextField>
                </children></HBox>
             </children>
             <padding>
