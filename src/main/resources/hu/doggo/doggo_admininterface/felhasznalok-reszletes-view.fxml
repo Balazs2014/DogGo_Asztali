@@ -26,9 +26,10 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="336.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-            <TableView fx:id="hozzaszolasokTableView" prefHeight="383.0" prefWidth="564.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TableView fx:id="ertekelesekTableView" prefHeight="383.0" prefWidth="564.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
               <columns>
-                <TableColumn prefWidth="75.0" text="HOZZÁSZÓLÁSOK" />
+                <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="LEÍRÁS" />
+                  <TableColumn fx:id="starsCol" prefWidth="75.0" text="CSILLAGOK" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -61,19 +62,19 @@
                         <Insets right="5.0" />
                      </padding>
                   </VBox>
-                  <VBox prefHeight="150.0" prefWidth="100.0">
+                  <VBox prefHeight="150.0" prefWidth="291.0">
                      <children>
-                        <Label text="{email}" textFill="WHITE">
+                        <Label fx:id="felhEmail" text="{email}" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="{regisztráció}" textFill="WHITE">
+                        <Label fx:id="felhReg" text="{regisztráció}" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <Label text="{jogosultság}" textFill="WHITE">
+                        <Label fx:id="felJog" text="{jogosultság}" textFill="WHITE">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -98,7 +99,7 @@
         </GridPane>
         <Pane layoutY="48.0" minHeight="150.0" minWidth="650.0" prefHeight="150.0" prefWidth="650.0" style="-fx-background-color: #86C232;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label layoutX="14.0" layoutY="36.0" text="{felhasznalónév}" textFill="WHITE">
+                <Label fx:id="felhnev" layoutX="14.0" layoutY="36.0" text="{felhasznalónév}" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="40.0" />
                     </font>

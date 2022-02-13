@@ -84,11 +84,13 @@ public class FelhasznalokController extends Controller {
     @FXML
     public void onFelhasznaloDoubleClick(MouseEvent mouseEvent) {
         int selectedIndex = felhasznalokTableView.getSelectionModel().getSelectedIndex();
+        Felhasznalo reszletesFelh = felhasznalokTableView.getSelectionModel().getSelectedItem();
         if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
             try {
-                Controller modositas = ujAblak("felhasznalok-reszletes-view.fxml", "Felhasznalo kezelése", 650, 750);
-                modositas.getStage().setOnCloseRequest(event -> felhasznaloListaFeltoltes());
-                modositas.getStage().show();
+                FelhasznalokReszletesController reszletes = (FelhasznalokReszletesController) ujAblak("felhasznalok-reszletes-view.fxml", "Felhasznalo kezelése", 650, 750);
+                reszletes.setReszletes(reszletesFelh);
+                reszletes.getStage().setOnCloseRequest(event -> felhasznalokTableView.refresh());
+                reszletes.getStage().show();
             } catch (Exception e) {
                 hibaKiir(e);
             }

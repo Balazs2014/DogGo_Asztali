@@ -3,8 +3,6 @@ package hu.doggo.doggo_admininterface.api;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.RequestHandler;
-import hu.doggo.doggo_admininterface.Response;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 
 import java.io.IOException;

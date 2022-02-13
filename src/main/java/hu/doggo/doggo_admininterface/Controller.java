@@ -53,6 +53,20 @@ public class Controller {
         return controller;
     }
 
+    protected void alert(String uzenet) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setContentText(uzenet);
+        alert.getButtonTypes().add(ButtonType.OK);
+        alert.show();
+    }
+
+    protected void alertWait(String uzenet) {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setContentText(uzenet);
+        alert.getButtonTypes().add(ButtonType.OK);
+        alert.showAndWait();
+    }
+
     protected void minimizeWindow(Stage stage) {
         stage.setIconified(true);
     }
