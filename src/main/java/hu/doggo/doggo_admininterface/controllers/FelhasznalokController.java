@@ -1,15 +1,12 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.api.Api;
-import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
-import javafx.beans.binding.FloatExpression;
+import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -19,8 +16,6 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
-import java.util.Locale;
 
 public class FelhasznalokController extends Controller {
 
@@ -57,9 +52,9 @@ public class FelhasznalokController extends Controller {
 
                 String kereses = newValue.toLowerCase();
 
-                if (felhasznalo.getUsername().toLowerCase().indexOf(kereses) > -1) {
+                if (felhasznalo.getUsername().toLowerCase().contains(kereses)) {
                     return true;
-                } else if (felhasznalo.getEmail().toLowerCase().indexOf(kereses) > -1) {
+                } else if (felhasznalo.getEmail().toLowerCase().contains(kereses)) {
                     return true;
                 } else {
                     return false;

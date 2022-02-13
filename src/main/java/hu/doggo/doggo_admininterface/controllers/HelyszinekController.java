@@ -1,13 +1,12 @@
 package hu.doggo.doggo_admininterface.controllers;
 
-import hu.doggo.doggo_admininterface.api.Api;
+import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 
-public class HelyszinekController {
+public class HelyszinekController extends Controller {
 
     @FXML
     private TableColumn<Helyszin, Double> lngCol;
@@ -47,7 +46,7 @@ public class HelyszinekController {
 
                 String kereses = newValue.toLowerCase();
 
-                if (helyszin.getName().toLowerCase().indexOf(kereses) > -1) {
+                if (helyszin.getName().toLowerCase().contains(kereses)) {
                     return true;
                 } else {
                     return false;
@@ -72,7 +71,7 @@ public class HelyszinekController {
             }
 
         } catch (IOException e) {
-            e.getMessage();
+            hibaKiir(e);
         }
     }
 }

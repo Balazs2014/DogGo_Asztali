@@ -1,8 +1,14 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
+import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
+import hu.doggo.doggo_admininterface.classes.Helyszin;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -20,20 +26,45 @@ public class VisszajelzesekController extends Controller {
     @FXML
     private TableView<Visszajelzes> visszajelzesekTableView;
     @FXML
-    private TextField textFieldVisszajelzesekKereses;
+    private TextField textFieldVisszajelzesKereses;
     @FXML
     private TableColumn<Visszajelzes, Date> created_atCol;
+
+    private ObservableList<Visszajelzes> visszajelzesLista = FXCollections.observableArrayList();
 
     public void initialize() {
         commentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
         created_atCol.setCellValueFactory(new PropertyValueFactory<>("created_at"));
 
         visszajelzesekListaFeltoltese();
+
+        FilteredList<Visszajelzes> filteredList = new FilteredList<>(visszajelzesLista, b -> true);
+        textFieldVisszajelzesKereses.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(visszajelzes -> {
+                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                    return true;
+                }
+
+                String kereses = newValue.toLowerCase();
+
+                if (visszajelzes.getComment().toLowerCase().contains(kereses)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Visszajelzes> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(visszajelzesekTableView.comparatorProperty());
+
+        visszajelzesekTableView.setItems(sortedList);
     }
 
     private void visszajelzesekListaFeltoltese() {
         try {
-            List<Visszajelzes> visszajelzesLista = VisszajelzesApi.getVisszajelzesek();
+            visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
             visszajelzesekTableView.getItems().clear();
             for (Visszajelzes visszajelzes : visszajelzesLista) {
                 visszajelzesekTableView.getItems().add(visszajelzes);
@@ -41,9 +72,5 @@ public class VisszajelzesekController extends Controller {
         } catch (IOException e) {
             hibaKiir(e);
         }
-    }
-
-    @FXML
-    public void onVisszajelzesekKeresesClick(ActionEvent actionEvent) {
     }
 }
