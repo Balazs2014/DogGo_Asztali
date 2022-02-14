@@ -19,9 +19,9 @@
                     <children>
                   <Pane prefHeight="200.0" prefWidth="121.0">
                      <children>
-                        <ImageView fitHeight="117.0" fitWidth="126.0" layoutX="67.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="151.0" fitWidth="154.0" layoutX="50.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../icons/logo.png" />
+                              <Image url="@../../../icons/logo%20másolata.png" />
                            </image>
                         </ImageView>
                      </children></Pane>
@@ -105,7 +105,7 @@
                 </VBox>
             </left>
          <top>
-            <AnchorPane onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="20.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
+            <AnchorPane minHeight="25.0" minWidth="1200.0" onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="25.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
                <children>
                   <Label layoutY="1.0" prefHeight="24.0" prefWidth="158.0" text="DogGo - Admin Interfész" textFill="#6b6e70">
                      <font>

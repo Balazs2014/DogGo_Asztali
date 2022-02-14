@@ -136,3 +136,12 @@
 .maxMinButton:hover {
     -fx-background-color: #4F5254;
 }
+
+.borderPane {
+    -fx-border-color: #7C7E81;
+}
+
+.paneFelh {
+    -fx-border-color: #86C232;
+    -fx-border-width: 20px 0px 20px 0px;
+}

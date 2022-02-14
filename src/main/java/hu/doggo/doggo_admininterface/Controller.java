@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -46,6 +47,7 @@ public class Controller {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource(fxml));
         Scene scene = new Scene(fxmlLoader.load(), width, height);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle(title);
         stage.setScene(scene);
         Controller controller = fxmlLoader.getController();
@@ -69,5 +71,10 @@ public class Controller {
 
     protected void minimizeWindow(Stage stage) {
         stage.setIconified(true);
+    }
+
+    protected void dragWindow(Stage stage, MouseEvent event, double x, double y) {
+        stage.setX(event.getScreenX() - x);
+        stage.setY(event.getScreenY() - y);
     }
 }

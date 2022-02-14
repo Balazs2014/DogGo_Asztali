@@ -61,8 +61,7 @@ public class MainController extends Controller {
     @FXML
     public void onBorderPaneTopDragged(MouseEvent event) {
         Stage stage = (Stage)borderPane.getScene().getWindow();
-        stage.setX(event.getScreenX() - x);
-        stage.setY(event.getScreenY() - y);
+        dragWindow(stage, event, x, y);
     }
 
     @FXML

@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FelhasznalokController extends Controller {
@@ -32,8 +33,10 @@ public class FelhasznalokController extends Controller {
     @FXML
     private TextField textFieldFelhKereses;
 
+
     private ObservableList<Felhasznalo> felhasznaloLista = FXCollections.observableArrayList();
 
+    private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
 
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
