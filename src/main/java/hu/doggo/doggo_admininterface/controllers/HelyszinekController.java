@@ -64,6 +64,7 @@ public class HelyszinekController extends Controller {
 
     private void helyszinListaFeltoltes() {
         try {
+            helyszinLista.clear();
             helyszinLista.addAll(HelyszinApi.getHelyszin());
             helyszinekTableView.getItems().clear();
             for (Helyszin helyszin : helyszinLista) {

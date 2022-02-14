@@ -74,6 +74,7 @@ public class FelhasznalokController extends Controller {
 
     private void felhasznaloListaFeltoltes() {
         try {
+            felhasznaloLista.clear();
             felhasznaloLista.addAll(FelhasznaloApi.getFelhasznalok());
             felhasznalokTableView.getItems().clear();
             for (Felhasznalo felhasznalo : felhasznaloLista) {

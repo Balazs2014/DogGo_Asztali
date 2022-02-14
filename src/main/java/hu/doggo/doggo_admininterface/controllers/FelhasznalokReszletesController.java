@@ -76,7 +76,6 @@ public class FelhasznalokReszletesController extends Controller {
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));
 
         ertekelesListaFeltoltes();
-
     }
 
     private void ertekelesListaFeltoltes() {
@@ -106,16 +105,16 @@ public class FelhasznalokReszletesController extends Controller {
             return;
         }
 
+        modositando.setDescription("asd");
 
         try {
-            modositando.setDescription("");
+            ertekelesLista.clear();
             Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
             if (modositandoErtekeles != null) {
                 alertWait("Sikeres törlés");
             } else {
                 alert("Sikertelen törlés");
             }
-
             adatokKiirasa();
         } catch (IOException e) {
             hibaKiir(e);

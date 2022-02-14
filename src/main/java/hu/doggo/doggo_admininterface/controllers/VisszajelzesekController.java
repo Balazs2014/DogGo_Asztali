@@ -64,6 +64,7 @@ public class VisszajelzesekController extends Controller {
 
     private void visszajelzesekListaFeltoltese() {
         try {
+            visszajelzesLista.clear();
             visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
             visszajelzesekTableView.getItems().clear();
             for (Visszajelzes visszajelzes : visszajelzesLista) {
