@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface.classes;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Felhasznalo {

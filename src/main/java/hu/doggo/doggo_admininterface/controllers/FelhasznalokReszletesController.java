@@ -25,8 +25,6 @@ public class FelhasznalokReszletesController extends Controller {
     @FXML
     private Label felhEmail;
     @FXML
-    private Label felJog;
-    @FXML
     private Label felhReg;
     @FXML
     private Label felhnev;
@@ -40,6 +38,8 @@ public class FelhasznalokReszletesController extends Controller {
     private AnchorPane mainAnchor;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Label felhJog;
 
     private Felhasznalo reszletes;
     private ObservableList<Ertekeles> ertekelesLista = FXCollections.observableArrayList();
@@ -62,7 +62,15 @@ public class FelhasznalokReszletesController extends Controller {
         felhnev.setText(reszletes.getUsername());
         felhEmail.setText(reszletes.getEmail());
         felhReg.setText(reszletes.getCreated_at() + "");
-        felJog.setText(reszletes.getPermission() + "");
+        if (reszletes.getPermission() == 0) {
+            felhJog.setText("default");
+        } else if (reszletes.getPermission()  == 1) {
+            felhJog.setText("tiltva");
+        } else if (reszletes.getPermission() == 2) {
+            felhJog.setText("admin");
+        } else {
+            felhJog.setText("szuperadmin");
+        }
 
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));

@@ -52,7 +52,8 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size: 20;
-    -fx-background-color: #474A4F;
+    /*-fx-background-color: #474A4F;*/
+    -fx-background-color: #1C1D1F;
 }
 
 .table-view .column-header .label {
@@ -81,7 +82,7 @@
 }
 
 .table-row-cell:selected .text {
-    -fx-fill: #474A4F;
+    -fx-fill: white;
 }
 
 .table-row-cell:hover .text {
@@ -94,15 +95,17 @@
 }
 
 .table-row-cell:odd{
-    -fx-background-color: #56585A;
+    /*-fx-background-color: #56585A;*/
+    -fx-background-color: #404244;
 }
 
 .table-row-cell:even{
-    -fx-background-color: #656667;
+    /*-fx-background-color: #656667;*/
+    -fx-background-color: #454749;
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #F4F4F4;
+    -fx-background-color: #717170;
 }
 
 .table-row-cell:hover {
@@ -138,10 +141,7 @@
 }
 
 .borderPane {
-    -fx-border-color: #7C7E81;
+    -fx-border-color: #515457;
 }
 
-.paneFelh {
-    -fx-border-color: #86C232;
-    -fx-border-width: 20px 0px 20px 0px;
-}
+

@@ -50,7 +50,10 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <TextField fx:id="textFieldVisszajelzesKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES" />
+                  <TextField fx:id="textFieldVisszajelzesKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font></TextField>
                </children></HBox>
             </children>
             <padding>
@@ -61,7 +64,7 @@
             <children>
                 <Label layoutX="14.0" layoutY="46.0" styleClass="c" stylesheets="@../../../style/style.css" text="Visszajelzések" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="40.0" />
+                        <Font name="Verdana Bold" size="40.0" />
                     </font>
                     <padding>
                         <Insets left="15.0" />
