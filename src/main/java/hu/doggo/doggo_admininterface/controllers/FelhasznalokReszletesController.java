@@ -105,7 +105,7 @@ public class FelhasznalokReszletesController extends Controller {
             return;
         }
 
-        modositando.setDescription("asd");
+        modositando.setDescription("üzenet törölve");
 
         try {
             ertekelesLista.clear();
