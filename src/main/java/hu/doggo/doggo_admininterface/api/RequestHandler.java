@@ -1,4 +1,4 @@
-package hu.doggo.doggo_admininterface;
+package hu.doggo.doggo_admininterface.api;
 
 import java.io.*;
 import java.net.HttpURLConnection;

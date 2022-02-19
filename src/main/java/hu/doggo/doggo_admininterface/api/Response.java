@@ -1,4 +1,4 @@
-package hu.doggo.doggo_admininterface;
+package hu.doggo.doggo_admininterface.api;
 
 public class Response {
     int responseCode;

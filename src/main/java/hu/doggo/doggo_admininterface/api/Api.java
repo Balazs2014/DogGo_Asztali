@@ -2,8 +2,6 @@ package hu.doggo.doggo_admininterface.api;
 
 import com.google.gson.Gson;
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.RequestHandler;
-import hu.doggo.doggo_admininterface.Response;
 
 import java.io.IOException;
 
@@ -33,5 +31,17 @@ public class Api extends Controller {
         }
 
         return json;
+    }
+
+    public static Response delete(String url, int id) throws IOException {
+        Response respone = RequestHandler.delete(url + "/" + id);
+        Gson jsonConverter = new Gson();
+        String json = respone.getContent();
+        if (respone.getResponseCode() > 400) {
+            ApiError hiba = jsonConverter.fromJson(json, ApiError.class);
+            String msg = hiba.getMessage();
+            throw new IOException(msg);
+        }
+        return respone;
     }
 }

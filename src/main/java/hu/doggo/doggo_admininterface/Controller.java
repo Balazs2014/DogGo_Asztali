@@ -54,6 +54,7 @@ public class Controller {
         stage.setScene(scene);
         Controller controller = fxmlLoader.getController();
         controller.stage = stage;
+
         return controller;
     }
 

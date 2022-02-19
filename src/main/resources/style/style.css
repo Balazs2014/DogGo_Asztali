@@ -19,13 +19,6 @@
     -fx-background-radius: 0;
 }
 
-.muveletButton:hover {
-    -fx-background-color: #517423;
-}
-
-.muveletButton:pressed {
-    -fx-background-color: #557A24;
-}
 
 .kijelentkezesButton {
     -fx-background-color: #405B1F;
