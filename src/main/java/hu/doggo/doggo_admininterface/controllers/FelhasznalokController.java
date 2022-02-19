@@ -93,7 +93,7 @@ public class FelhasznalokController extends Controller {
             try {
                 FelhasznalokReszletesController reszletes = (FelhasznalokReszletesController) ujAblak("felhasznalok-reszletes-view.fxml", "Felhasznalo kezelése", 650, 769);
                 reszletes.setReszletes(reszletesFelh);
-                reszletes.getStage().setOnCloseRequest(event -> felhasznalokTableView.refresh());
+                reszletes.getStage().setOnHiding(event -> felhasznalokTableView.refresh());
                 reszletes.getStage().show();
             } catch (Exception e) {
                 hibaKiir(e);

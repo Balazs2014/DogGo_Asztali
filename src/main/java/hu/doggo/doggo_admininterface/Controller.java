@@ -71,10 +71,6 @@ public class Controller {
         alert.showAndWait();
     }
 
-    protected void minimizeWindow(Stage stage) {
-        stage.setIconified(true);
-    }
-
     protected void dragWindow(Stage stage, MouseEvent event, double x, double y) {
         stage.setX(event.getScreenX() - x);
         stage.setY(event.getScreenY() - y);

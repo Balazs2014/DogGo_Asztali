@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.classes.Ertekeles;
-import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 
 import java.io.IOException;
 import java.lang.reflect.Type;

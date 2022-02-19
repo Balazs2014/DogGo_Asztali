@@ -14,16 +14,16 @@
     -fx-background-color: #557A24;
 }
 
-.keresesButton {
+.muveletButton {
     -fx-background-color: #4A6A21;
     -fx-background-radius: 0;
 }
 
-.keresesButton:hover {
+.muveletButton:hover {
     -fx-background-color: #517423;
 }
 
-.keresesButton:pressed {
+.muveletButton:pressed {
     -fx-background-color: #557A24;
 }
 

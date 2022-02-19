@@ -114,8 +114,7 @@ public class MainController extends Controller {
 
     @FXML
     public void onMinimizeClick(Event event) {
-        stage = (Stage) mainAnchor.getScene().getWindow();
-        minimizeWindow(stage);
+        ((Stage) mainAnchor.getScene().getWindow()).setIconified(true);
     }
 
     @FXML

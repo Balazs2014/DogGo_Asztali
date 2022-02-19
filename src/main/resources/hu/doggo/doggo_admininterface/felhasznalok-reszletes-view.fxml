@@ -72,12 +72,12 @@
                                       </VBox>
                                       <VBox prefHeight="150.0" prefWidth="291.0">
                                           <children>
-                                              <Label fx:id="felhEmail" text="{email}" textFill="WHITE" wrapText="true">
+                                              <Label fx:id="felhEmail" maxHeight="18.0" maxWidth="220.0" minHeight="18.0" minWidth="220.0" prefHeight="18.0" prefWidth="220.0" text="{email}" textFill="WHITE" wrapText="true">
                                                   <font>
                                                       <Font name="Verdana" size="14.0" />
                                                   </font>
                                               </Label>
-                                              <Label fx:id="felhReg" text="{regisztráció}" textFill="WHITE" wrapText="true">
+                                              <Label fx:id="felhReg" prefHeight="18.0" prefWidth="265.0" text="{regisztráció}" textFill="WHITE" wrapText="true">
                                                   <font>
                                                       <Font name="Verdana" size="14.0" />
                                                   </font>
@@ -91,13 +91,18 @@
                                       </VBox>
                                   </children>
                               </HBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1">
                                   <children>
-                                      <Button mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="229.0" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Hozzászólás törlése" textFill="WHITE">
+                                      <Button mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="229.0" styleClass="muveletButton" stylesheets="@../../../style/style.css" text="Hozzászólás törlése" textFill="WHITE">
                                           <font>
                                               <Font name="Verdana" size="14.0" />
                                           </font>
                                       </Button>
+                              <Button fx:id="btnTiltas" mnemonicParsing="false" onAction="#onTiltasClick" prefHeight="30.0" prefWidth="229.0" styleClass="muveletButton" stylesheets="@../../../style/style.css" text="Tiltás" textFill="WHITE">
+                                 <font>
+                                    <Font name="Verdana" size="14.0" />
+                                 </font>
+                              </Button>
                                   </children>
                               </VBox>
                           </children>

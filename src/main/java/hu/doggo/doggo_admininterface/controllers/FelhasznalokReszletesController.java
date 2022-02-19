@@ -2,6 +2,7 @@ package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.ErtekelesApi;
+import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import hu.doggo.doggo_admininterface.classes.Ertekeles;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import javafx.application.Platform;
@@ -10,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -40,6 +42,8 @@ public class FelhasznalokReszletesController extends Controller {
     private BorderPane borderPane;
     @FXML
     private Label felhJog;
+    @FXML
+    private Button btnTiltas;
 
     private Felhasznalo reszletes;
     private ObservableList<Ertekeles> ertekelesLista = FXCollections.observableArrayList();
@@ -48,6 +52,7 @@ public class FelhasznalokReszletesController extends Controller {
 
     private double x = 0;
     private double y = 0;
+
 
     public Felhasznalo getReszletes() {
         return reszletes;
@@ -74,6 +79,13 @@ public class FelhasznalokReszletesController extends Controller {
 
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));
+
+        int permission = reszletes.getPermission();
+        if (permission == 0) {
+            btnTiltas.setText("Tiltás");
+        } else if (permission == 1) {
+            btnTiltas.setText("Feloldás");
+        }
 
         ertekelesListaFeltoltes();
     }
@@ -105,7 +117,7 @@ public class FelhasznalokReszletesController extends Controller {
             return;
         }
 
-        modositando.setDescription("üzenet törölve");
+        modositando.setDescription("");
 
         try {
             ertekelesLista.clear();
@@ -135,16 +147,54 @@ public class FelhasznalokReszletesController extends Controller {
 
     @FXML
     public void onCloseClick(Event event) {
-        stage = (Stage)mainAnchor.getScene().getWindow();
-        if(!(confirm("Ki szeretne lépni a programból?"))) {
-            return;
-        }
-        stage.close();
+        ((Stage)mainAnchor.getScene().getWindow()).close();
     }
 
     @FXML
     public void onMinimizeClick(Event event) {
-        stage = (Stage)mainAnchor.getScene().getWindow();
-        minimizeWindow(stage);
+        ((Stage)mainAnchor.getScene().getWindow()).setIconified(true);
+    }
+
+    @FXML
+    public void onTiltasClick(ActionEvent actionEvent) {
+        int permission = reszletes.getPermission();
+        if (permission == 0) {
+            kitiltas();
+        } else if (permission == 1) {
+            feloldas();
+        }
+    }
+
+    public void kitiltas() {
+        reszletes.setPermission(1);
+
+        try {
+            ertekelesLista.clear();
+            Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
+            if (felhTiltasa != null) {
+                alertWait("Sikeres tiltás");
+            } else {
+                alert("Sikertelen tiltás");
+            }
+            adatokKiirasa();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
+    }
+
+    public void feloldas() {
+        reszletes.setPermission(0);
+        try {
+            ertekelesLista.clear();
+            Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
+            if (felhTiltasa != null) {
+                alertWait("Sikeres feloldás");
+            } else {
+                alert("Sikertelen feloldás");
+            }
+            adatokKiirasa();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
     }
 }
