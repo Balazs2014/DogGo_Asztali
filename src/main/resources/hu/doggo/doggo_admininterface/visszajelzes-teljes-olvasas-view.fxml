@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="280.0" prefWidth="300.0" styleClass="borderPane" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.VisszajelzesTeljesController">
+   <center>
+      <VBox>
+         <children>
+            <AnchorPane prefHeight="254.0" prefWidth="307.0" style="-fx-background-color: #222629;">
+               <children>
+                  <TextArea editable="false" layoutY="11.0" prefHeight="142.0" prefWidth="278.0" text="asdfaf" wrapText="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <JFXButton buttonType="RAISED" layoutX="118.0" layoutY="198.0" onAction="#onMentesClick" styleClass="muveletButton" stylesheets="@../../../style/style.css" text="Mentés" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana" size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <AnchorPane maxHeight="25.0" minHeight="25.0" prefHeight="25.0" prefWidth="265.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane layoutX="185.0" layoutY="2.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" styleClass="maxMinButton">
+                     <image>
+                        <Image url="@../../../icons/kis_meret.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="225.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onCloseClick" prefHeight="24.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="closeButton">
+                     <image>
+                        <Image url="@../../../icons/bezaras.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Label prefHeight="24.0" prefWidth="184.0" text="Visszajelzés" textFill="#6b6e70">
+               <font>
+                  <Font name="Verdana Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -20,7 +19,7 @@
 
 <AnchorPane fx:id="mainAnchor" minHeight="775.0" minWidth="650.0" prefHeight="775.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.FelhasznalokReszletesController">
    <children>
-      <BorderPane fx:id="borderPane" minHeight="617.0" minWidth="650.0" prefHeight="617.0" prefWidth="650.0" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="borderPane" minHeight="617.0" minWidth="650.0" prefHeight="617.0" prefWidth="650.0" styleClass="borderPane" stylesheets="@../../../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <center>
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="744.0" minWidth="650.0" prefHeight="744.0" prefWidth="650.0" style="-fx-background-color: #222629;" styleClass="borderPane" stylesheets="@../../../style/style.css">
                   <children>
@@ -146,13 +145,17 @@
                               </ImageView>
                           </children>
                       </Pane>
+                  <Label prefHeight="24.0" prefWidth="184.0" text="Felhasználó" textFill="#6b6e70">
+                     <font>
+                        <Font name="Verdana Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
                   </children>
               </AnchorPane>
           </top>
-          <styleClass>
-              <String fx:value="borderPane" />
-              <String fx:value="windowShadow" />
-          </styleClass>
       </BorderPane>
    </children>
 </AnchorPane>

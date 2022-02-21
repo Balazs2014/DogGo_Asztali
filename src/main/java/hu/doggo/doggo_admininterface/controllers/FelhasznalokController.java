@@ -76,10 +76,6 @@ public class FelhasznalokController extends Controller {
         try {
             felhasznaloLista.clear();
             felhasznaloLista.addAll(FelhasznaloApi.getFelhasznalok());
-            felhasznalokTableView.getItems().clear();
-            for (Felhasznalo felhasznalo : felhasznaloLista) {
-               felhasznalokTableView.getItems().add(felhasznalo);
-            }
         } catch (IOException e) {
             hibaKiir(e);
         }

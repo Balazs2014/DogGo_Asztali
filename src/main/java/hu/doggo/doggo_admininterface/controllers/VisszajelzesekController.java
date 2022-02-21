@@ -1,9 +1,8 @@
 package hu.doggo.doggo_admininterface.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
-import hu.doggo.doggo_admininterface.classes.Helyszin;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 public class VisszajelzesekController extends Controller {
     @FXML
@@ -26,15 +24,22 @@ public class VisszajelzesekController extends Controller {
     @FXML
     private TableView<Visszajelzes> visszajelzesekTableView;
     @FXML
+    private TableColumn<Visszajelzes, Boolean> readCol;
+    @FXML
     private TextField textFieldVisszajelzesKereses;
     @FXML
     private TableColumn<Visszajelzes, Date> created_atCol;
+    @FXML
+    private JFXButton btnModositas;
+    @FXML
+    private JFXButton btnTorles;
 
     private ObservableList<Visszajelzes> visszajelzesLista = FXCollections.observableArrayList();
 
     public void initialize() {
         commentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
         created_atCol.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        readCol.setCellValueFactory(new PropertyValueFactory<>("read"));
 
         visszajelzesekListaFeltoltese();
 
@@ -66,12 +71,16 @@ public class VisszajelzesekController extends Controller {
         try {
             visszajelzesLista.clear();
             visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
-            visszajelzesekTableView.getItems().clear();
-            for (Visszajelzes visszajelzes : visszajelzesLista) {
-                visszajelzesekTableView.getItems().add(visszajelzes);
-            }
         } catch (IOException e) {
             hibaKiir(e);
         }
+    }
+
+    @FXML
+    public void onTorlesClick(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onModositasClick(ActionEvent actionEvent) {
     }
 }

@@ -99,6 +99,7 @@ public class FelhasznalokReszletesController extends Controller {
 
     private void ertekelesListaFeltoltes() {
         try {
+            ertekelesLista.clear();
             ertekelesLista.addAll(ErtekelesApi.getErtekelesek());
             ertekelesekTableView.getItems().clear();
             for (Ertekeles ertekeles : ertekelesLista) {
@@ -127,7 +128,6 @@ public class FelhasznalokReszletesController extends Controller {
         modositando.setDescription("");
 
         try {
-            ertekelesLista.clear();
             Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
             if (modositandoErtekeles != null) {
                 alertWait("Sikeres törlés");

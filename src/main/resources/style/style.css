@@ -42,6 +42,17 @@
     -fx-text-fill: white;
 }
 
+.text-area {
+    -fx-background-color: transparent;
+    -fx-font-size: 15;
+    -fx-text-fill: #ffffff;
+}
+
+.text-area .content {
+    -fx-background-color:  #222629;
+    -fx-background-radius: 0;
+}
+
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size: 20;
