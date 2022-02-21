@@ -30,14 +30,14 @@ public class HelyszinekController extends Controller {
     private TableColumn<Helyszin, Double> latCol;
     @FXML
     private TextField textFieldHelyszinKereses;
-
-    private ObservableList<Helyszin> helyszinLista = FXCollections.observableArrayList();
     @FXML
     private TextField inputHelyszinNev;
     @FXML
     private JFXButton btnModositas;
     @FXML
     private JFXButton btnTorles;
+
+    private ObservableList<Helyszin> helyszinLista = FXCollections.observableArrayList();
 
     public void initialize() {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -72,15 +72,9 @@ public class HelyszinekController extends Controller {
     }
 
     private void helyszinListaFeltoltes() {
-        btnModositas.setDisable(true);
-        btnTorles.setDisable(true);
         try {
             helyszinLista.clear();
             helyszinLista.addAll(HelyszinApi.getHelyszin());
-            helyszinekTableView.getItems().clear();
-            for (Helyszin helyszin : helyszinLista) {
-                helyszinekTableView.getItems().add(helyszin);
-            }
         } catch (IOException e) {
             hibaKiir(e);
         }
@@ -95,12 +89,14 @@ public class HelyszinekController extends Controller {
         try {
             boolean siker = HelyszinApi.deleteHelyszin(torlendo.getId());
             if (siker) {
-                alert("Sikeres törlés!");
+                alertWait("Sikeres törlés!");
                 inputHelyszinNev.setText("");
+                btnModositas.setDisable(true);
+                btnTorles.setDisable(true);
+                helyszinListaFeltoltes();
             } else {
                 alert("Sikertelen törlés!");
             }
-            helyszinListaFeltoltes();
         } catch (IOException e) {
             hibaKiir(e);
         }
@@ -120,14 +116,17 @@ public class HelyszinekController extends Controller {
         modositando.setName(helyszinNev);
 
         try {
-            helyszinLista.clear();
             Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
             if (helyszinModositas != null) {
                 alertWait("Név módosítva!");
+                inputHelyszinNev.setText("");
+                helyszinekTableView.refresh();
+                helyszinekTableView.getSelectionModel().select(null);
+                btnModositas.setDisable(true);
+                btnTorles.setDisable(true);
             } else {
                 alertWait("Sikertelen módosítás!");
             }
-            helyszinListaFeltoltes();
         } catch (IOException e) {
             hibaKiir(e);
         }
