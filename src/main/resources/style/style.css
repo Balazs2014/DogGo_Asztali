@@ -44,7 +44,6 @@
 
 .text-area {
     -fx-background-color: transparent;
-    -fx-font-size: 15;
     -fx-text-fill: #ffffff;
 }
 
@@ -53,10 +52,17 @@
     -fx-background-radius: 0;
 }
 
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #86C232;
+}
+
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size: 20;
-    /*-fx-background-color: #474A4F;*/
     -fx-background-color: #1C1D1F;
 }
 
@@ -99,12 +105,10 @@
 }
 
 .table-row-cell:odd{
-    /*-fx-background-color: #56585A;*/
     -fx-background-color: #404244;
 }
 
 .table-row-cell:even{
-    /*-fx-background-color: #656667;*/
     -fx-background-color: #454749;
 }
 

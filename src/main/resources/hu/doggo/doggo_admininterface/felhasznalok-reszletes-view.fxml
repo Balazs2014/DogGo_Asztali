@@ -145,7 +145,7 @@
                               </ImageView>
                           </children>
                       </Pane>
-                  <Label prefHeight="24.0" prefWidth="184.0" text="Felhasználó" textFill="#6b6e70">
+                  <Label layoutY="1.0" prefHeight="24.0" prefWidth="184.0" text="Felhasználó" textFill="#6b6e70">
                      <font>
                         <Font name="Verdana Bold" size="12.0" />
                      </font>

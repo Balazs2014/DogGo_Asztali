@@ -1,16 +1,14 @@
 package hu.doggo.doggo_admininterface.classes;
 
-import javafx.scene.control.CheckBox;
-
 import java.util.Date;
 
 public class Visszajelzes {
     private int id;
     private String comment;
-    private int read;
+    private Boolean read;
     private Date created_at;
 
-    public Visszajelzes(int id, String comment, int read, Date created_at) {
+    public Visszajelzes(int id, String comment, Boolean read, Date created_at) {
         this.id = id;
         this.read = read;
         this.comment = comment;
@@ -29,11 +27,11 @@ public class Visszajelzes {
         this.comment = comment;
     }
 
-    public int getRead() {
+    public Boolean getRead() {
         return read;
     }
 
-    public void setRead(int read) {
+    public void setRead(Boolean read) {
         this.read = read;
     }
 

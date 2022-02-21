@@ -55,8 +55,6 @@ public class FelhasznalokReszletesController extends Controller {
     private double x = 0;
     private double y = 0;
 
-
-
     public Felhasznalo getReszletes() {
         return reszletes;
     }
@@ -88,7 +86,7 @@ public class FelhasznalokReszletesController extends Controller {
         felhReg.setText(reszletes.getCreated_at() + "");
         if (reszletes.getPermission() == 0) {
             felhJog.setText("default");
-        } else if (reszletes.getPermission()  == 1) {
+        } else if (reszletes.getPermission() == 1) {
             felhJog.setText("tiltva");
         } else if (reszletes.getPermission() == 2) {
             felhJog.setText("admin");
@@ -142,7 +140,7 @@ public class FelhasznalokReszletesController extends Controller {
 
     @FXML
     public void onBorderPaneTopDragged(MouseEvent event) {
-        Stage stage = (Stage)borderPane.getScene().getWindow();
+        Stage stage = (Stage) borderPane.getScene().getWindow();
         dragWindow(stage, event, x, y);
     }
 
@@ -154,12 +152,12 @@ public class FelhasznalokReszletesController extends Controller {
 
     @FXML
     public void onCloseClick(Event event) {
-        ((Stage)mainAnchor.getScene().getWindow()).close();
+        ((Stage) mainAnchor.getScene().getWindow()).close();
     }
 
     @FXML
     public void onMinimizeClick(Event event) {
-        ((Stage)mainAnchor.getScene().getWindow()).setIconified(true);
+        ((Stage) mainAnchor.getScene().getWindow()).setIconified(true);
     }
 
     @FXML

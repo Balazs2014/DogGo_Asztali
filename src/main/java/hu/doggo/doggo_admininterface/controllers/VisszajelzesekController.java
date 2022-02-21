@@ -14,6 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.Date;
@@ -82,5 +83,21 @@ public class VisszajelzesekController extends Controller {
 
     @FXML
     public void onModositasClick(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onVisszajelzesDoubleClick(MouseEvent mouseEvent) {
+        int selectedIndex = visszajelzesekTableView.getSelectionModel().getSelectedIndex();
+        Visszajelzes visszajelzesLeiras = visszajelzesekTableView.getSelectionModel().getSelectedItem();
+        if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
+            try {
+                VisszajelzesLeirasController leiras = (VisszajelzesLeirasController) ujAblak("visszajelzes-leiras.fxml", "Visszajelzés", 300, 320);
+                leiras.setLeiras(visszajelzesLeiras);
+                leiras.getStage().setOnHiding(event -> visszajelzesekTableView.refresh());
+                leiras.getStage().show();
+            } catch (Exception e) {
+                hibaKiir(e);
+            }
+        }
     }
 }

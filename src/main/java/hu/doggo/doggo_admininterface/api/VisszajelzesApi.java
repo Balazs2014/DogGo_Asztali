@@ -20,4 +20,11 @@ public class VisszajelzesApi extends Controller {
         }.getType();
         return jsonConverter.fromJson(json, type);
     }
+
+    public static Visszajelzes updateVisszajelzes(Visszajelzes modositando) throws IOException {
+        String visszajelzesJson = jsonConverter.toJson(modositando);
+        String json = Api.put(API_URL, modositando.getId(), visszajelzesJson);
+
+        return jsonConverter.fromJson(json, Visszajelzes.class);
+    }
 }
