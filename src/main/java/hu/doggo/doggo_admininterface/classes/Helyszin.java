@@ -5,12 +5,14 @@ public class Helyszin {
     private String name;
     private double lat;
     private double lng;
+    private boolean allowed;
 
-    public Helyszin(int id, String name, double lat, double lng) {
+    public Helyszin(int id, String name, double lat, double lng, boolean allowed) {
         this.id = id;
         this.name = name;
         this.lat = lat;
         this.lng = lng;
+        this.allowed = allowed;
     }
 
     public int getId() {
@@ -39,5 +41,13 @@ public class Helyszin {
 
     public void setLng(double lng) {
         this.lng = lng;
+    }
+
+    public boolean isAllowed() {
+        return allowed;
+    }
+
+    public void setAllowed(boolean allowed) {
+        this.allowed = allowed;
     }
 }

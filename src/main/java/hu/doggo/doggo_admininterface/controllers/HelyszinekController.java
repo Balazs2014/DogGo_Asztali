@@ -29,6 +29,8 @@ public class HelyszinekController extends Controller {
     @FXML
     private TableColumn<Helyszin, Double> latCol;
     @FXML
+    private TableColumn<Helyszin, Boolean> allowedCol;
+    @FXML
     private TextField textFieldHelyszinKereses;
     @FXML
     private TextField inputHelyszinNev;
@@ -36,6 +38,8 @@ public class HelyszinekController extends Controller {
     private JFXButton btnModositas;
     @FXML
     private JFXButton btnTorles;
+    @FXML
+    private JFXButton btnEngedelyezes;
 
     private ObservableList<Helyszin> helyszinLista = FXCollections.observableArrayList();
 
@@ -43,6 +47,7 @@ public class HelyszinekController extends Controller {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         latCol.setCellValueFactory(new PropertyValueFactory<>("lat"));
         lngCol.setCellValueFactory(new PropertyValueFactory<>("lng"));
+        allowedCol.setCellValueFactory(new PropertyValueFactory<>("allowed"));
 
         helyszinListaFeltoltes();
 
@@ -140,6 +145,34 @@ public class HelyszinekController extends Controller {
             inputHelyszinNev.setText(helyszinModositas.getName());
             btnModositas.setDisable(false);
             btnTorles.setDisable(false);
+            if (!helyszinModositas.isAllowed()) {
+                btnEngedelyezes.setDisable(false);
+            } else {
+                btnEngedelyezes.setDisable(true);
+            }
+        }
+    }
+
+    @FXML
+    public void onEngedelyezesClick(ActionEvent actionEvent) {
+        Helyszin modositando = (Helyszin) helyszinekTableView.getSelectionModel().getSelectedItem();
+
+        modositando.setAllowed(true);
+
+        try {
+            Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
+            if (helyszinModositas != null) {
+                alertWait("Sikeres engedélyezés!");
+                helyszinekTableView.refresh();
+                helyszinekTableView.getSelectionModel().select(null);
+                btnModositas.setDisable(true);
+                btnTorles.setDisable(true);
+                btnEngedelyezes.setDisable(true);
+            } else {
+                alertWait("Sikertelen engedélyezés!");
+            }
+        } catch (IOException e) {
+            hibaKiir(e);
         }
     }
 }

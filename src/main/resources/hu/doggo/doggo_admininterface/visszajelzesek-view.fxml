@@ -63,12 +63,7 @@
                 </HBox>
             <VBox maxWidth="150.0" minHeight="390.0" minWidth="150.0" prefHeight="390.0" prefWidth="150.0" spacing="20.0" GridPane.columnIndex="2" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1">
                <children>
-                  <JFXButton fx:id="btnModositas" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" onAction="#onModositasClick" prefHeight="30.0" prefWidth="140.0" styleClass="muveletButton" stylesheets="@../../../style/style.css" text="Módosítás" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="Verdana" size="14.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton fx:id="btnTorles" buttonType="RAISED" disable="true" maxHeight="54.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" onAction="#onTorlesClick" prefHeight="54.0" prefWidth="140.0" styleClass="muveletButton" stylesheets="@../../../style/style.css" text="Olvasottak törlése" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                  <JFXButton fx:id="btnTorles" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" onAction="#onTorlesClick" prefHeight="30.0" prefWidth="140.0" styleClass="muveletButton" stylesheets="@../../../style/style.css" text="Törlés" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>

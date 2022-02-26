@@ -31,8 +31,6 @@ public class VisszajelzesekController extends Controller {
     @FXML
     private TableColumn<Visszajelzes, Date> created_atCol;
     @FXML
-    private JFXButton btnModositas;
-    @FXML
     private JFXButton btnTorles;
 
     private ObservableList<Visszajelzes> visszajelzesLista = FXCollections.observableArrayList();
@@ -79,10 +77,22 @@ public class VisszajelzesekController extends Controller {
 
     @FXML
     public void onTorlesClick(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void onModositasClick(ActionEvent actionEvent) {
+        Visszajelzes torlendo = visszajelzesekTableView.getSelectionModel().getSelectedItem();
+        if (!confirm("Biztos törölni szeretné?")) {
+            return;
+        }
+        try {
+            boolean siker = VisszajelzesApi.deleteVisszajelzes(torlendo.getId());
+            if (siker) {
+                alertWait("Sikeres törlés!");
+                btnTorles.setDisable(true);
+                visszajelzesekListaFeltoltese();
+            } else {
+                alert("Sikertelen törlés!");
+            }
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
     }
 
     @FXML
@@ -98,6 +108,10 @@ public class VisszajelzesekController extends Controller {
             } catch (Exception e) {
                 hibaKiir(e);
             }
+        } else {
+            btnTorles.setDisable(false);
         }
     }
+
+
 }

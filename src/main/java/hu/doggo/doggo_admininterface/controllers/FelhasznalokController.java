@@ -15,13 +15,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class FelhasznalokController extends Controller {
 
     @FXML
-    private TableColumn<Felhasznalo, Date> created_atCol;
+    private TableColumn<Felhasznalo, String> created_atCol;
     @FXML
     private TableColumn<Felhasznalo, String> usernameCol;
     @FXML
@@ -36,12 +34,12 @@ public class FelhasznalokController extends Controller {
 
     private ObservableList<Felhasznalo> felhasznaloLista = FXCollections.observableArrayList();
 
-    private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+
 
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
-        created_atCol.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        created_atCol.setCellValueFactory(new PropertyValueFactory<>("formattedDate"));
         permissionCol.setCellValueFactory(new PropertyValueFactory<>("permission"));
 
         felhasznaloListaFeltoltes();

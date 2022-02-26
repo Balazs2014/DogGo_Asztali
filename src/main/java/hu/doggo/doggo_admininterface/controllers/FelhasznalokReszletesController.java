@@ -80,10 +80,10 @@ public class FelhasznalokReszletesController extends Controller {
         ertekelesListaFeltoltes();
     }
 
-    public void felhAdatokBetoltese() {
+    private void felhAdatokBetoltese() {
         felhnev.setText(reszletes.getUsername());
         felhEmail.setText(reszletes.getEmail());
-        felhReg.setText(reszletes.getCreated_at() + "");
+        felhReg.setText(reszletes.getFormattedDate());
         if (reszletes.getPermission() == 0) {
             felhJog.setText("default");
         } else if (reszletes.getPermission() == 1) {

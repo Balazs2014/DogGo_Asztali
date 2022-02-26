@@ -27,4 +27,8 @@ public class VisszajelzesApi extends Controller {
 
         return jsonConverter.fromJson(json, Visszajelzes.class);
     }
+
+    public static boolean deleteVisszajelzes(int id) throws IOException {
+        return Api.delete(API_URL, id).getResponseCode() == 204;
+    }
 }

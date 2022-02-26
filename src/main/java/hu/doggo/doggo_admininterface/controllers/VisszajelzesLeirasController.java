@@ -1,9 +1,7 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.api.ErtekelesApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
-import hu.doggo.doggo_admininterface.classes.Ertekeles;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
