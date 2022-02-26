@@ -164,9 +164,6 @@ public class HelyszinekController extends Controller {
             if (helyszinModositas != null) {
                 alertWait("Sikeres engedélyezés!");
                 helyszinekTableView.refresh();
-                helyszinekTableView.getSelectionModel().select(null);
-                btnModositas.setDisable(true);
-                btnTorles.setDisable(true);
                 btnEngedelyezes.setDisable(true);
             } else {
                 alertWait("Sikertelen engedélyezés!");
