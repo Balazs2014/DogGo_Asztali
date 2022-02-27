@@ -94,7 +94,7 @@ public class HelyszinekController extends Controller {
         try {
             boolean siker = HelyszinApi.deleteHelyszin(torlendo.getId());
             if (siker) {
-                alertWait("Sikeres törlés!");
+                alert("Sikeres törlés!");
                 inputHelyszinNev.setText("");
                 btnModositas.setDisable(true);
                 btnTorles.setDisable(true);
@@ -123,14 +123,15 @@ public class HelyszinekController extends Controller {
         try {
             Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
             if (helyszinModositas != null) {
-                alertWait("Név módosítva!");
+                alert("Név módosítva!");
                 inputHelyszinNev.setText("");
                 helyszinekTableView.refresh();
                 helyszinekTableView.getSelectionModel().select(null);
                 btnModositas.setDisable(true);
+                btnEngedelyezes.setDisable(true);
                 btnTorles.setDisable(true);
             } else {
-                alertWait("Sikertelen módosítás!");
+                alert("Sikertelen módosítás!");
             }
         } catch (IOException e) {
             hibaKiir(e);
@@ -162,11 +163,11 @@ public class HelyszinekController extends Controller {
         try {
             Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
             if (helyszinModositas != null) {
-                alertWait("Sikeres engedélyezés!");
+                alert("Sikeres engedélyezés!");
                 helyszinekTableView.refresh();
                 btnEngedelyezes.setDisable(true);
             } else {
-                alertWait("Sikertelen engedélyezés!");
+                alert("Sikertelen engedélyezés!");
             }
         } catch (IOException e) {
             hibaKiir(e);

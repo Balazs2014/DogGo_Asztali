@@ -17,7 +17,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.Date;
 
 public class VisszajelzesekController extends Controller {
     @FXML
@@ -29,7 +28,7 @@ public class VisszajelzesekController extends Controller {
     @FXML
     private TextField textFieldVisszajelzesKereses;
     @FXML
-    private TableColumn<Visszajelzes, Date> created_atCol;
+    private TableColumn<Visszajelzes, String> created_atCol;
     @FXML
     private JFXButton btnTorles;
 
@@ -37,7 +36,7 @@ public class VisszajelzesekController extends Controller {
 
     public void initialize() {
         commentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
-        created_atCol.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+        created_atCol.setCellValueFactory(new PropertyValueFactory<>("formattedDate"));
         readCol.setCellValueFactory(new PropertyValueFactory<>("read"));
 
         visszajelzesekListaFeltoltese();
@@ -84,7 +83,7 @@ public class VisszajelzesekController extends Controller {
         try {
             boolean siker = VisszajelzesApi.deleteVisszajelzes(torlendo.getId());
             if (siker) {
-                alertWait("Sikeres törlés!");
+                alert("Sikeres törlés!");
                 btnTorles.setDisable(true);
                 visszajelzesekListaFeltoltese();
             } else {
@@ -101,7 +100,7 @@ public class VisszajelzesekController extends Controller {
         Visszajelzes visszajelzesLeiras = visszajelzesekTableView.getSelectionModel().getSelectedItem();
         if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
             try {
-                VisszajelzesLeirasController leiras = (VisszajelzesLeirasController) ujAblak("visszajelzes-leiras.fxml", "Visszajelzés", 300, 320);
+                VisszajelzesLeirasController leiras = (VisszajelzesLeirasController) ujAblak("fxml/visszajelzes-leiras-view.fxml", "Visszajelzés", 300, 320);
                 leiras.setLeiras(visszajelzesLeiras);
                 leiras.getStage().setOnHiding(event -> visszajelzesekTableView.refresh());
                 leiras.getStage().show();

@@ -27,7 +27,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="380.0" prefHeight="380.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <TableView fx:id="felhasznalokTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" onMouseClicked="#onFelhasznaloDoubleClick" prefHeight="380.0" prefWidth="880.0" stylesheets="@../../../style/style.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+                <TableView fx:id="felhasznalokTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" onMouseClicked="#onFelhasznaloDoubleClick" prefHeight="380.0" prefWidth="880.0" stylesheets="@../style/style.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                     <columns>
                         <TableColumn fx:id="usernameCol" prefWidth="200.0" text="FELHASZNÁLÓNÉV" />
                         <TableColumn fx:id="emailCol" prefWidth="183.0" text="EMAIL" />
@@ -47,12 +47,12 @@
                      <children>
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../icons/search_black.png" />
+                              <Image url="@../icons/search_black.png" />
                            </image>
                         </ImageView>
                      </children>
                   </Pane>
-                  <TextField fx:id="textFieldFelhKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" promptText="Felhasználónév / Email" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="textFieldFelhKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" promptText="Felhasználónév / Email" styleClass="keresesBeviteliMezo" stylesheets="@../style/style.css" HBox.hgrow="SOMETIMES">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font></TextField>
@@ -62,9 +62,9 @@
                 <Insets bottom="15.0" left="15.0" right="15.0" />
             </padding>
         </GridPane>
-        <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="625.0" prefHeight="150.0" prefWidth="625.0" style="-fx-background-color: #86C232;" styleClass="cimPane" stylesheets="@../../../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="625.0" prefHeight="150.0" prefWidth="625.0" style="-fx-background-color: #86C232;" styleClass="cimPane" stylesheets="@../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label layoutX="14.0" layoutY="50.0" styleClass="c" stylesheets="@../../../style/style.css" text="Felhasználók" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="50.0" styleClass="c" stylesheets="@../style/style.css" text="Felhasználók" textFill="WHITE">
                     <font>
                         <Font name="Verdana Bold" size="40.0" />
                     </font>

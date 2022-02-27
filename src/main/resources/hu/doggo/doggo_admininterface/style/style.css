@@ -79,10 +79,6 @@
     -fx-text-fill: #000000;
 }
 
-.table-row-cell {
-    -fx-border-width: 0 0 0 0;
-}
-
 .table-view {
     -fx-background-color: transparent;
 }
@@ -92,10 +88,12 @@
 }
 
 .table-row-cell:selected .text {
+    -fx-font-weight: bold;
     -fx-fill: white;
 }
 
 .table-row-cell:hover .text {
+    -fx-font-weight: bold;
     -fx-fill: #474A4F;
 }
 
@@ -151,5 +149,3 @@
 .borderPane {
     -fx-border-color: #515457;
 }
-
-

@@ -35,27 +35,27 @@ public class MainController extends Controller {
 
 
     public void initialize() throws IOException {
-        changeStage("statisztikak-view.fxml");
+        changeStage("fxml/statisztikak-view.fxml");
     }
 
     @FXML
     public void onFelhasznalokButtonClick(ActionEvent event) throws IOException {
-        changeStage("felhasznalok-view.fxml");
+        changeStage("fxml/felhasznalok-view.fxml");
     }
 
     @FXML
     public void onHelyszinekButtonClick(ActionEvent event) throws IOException {
-        changeStage("helyszinek-view.fxml");
+        changeStage("fxml/helyszinek-view.fxml");
     }
 
     @FXML
     public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
-        changeStage("statisztikak-view.fxml");
+        changeStage("fxml/statisztikak-view.fxml");
     }
 
     @FXML
     public void onVisszajelzesButtonClick(ActionEvent actionEvent) throws IOException {
-        changeStage("visszajelzesek-view.fxml");
+        changeStage("fxml/visszajelzesek-view.fxml");
     }
 
     @FXML
@@ -92,7 +92,7 @@ public class MainController extends Controller {
             stage.setMaxHeight(primaryScreenBounds.getHeight());
             stage.setMinHeight(primaryScreenBounds.getHeight());
 
-            newIcon = new Image(getClass().getResource("/icons/elozo_nezet.png").toExternalForm());
+            newIcon = new Image(getClass().getResource("/hu/doggo/doggo_admininterface/icons/elozo_nezet.png").toExternalForm());
             maximizeImage.setImage(newIcon);
 
             teljesKepernyo = true;
@@ -105,7 +105,7 @@ public class MainController extends Controller {
 
             stage.centerOnScreen();
 
-            newIcon = new Image(getClass().getResource("/icons/teljes_meret.png").toExternalForm());
+            newIcon = new Image(getClass().getResource("/hu/doggo/doggo_admininterface/icons/teljes_meret.png").toExternalForm());
             maximizeImage.setImage(newIcon);
 
             teljesKepernyo = false;

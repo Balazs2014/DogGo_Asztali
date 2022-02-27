@@ -8,9 +8,9 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.StatisztikakController">
     <children>
-      <Pane layoutY="123.0" minHeight="75.0" minWidth="950.0" prefHeight="75.0" prefWidth="950.0" style="-fx-background-color: #4A6A21;" stylesheets="@../../../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Pane layoutY="98.0" minHeight="50.0" minWidth="850.0" prefHeight="50.0" prefWidth="850.0" style="-fx-background-color: #649128;" styleClass="cimPane" stylesheets="@../../../style/style.css" AnchorPane.leftAnchor="0.0" />
-        <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="950.0" prefHeight="150.0" prefWidth="625.0" style="-fx-background-color: #86C232;" styleClass="cimPane" stylesheets="@../../../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Pane layoutY="123.0" minHeight="75.0" minWidth="950.0" prefHeight="75.0" prefWidth="950.0" style="-fx-background-color: #4A6A21;" stylesheets="@../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+      <Pane layoutY="98.0" minHeight="50.0" minWidth="850.0" prefHeight="50.0" prefWidth="850.0" style="-fx-background-color: #649128;" styleClass="cimPane" stylesheets="@../style/style.css" AnchorPane.leftAnchor="0.0" />
+        <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="950.0" prefHeight="150.0" prefWidth="625.0" style="-fx-background-color: #86C232;" styleClass="cimPane" stylesheets="@../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
                 <Label layoutX="14.0" layoutY="50.0" text="Statisztikák" textFill="WHITE">
                     <font>

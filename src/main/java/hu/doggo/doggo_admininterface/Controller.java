@@ -5,9 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -17,6 +16,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Controller {
+    private DialogPane dialogPane;
     protected Stage stage;
 
     public Stage getStage() {
@@ -62,13 +62,9 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setContentText(uzenet);
         alert.getButtonTypes().add(ButtonType.OK);
-        alert.show();
-    }
-
-    protected void alertWait(String uzenet) {
-        Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setContentText(uzenet);
-        alert.getButtonTypes().add(ButtonType.OK);
+        dialogPane = alert.getDialogPane();
+        //dialogPane.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
+        //dialogPane.getStyleClass().add("dialogPane");
         alert.showAndWait();
     }
 

@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface.classes;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Visszajelzes {
@@ -41,5 +42,10 @@ public class Visszajelzes {
 
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
+    }
+
+    public String getFormattedDate() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy MMM d.");
+        return format.format(created_at);
     }
 }

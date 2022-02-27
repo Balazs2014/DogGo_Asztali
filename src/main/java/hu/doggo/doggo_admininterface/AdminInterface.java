@@ -18,7 +18,7 @@ public class AdminInterface extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("fxml/main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1300, 700);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);

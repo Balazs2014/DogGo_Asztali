@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox minHeight="420.0" minWidth="550.0" prefHeight="420.0" prefWidth="550.0" styleClass="windowShadow" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<HBox minHeight="420.0" minWidth="550.0" prefHeight="420.0" prefWidth="550.0" styleClass="windowShadow" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane minHeight="420.0" minWidth="275.0" prefHeight="420.0" prefWidth="275.0" style="-fx-background-color: #4A6A21;" />
       <AnchorPane minHeight="420.0" minWidth="275.0" prefHeight="420.0" prefWidth="275.0">
@@ -21,7 +21,7 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../icons/login.png" />
+                        <Image url="@../icons/login.png" />
                      </image>
                      <VBox.margin>
                         <Insets top="30.0" />
@@ -35,7 +35,7 @@
                         <Insets bottom="20.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField alignment="CENTER" promptText="Felhasználónév" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css">
+                  <TextField alignment="CENTER" promptText="Felhasználónév" styleClass="keresesBeviteliMezo" stylesheets="@../style/style.css">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
                      </VBox.margin>
@@ -43,7 +43,7 @@
                         <Font name="Verdana" size="14.0" />
                      </font>
                   </TextField>
-                  <PasswordField alignment="CENTER" promptText="Jelszó" styleClass="keresesBeviteliMezo" stylesheets="@../../../style/style.css">
+                  <PasswordField alignment="CENTER" promptText="Jelszó" styleClass="keresesBeviteliMezo" stylesheets="@../style/style.css">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>
@@ -51,7 +51,7 @@
                         <Insets bottom="40.0" left="20.0" right="20.0" />
                      </VBox.margin>
                   </PasswordField>
-                  <Button mnemonicParsing="false" onAction="#onBejelentkezesClick" styleClass="keresesButton" stylesheets="@../../../style/style.css" text="Bejelentkezés" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#onBejelentkezesClick" styleClass="keresesButton" stylesheets="@../style/style.css" text="Bejelentkezés" textFill="WHITE">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>

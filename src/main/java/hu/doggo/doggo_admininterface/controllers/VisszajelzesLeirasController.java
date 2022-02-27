@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,6 +26,8 @@ public class VisszajelzesLeirasController extends Controller {
     private AnchorPane mainAnchor;
     @FXML
     private BorderPane borderPane;
+    @FXML
+    private Label lblDatum;
 
     private Visszajelzes leiras;
     private Stage stage;
@@ -42,6 +45,7 @@ public class VisszajelzesLeirasController extends Controller {
 
         txtAreaLeiras.setFont(Font.font("Verdana", 12));
         txtAreaLeiras.setText(leiras.getComment());
+        lblDatum.setText(leiras.getFormattedDate());
         chckBoxOlvasva.setSelected(leiras.getRead());
     }
 
@@ -53,9 +57,10 @@ public class VisszajelzesLeirasController extends Controller {
         try {
             Visszajelzes olvasottLeiras = VisszajelzesApi.updateVisszajelzes(leiras);
             if (olvasottLeiras != null) {
-                alertWait("Sikeres mentés");
+                alert("Sikeres mentés");
+                ((Stage) mainAnchor.getScene().getWindow()).close();
             } else {
-                alertWait("Sikertelen mentés");
+                alert("Sikertelen mentés");
             }
         } catch (IOException e) {
             hibaKiir(e);

@@ -114,7 +114,7 @@ public class FelhasznalokReszletesController extends Controller {
     public void onHozzaszolasTorlesClick(ActionEvent actionEvent) {
         int selectedIndex = ertekelesekTableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1) {
-            alertWait("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
+            alert("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
             return;
         }
         Ertekeles modositando = (Ertekeles) ertekelesekTableView.getSelectionModel().getSelectedItem();
@@ -128,9 +128,9 @@ public class FelhasznalokReszletesController extends Controller {
         try {
             Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
             if (modositandoErtekeles != null) {
-                alertWait("Sikeres törlés");
+                alert("Sikeres törlés");
             } else {
-                alertWait("Sikertelen törlés");
+                alert("Sikertelen törlés");
             }
             adatokKiirasa();
         } catch (IOException e) {
@@ -179,9 +179,9 @@ public class FelhasznalokReszletesController extends Controller {
             ertekelesLista.clear();
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
-                alertWait("Felhasználó tiltva!");
+                alert("Felhasználó tiltva!");
             } else {
-                alertWait("Sikertelen tiltás!");
+                alert("Sikertelen tiltás!");
             }
             felhAdatokBetoltese();
         } catch (IOException e) {
@@ -196,9 +196,9 @@ public class FelhasznalokReszletesController extends Controller {
             ertekelesLista.clear();
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
-                alertWait("Felhasználó feloldva!");
+                alert("Felhasználó feloldva!");
             } else {
-                alertWait("Sikertelen feloldás!");
+                alert("Sikertelen feloldás!");
             }
             felhAdatokBetoltese();
         } catch (IOException e) {
