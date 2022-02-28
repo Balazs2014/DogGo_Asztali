@@ -149,3 +149,31 @@
 .borderPane {
     -fx-border-color: #515457;
 }
+
+
+.choice-box .context-menu {
+    -fx-background-color: #53722C;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: black;
+}
+
+.choice-box {
+    -fx-background-color: #4A6A21;
+    -fx-mark-color: white;
+    -fx-background-radius: 0;
+}
+
+
+.choice-box > .label {
+    -fx-text-fill: white;
+}

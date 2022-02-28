@@ -10,6 +10,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -40,6 +41,8 @@ public class HelyszinekController extends Controller {
     private JFXButton btnTorles;
     @FXML
     private JFXButton btnEngedelyezes;
+    @FXML
+    private ChoiceBox<String> choiceBoxHelyszin;
 
     private ObservableList<Helyszin> helyszinLista = FXCollections.observableArrayList();
 
@@ -74,9 +77,10 @@ public class HelyszinekController extends Controller {
 
         helyszinekTableView.setItems(sortedList);
 
+        megkotesKivalasztas();
     }
 
-    private void helyszinListaFeltoltes() {
+    public void helyszinListaFeltoltes() {
         try {
             helyszinLista.clear();
             helyszinLista.addAll(HelyszinApi.getHelyszin());
@@ -146,11 +150,7 @@ public class HelyszinekController extends Controller {
             inputHelyszinNev.setText(helyszinModositas.getName());
             btnModositas.setDisable(false);
             btnTorles.setDisable(false);
-            if (!helyszinModositas.isAllowed()) {
-                btnEngedelyezes.setDisable(false);
-            } else {
-                btnEngedelyezes.setDisable(true);
-            }
+            btnEngedelyezes.setDisable(helyszinModositas.isAllowed());
         }
     }
 
@@ -172,5 +172,23 @@ public class HelyszinekController extends Controller {
         } catch (IOException e) {
             hibaKiir(e);
         }
+    }
+
+    public void megkotesKivalasztas() {
+        choiceBoxHelyszin.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+            try {
+                if (newValue.equals("engedélyezésre vár")) {
+                    helyszinLista.clear();
+                    helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
+                } else if (newValue.equals("engedélyezve")) {
+                    helyszinLista.clear();
+                    helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
+                } else {
+                    helyszinListaFeltoltes();
+                }
+            } catch (IOException e) {
+                hibaKiir(e);
+            }
+        });
     }
 }
