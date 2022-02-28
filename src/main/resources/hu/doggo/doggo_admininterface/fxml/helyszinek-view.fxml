@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -19,8 +20,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.collections.FXCollections?>
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" style="-fx-background-color: #222629;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.HelyszinekController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" styleClass="background" stylesheets="@../style/layoutStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.HelyszinekController">
     <children>
         <GridPane alignment="CENTER" layoutX="73.0" layoutY="216.0" minHeight="444.0" minWidth="910.0" prefHeight="444.0" prefWidth="910.0" vgap="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="216.0">
             <columnConstraints>
@@ -37,7 +37,7 @@
                   <Insets />
                </GridPane.margin>
                <children>
-                      <TableView fx:id="helyszinekTableView" maxHeight="600.0" maxWidth="1330.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onHelyszinClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/style.css" HBox.hgrow="SOMETIMES">
+                      <TableView fx:id="helyszinekTableView" maxHeight="600.0" maxWidth="1330.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onHelyszinClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/tableViewStyle.css" HBox.hgrow="SOMETIMES">
                           <columns>
                               <TableColumn fx:id="nameCol" prefWidth="350.0" text="NÉV" />
                               <TableColumn fx:id="latCol" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" text="SZÉLESSÉG" />
@@ -50,22 +50,22 @@
                       </TableView>
                   <VBox maxHeight="600.0" maxWidth="130.0" minHeight="380.0" minWidth="130.0" prefHeight="380.0" prefWidth="130.0" spacing="20.0" HBox.hgrow="SOMETIMES">
                      <children>
-                        <TextField fx:id="inputHelyszinNev" minHeight="30.0" minWidth="130.0" prefHeight="30.0" prefWidth="130.0" styleClass="keresesBeviteliMezo" stylesheets="@../style/style.css">
+                        <TextField fx:id="inputHelyszinNev" minHeight="30.0" minWidth="130.0" prefHeight="30.0" prefWidth="130.0" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </TextField>
-                        <JFXButton fx:id="btnModositas" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" onAction="#onModositasClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/style.css" text="Módosítás" textFill="WHITE">
+                        <JFXButton fx:id="btnModositas" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" onAction="#onModositasClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Módosítás" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="btnEngedelyezes" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" onAction="#onEngedelyezesClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/style.css" text="Engedélyezés" textFill="WHITE">
+                        <JFXButton fx:id="btnEngedelyezes" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" onAction="#onEngedelyezesClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Engedélyezés" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </JFXButton>
-                        <JFXButton fx:id="btnTorles" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" onAction="#onTorlesClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/style.css" text="Törlés" textFill="WHITE">
+                        <JFXButton fx:id="btnTorles" buttonType="RAISED" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" onAction="#onTorlesClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -76,7 +76,7 @@
             </HBox>
                 <HBox alignment="BOTTOM_CENTER" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.valignment="BOTTOM" GridPane.vgrow="SOMETIMES">
                     <children>
-                        <Pane minHeight="30.0" minWidth="40.0" prefHeight="30.0" prefWidth="40.0" style="-fx-background-color: white;">
+                        <Pane minHeight="30.0" minWidth="40.0" prefHeight="30.0" prefWidth="40.0" styleClass="keresesPane" stylesheets="@../style/layoutStyle.css">
                             <children>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="10.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -85,7 +85,7 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <TextField fx:id="textFieldHelyszinKereses" maxHeight="30.0" maxWidth="1500.0" prefHeight="30.0" prefWidth="674.0" promptText="Név" styleClass="keresesBeviteliMezo" stylesheets="@../style/style.css" HBox.hgrow="SOMETIMES">
+                        <TextField fx:id="textFieldHelyszinKereses" maxHeight="30.0" maxWidth="1500.0" prefHeight="30.0" prefWidth="670.0" promptText="Név" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
                             <font>
                                 <Font name="Verdana Bold" size="14.0" />
                             </font>
@@ -93,7 +93,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                         </TextField>
-                  <ChoiceBox fx:id="choiceBoxHelyszin" prefHeight="30.0" prefWidth="163.0" stylesheets="@../style/style.css">
+                  <ChoiceBox fx:id="choiceBoxHelyszin" prefHeight="30.0" prefWidth="163.0" stylesheets="@../style/layoutStyle.css">
                       <value>
                           <String fx:value="összes" />
                       </value>
@@ -112,9 +112,9 @@
                 <Insets bottom="15.0" left="15.0" right="15.0" />
             </padding>
         </GridPane>
-        <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="625.0" prefHeight="150.0" prefWidth="625.0" style="-fx-background-color: #86C232;" styleClass="cimPane" stylesheets="@../style/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="625.0" prefHeight="150.0" prefWidth="625.0" styleClass="cimPane" stylesheets="@../style/layoutStyle.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label layoutX="14.0" layoutY="50.0" styleClass="c" stylesheets="@../style/style.css" text="Helyszínek" textFill="WHITE">
+                <Label layoutX="14.0" layoutY="50.0" styleClass="cimLabel" stylesheets="@../style/layoutStyle.css" text="Helyszínek" textFill="WHITE">
                     <font>
                         <Font name="Verdana Bold" size="40.0" />
                     </font>

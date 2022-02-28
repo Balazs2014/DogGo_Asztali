@@ -1,0 +1,49 @@
+.menuButton {
+    -fx-background-color: #4A6A21;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-font-fill: white;
+    -fx-font-family: Verdana;
+}
+
+.menuButton:hover {
+    -fx-background-color: #61892F;
+    -fx-border-color: white;
+    -fx-border-width: 0px 5px 0px 0px;
+}
+
+.menuButton:pressed {
+    -fx-background-color: #557A24;
+}
+
+.kijelentkezesButton {
+    -fx-background-color: #405B1F;
+    -fx-background-radius: 0;
+}
+
+.kijelentkezesButton:hover {
+    -fx-background-color: #E81123;
+}
+
+.kijelentkezesButton:pressed {
+    -fx-background-color: #F1707A;
+}
+
+.closeButton:hover {
+    -fx-background-color: #E81123;
+}
+
+.closeButton:pressed {
+    -fx-background-color: #F1707A;
+}
+
+.maxMinButton:hover {
+    -fx-background-color: #4F5254;
+}
+
+.muveletButton {
+    -fx-background-color: #4A6A21;
+    -fx-background-radius: 0;
+}

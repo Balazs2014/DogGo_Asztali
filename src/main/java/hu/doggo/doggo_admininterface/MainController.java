@@ -1,6 +1,5 @@
 package hu.doggo.doggo_admininterface;
 
-import hu.doggo.doggo_admininterface.Controller;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -25,16 +24,23 @@ public class MainController extends Controller {
     private ImageView maximizeImage;
 
     private Image newIcon;
-
     private Stage stage;
-
     private double x = 0;
     private double y = 0;
-
     private boolean teljesKepernyo = false;
 
 
     public void initialize() throws IOException {
+        changeStage("fxml/statisztikak-view.fxml");
+    }
+
+    private void changeStage(String fxml) throws IOException {
+        AnchorPane view = FXMLLoader.load(getClass().getResource(fxml));
+        borderPane.setCenter(view);
+    }
+
+    @FXML
+    public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
         changeStage("fxml/statisztikak-view.fxml");
     }
 
@@ -49,25 +55,16 @@ public class MainController extends Controller {
     }
 
     @FXML
-    public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
-        changeStage("fxml/statisztikak-view.fxml");
-    }
-
-    @FXML
     public void onVisszajelzesButtonClick(ActionEvent actionEvent) throws IOException {
         changeStage("fxml/visszajelzesek-view.fxml");
     }
 
     @FXML
-    public void onBorderPaneTopDragged(MouseEvent event) {
-        Stage stage = (Stage)borderPane.getScene().getWindow();
-        dragWindow(stage, event, x, y);
-    }
-
-    @FXML
-    public void onBorderPaneTopPressed(MouseEvent event) {
-        x = event.getSceneX();
-        y = event.getSceneY();
+    public void onKijelentkezesButtonClick(ActionEvent actionEvent) {
+        if(!(confirm("Ki szeretne jelentkezni?"))) {
+            return;
+        }
+        System.exit(0);
     }
 
     @FXML
@@ -118,16 +115,14 @@ public class MainController extends Controller {
     }
 
     @FXML
-    public void onKijelentkezesButtonClick(ActionEvent actionEvent) {
-        if(!(confirm("Ki szeretne jelentkezni?"))) {
-            return;
-        }
-        System.exit(0);
+    public void onBorderPaneTopDragged(MouseEvent event) {
+        Stage stage = (Stage)borderPane.getScene().getWindow();
+        dragWindow(stage, event, x, y);
     }
 
-    private void changeStage(String fxml) throws IOException {
-        AnchorPane view = FXMLLoader.load(getClass().getResource(fxml));
-        borderPane.setCenter(view);
+    @FXML
+    public void onBorderPaneTopPressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
     }
-
 }

@@ -16,11 +16,24 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Controller {
-    private DialogPane dialogPane;
+    protected DialogPane dialogPane;
     protected Stage stage;
 
     public Stage getStage() {
         return stage;
+    }
+
+    public static Controller ujAblak(String fxml, String title, int width, int height) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource(fxml));
+        Scene scene = new Scene(fxmlLoader.load(), width, height);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle(title);
+        stage.setScene(scene);
+        Controller controller = fxmlLoader.getController();
+        controller.stage = stage;
+
+        return controller;
     }
 
     protected boolean confirm(String uzenet) {
@@ -40,22 +53,9 @@ public class Controller {
         alertTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(() -> alert.show());
+                Platform.runLater(alert::show);
             }
         }, 500);
-    }
-
-    public static Controller ujAblak(String fxml, String title, int width, int height) throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource(fxml));
-        Scene scene = new Scene(fxmlLoader.load(), width, height);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle(title);
-        stage.setScene(scene);
-        Controller controller = fxmlLoader.getController();
-        controller.stage = stage;
-
-        return controller;
     }
 
     protected void alert(String uzenet) {

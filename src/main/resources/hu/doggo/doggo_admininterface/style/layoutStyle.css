@@ -1,0 +1,102 @@
+.borderPane {
+    -fx-border-color: #515457;
+}
+
+.background {
+    -fx-background-color:  #222629;
+}
+
+.menuVBox {
+    -fx-background-color: #4A6A21;
+}
+
+.titleBar {
+    -fx-background-color: #35383C;
+}
+
+.titleBarLabel {
+    -fx-text-fill: #6b6e70;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: Verdana;
+}
+
+.cimPane {
+    -fx-background-color:  #86C232;
+}
+
+.cimLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-font-family: Verdana;
+}
+
+.keresesInput {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+    -fx-border-width: 0px 0px 2px 0px;
+    -fx-border-color: white;
+    -fx-font-weight: none;
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+}
+
+.keresesPane {
+    -fx-background-color: white;
+}
+
+.felhasznaloAdataiLabel {
+    -fx-text-fill: white;
+    -fx-font-family: Verdana;
+    -fx-font-size: 14px;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #53722C;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: white;
+}
+
+.choice-box .menu-item > .label {
+    -fx-font-family: Verdana;
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: black;
+}
+
+.choice-box {
+    -fx-background-color: #4A6A21;
+    -fx-mark-color: white;
+    -fx-background-radius: 0;
+}
+
+
+.choice-box > .label {
+    -fx-font-family: Verdana;
+    -fx-text-fill: white;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #86C232;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.text-area .content {
+    -fx-background-color:  #222629;
+    -fx-background-radius: 0;
+}

@@ -31,10 +31,8 @@ public class VisszajelzesLeirasController extends Controller {
 
     private Visszajelzes leiras;
     private Stage stage;
-
     private double x = 0;
     private double y = 0;
-
 
     public Visszajelzes getLeiras() {
         return leiras;

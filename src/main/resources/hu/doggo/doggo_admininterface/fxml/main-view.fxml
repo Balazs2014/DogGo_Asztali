@@ -11,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1200.0" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #222629;" styleClass="anchorPaneShadow" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.MainController">
+<AnchorPane fx:id="mainAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="700.0" minWidth="1200.0" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.MainController">
     <children>
         <BorderPane fx:id="borderPane" prefHeight="700.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <VBox prefHeight="675.0" prefWidth="250.0" style="-fx-background-color: #4A6A21;" stylesheets="@../style/style.css" BorderPane.alignment="CENTER">
+                <VBox prefHeight="675.0" prefWidth="250.0" styleClass="menuVBox" stylesheets="@../style/layoutStyle.css" BorderPane.alignment="CENTER">
                     <children>
                   <Pane minHeight="198.0" minWidth="250.0" prefHeight="198.0" prefWidth="250.0">
                      <children>
@@ -25,7 +25,7 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/style.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/buttonStyle.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>
@@ -40,7 +40,7 @@
                         <Insets left="20.0" />
                      </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFelhasznalokButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/style.css" text="Felhasználók" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFelhasznalokButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/buttonStyle.css" text="Felhasználók" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>
@@ -55,7 +55,7 @@
                         <Insets left="20.0" />
                      </padding>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/style.css" text="Helyszínek" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHelyszinekButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/buttonStyle.css" text="Helyszínek" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>
@@ -70,7 +70,7 @@
                         <Insets left="20.0" />
                      </padding>
                         </Button>
-                  <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVisszajelzesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/style.css" text="Visszajelzések" textAlignment="RIGHT" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVisszajelzesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/buttonStyle.css" text="Visszajelzések" textAlignment="RIGHT" textFill="WHITE">
                      <font>
                         <Font name="Verdana Bold" size="15.0" />
                      </font>
@@ -87,7 +87,7 @@
                   </Button>
                   <VBox alignment="BOTTOM_CENTER" prefHeight="280.0" prefWidth="250.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onKijelentkezesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../style/style.css" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onKijelentkezesButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="kijelentkezesButton" stylesheets="@../style/buttonStyle.css" textAlignment="RIGHT" textFill="WHITE">
                            <font>
                               <Font name="Verdana Bold" size="17.0" />
                            </font>
@@ -105,9 +105,9 @@
                 </VBox>
             </left>
          <top>
-            <AnchorPane minHeight="25.0" minWidth="1200.0" onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="25.0" prefWidth="1200.0" style="-fx-background-color: #35383C;" BorderPane.alignment="CENTER">
+            <AnchorPane minHeight="25.0" minWidth="1200.0" onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="25.0" prefWidth="1200.0" styleClass="titleBar" stylesheets="@../style/layoutStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <Label layoutY="1.0" prefHeight="24.0" prefWidth="184.0" text="DogGo - Admin Interfész" textFill="#6b6e70">
+                  <Label layoutY="1.0" prefHeight="24.0" prefWidth="184.0" styleClass="titleBarLabel" stylesheets="@../style/layoutStyle.css" text="DogGo - Admin Interfész" textFill="#6b6e70">
                      <font>
                         <Font name="Verdana Bold" size="12.0" />
                      </font>
@@ -115,7 +115,7 @@
                         <Insets left="10.0" />
                      </padding>
                   </Label>
-                  <Pane layoutX="1154.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onCloseClick" prefHeight="24.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="1154.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onCloseClick" prefHeight="24.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@../style/buttonStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -124,7 +124,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="1120.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="1120.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMaximizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../style/buttonStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fx:id="maximizeImage" fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -133,7 +133,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Pane layoutX="1080.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../style/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
+                  <Pane layoutX="1080.0" layoutY="1.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../style/buttonStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                            <image>

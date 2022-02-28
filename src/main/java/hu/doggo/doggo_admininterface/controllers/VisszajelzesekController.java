@@ -10,6 +10,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -31,6 +32,8 @@ public class VisszajelzesekController extends Controller {
     private TableColumn<Visszajelzes, String> created_atCol;
     @FXML
     private JFXButton btnTorles;
+    @FXML
+    private ChoiceBox<String> choiceBoxVisszajelzes;
 
     private ObservableList<Visszajelzes> visszajelzesLista = FXCollections.observableArrayList();
 
@@ -44,7 +47,7 @@ public class VisszajelzesekController extends Controller {
         FilteredList<Visszajelzes> filteredList = new FilteredList<>(visszajelzesLista, b -> true);
         textFieldVisszajelzesKereses.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(visszajelzes -> {
-                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
 
@@ -63,6 +66,8 @@ public class VisszajelzesekController extends Controller {
         sortedList.comparatorProperty().bind(visszajelzesekTableView.comparatorProperty());
 
         visszajelzesekTableView.setItems(sortedList);
+
+        megkotesKivalasztas();
     }
 
     private void visszajelzesekListaFeltoltese() {
@@ -72,6 +77,27 @@ public class VisszajelzesekController extends Controller {
         } catch (IOException e) {
             hibaKiir(e);
         }
+    }
+
+    public void megkotesKivalasztas() {
+        choiceBoxVisszajelzes.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+            try {
+                if (newValue.equals("olvasatlan")) {
+                    visszajelzesLista.clear();
+                    visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
+                    btnTorles.setDisable(true);
+                } else if (newValue.equals("olvasott")) {
+                    visszajelzesLista.clear();
+                    visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
+                    btnTorles.setDisable(true);
+                } else {
+                    visszajelzesekListaFeltoltese();
+                    btnTorles.setDisable(true);
+                }
+            } catch (IOException e) {
+                hibaKiir(e);
+            }
+        });
     }
 
     @FXML
@@ -107,7 +133,7 @@ public class VisszajelzesekController extends Controller {
             } catch (Exception e) {
                 hibaKiir(e);
             }
-        } else {
+        } else if (!(selectedIndex == -1)){
             btnTorles.setDisable(false);
         }
     }

@@ -17,7 +17,6 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class FelhasznalokController extends Controller {
-
     @FXML
     private TableColumn<Felhasznalo, String> created_atCol;
     @FXML
@@ -31,10 +30,7 @@ public class FelhasznalokController extends Controller {
     @FXML
     private TextField textFieldFelhKereses;
 
-
     private ObservableList<Felhasznalo> felhasznaloLista = FXCollections.observableArrayList();
-
-
 
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -47,7 +43,7 @@ public class FelhasznalokController extends Controller {
         FilteredList<Felhasznalo> filteredList = new FilteredList<>(felhasznaloLista, b -> true);
         textFieldFelhKereses.textProperty().addListener((observable, oldValue, newValue ) -> {
             filteredList.setPredicate(felhasznalo -> {
-                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
 

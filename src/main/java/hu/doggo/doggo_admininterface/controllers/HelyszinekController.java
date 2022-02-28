@@ -57,7 +57,7 @@ public class HelyszinekController extends Controller {
         FilteredList<Helyszin> filteredList = new FilteredList<>(helyszinLista, b -> true);
         textFieldHelyszinKereses.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(helyszin -> {
-                if (newValue.isEmpty() || newValue.isBlank() || newValue == null) {
+                if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
 
@@ -89,6 +89,34 @@ public class HelyszinekController extends Controller {
         }
     }
 
+    public void megkotesKivalasztas() {
+        choiceBoxHelyszin.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+            try {
+                if (newValue.equals("engedélyezésre vár")) {
+                    helyszinLista.clear();
+                    helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
+                    alaphelyzet();
+                } else if (newValue.equals("engedélyezve")) {
+                    helyszinLista.clear();
+                    helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
+                    alaphelyzet();
+                } else {
+                    helyszinListaFeltoltes();
+                    alaphelyzet();
+                }
+            } catch (IOException e) {
+                hibaKiir(e);
+            }
+        });
+    }
+
+    private void alaphelyzet() {
+        btnEngedelyezes.setDisable(true);
+        btnTorles.setDisable(true);
+        btnModositas.setDisable(true);
+        inputHelyszinNev.setText("");
+    }
+
     @FXML
     public void onTorlesClick(ActionEvent actionEvent) {
         Helyszin torlendo = helyszinekTableView.getSelectionModel().getSelectedItem();
@@ -99,9 +127,7 @@ public class HelyszinekController extends Controller {
             boolean siker = HelyszinApi.deleteHelyszin(torlendo.getId());
             if (siker) {
                 alert("Sikeres törlés!");
-                inputHelyszinNev.setText("");
-                btnModositas.setDisable(true);
-                btnTorles.setDisable(true);
+                alaphelyzet();
                 helyszinListaFeltoltes();
             } else {
                 alert("Sikertelen törlés!");
@@ -128,12 +154,9 @@ public class HelyszinekController extends Controller {
             Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
             if (helyszinModositas != null) {
                 alert("Név módosítva!");
-                inputHelyszinNev.setText("");
+                alaphelyzet();
                 helyszinekTableView.refresh();
                 helyszinekTableView.getSelectionModel().select(null);
-                btnModositas.setDisable(true);
-                btnEngedelyezes.setDisable(true);
-                btnTorles.setDisable(true);
             } else {
                 alert("Sikertelen módosítás!");
             }
@@ -172,23 +195,5 @@ public class HelyszinekController extends Controller {
         } catch (IOException e) {
             hibaKiir(e);
         }
-    }
-
-    public void megkotesKivalasztas() {
-        choiceBoxHelyszin.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
-            try {
-                if (newValue.equals("engedélyezésre vár")) {
-                    helyszinLista.clear();
-                    helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
-                } else if (newValue.equals("engedélyezve")) {
-                    helyszinLista.clear();
-                    helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
-                } else {
-                    helyszinListaFeltoltes();
-                }
-            } catch (IOException e) {
-                hibaKiir(e);
-            }
-        });
     }
 }

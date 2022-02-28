@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface.controllers;
 
+import com.jfoenix.controls.JFXButton;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.ErtekelesApi;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
@@ -7,8 +8,6 @@ import hu.doggo.doggo_admininterface.classes.Ertekeles;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -17,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,21 +40,19 @@ public class FelhasznalokReszletesController extends Controller {
     @FXML
     private Label felhJog;
     @FXML
-    private Button btnTiltas;
-    @FXML
-    private Pane paneFelh;
-    @FXML
     private TextField textFieldLeirasKereses;
+    @FXML
+    private JFXButton btnTiltas;
+    @FXML
+    private JFXButton btnAdmin;
 
     private Felhasznalo reszletes;
     private ObservableList<Ertekeles> ertekelesLista = FXCollections.observableArrayList();
-
     private Stage stage;
-
     private double x = 0;
     private double y = 0;
 
-    public Felhasznalo getReszletes() {
+    private Felhasznalo getReszletes() {
         return reszletes;
     }
 
@@ -77,6 +73,8 @@ public class FelhasznalokReszletesController extends Controller {
         } else if (permission == 1) {
             btnTiltas.setText("Feloldás");
         }
+
+        btnAdmin.setVisible(true);
 
         ertekelesListaFeltoltes();
     }
@@ -108,68 +106,6 @@ public class FelhasznalokReszletesController extends Controller {
             }
         } catch (IOException e) {
             hibaKiir(e);
-        }
-    }
-
-    @FXML
-    public void onHozzaszolasTorlesClick(ActionEvent actionEvent) {
-        int selectedIndex = ertekelesekTableView.getSelectionModel().getSelectedIndex();
-        if (selectedIndex == -1) {
-            alert("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
-            return;
-        }
-        Ertekeles modositando = (Ertekeles) ertekelesekTableView.getSelectionModel().getSelectedItem();
-
-        if (!confirm("Biztos hogy törölni szeretné az alábbi leírást: " + modositando.getDescription())) {
-            return;
-        }
-
-        modositando.setDescription("");
-
-        try {
-            Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
-            if (modositandoErtekeles != null) {
-                alert("Sikeres törlés");
-            } else {
-                alert("Sikertelen törlés");
-            }
-            felhAdatokBetoltese();
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
-    }
-
-    @FXML
-    public void onBorderPaneTopDragged(MouseEvent event) {
-        Stage stage = (Stage) borderPane.getScene().getWindow();
-        dragWindow(stage, event, x, y);
-    }
-
-    @FXML
-    public void onBorderPaneTopPressed(MouseEvent event) {
-        x = event.getSceneX();
-        y = event.getSceneY();
-    }
-
-    @FXML
-    public void onCloseClick(Event event) {
-        ((Stage) mainAnchor.getScene().getWindow()).close();
-    }
-
-    @FXML
-    public void onMinimizeClick(Event event) {
-        ((Stage) mainAnchor.getScene().getWindow()).setIconified(true);
-    }
-
-    @FXML
-    public void onTiltasClick(ActionEvent actionEvent) {
-        int permission = reszletes.getPermission();
-        if (permission == 0) {
-            kitiltas();
-            btnTiltas.setText("Feloldás");
-        } else if (permission == 1) {
-            feloldas();
-            btnTiltas.setText("Tiltás");
         }
     }
 
@@ -205,5 +141,71 @@ public class FelhasznalokReszletesController extends Controller {
         } catch (IOException e) {
             hibaKiir(e);
         }
+    }
+
+    @FXML
+    public void onHozzaszolasTorlesClick(ActionEvent actionEvent) {
+        int selectedIndex = ertekelesekTableView.getSelectionModel().getSelectedIndex();
+        if (selectedIndex == -1) {
+            alert("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
+            return;
+        }
+        Ertekeles modositando = (Ertekeles) ertekelesekTableView.getSelectionModel().getSelectedItem();
+
+        if (!confirm("Biztos hogy törölni szeretné az alábbi leírást: " + modositando.getDescription())) {
+            return;
+        }
+
+        modositando.setDescription("");
+
+        try {
+            Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
+            if (modositandoErtekeles != null) {
+                alert("Sikeres törlés");
+            } else {
+                alert("Sikertelen törlés");
+            }
+            felhAdatokBetoltese();
+        } catch (IOException e) {
+            hibaKiir(e);
+        }
+    }
+
+    @FXML
+    public void onTiltasClick(ActionEvent actionEvent) {
+        int permission = reszletes.getPermission();
+        if (permission == 0) {
+            kitiltas();
+            btnTiltas.setText("Feloldás");
+        } else if (permission == 1) {
+            feloldas();
+            btnTiltas.setText("Tiltás");
+        }
+    }
+
+    @FXML
+    public void onCloseClick(Event event) {
+        ((Stage) mainAnchor.getScene().getWindow()).close();
+    }
+
+    @FXML
+    public void onMinimizeClick(Event event) {
+        ((Stage) mainAnchor.getScene().getWindow()).setIconified(true);
+    }
+
+    @FXML
+    public void onBorderPaneTopDragged(MouseEvent event) {
+        Stage stage = (Stage) borderPane.getScene().getWindow();
+        dragWindow(stage, event, x, y);
+    }
+
+    @FXML
+    public void onBorderPaneTopPressed(MouseEvent event) {
+        x = event.getSceneX();
+        y = event.getSceneY();
+    }
+
+    @FXML
+    public void onAdminClick(ActionEvent actionEvent) {
     }
 }
