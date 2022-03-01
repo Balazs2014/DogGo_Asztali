@@ -8,6 +8,8 @@ import hu.doggo.doggo_admininterface.classes.Ertekeles;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -77,6 +79,29 @@ public class FelhasznalokReszletesController extends Controller {
         btnAdmin.setVisible(true);
 
         ertekelesListaFeltoltes();
+
+        FilteredList<Ertekeles> filteredList = new FilteredList<>(ertekelesLista, b -> true);
+        textFieldLeirasKereses.textProperty().addListener((observable, oldValue, newValue ) -> {
+            filteredList.setPredicate(ertekeles -> {
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+
+                String kereses = newValue.toLowerCase();
+
+                if (ertekeles.getDescription().toLowerCase().contains(kereses)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+
+        SortedList<Ertekeles> sortedList = new SortedList<>(filteredList);
+
+        sortedList.comparatorProperty().bind(ertekelesekTableView.comparatorProperty());
+
+        ertekelesekTableView.setItems(sortedList);
     }
 
     private void felhAdatokBetoltese() {
@@ -113,7 +138,7 @@ public class FelhasznalokReszletesController extends Controller {
         reszletes.setPermission(1);
 
         try {
-            ertekelesLista.clear();
+            //ertekelesLista.clear();
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó tiltva!");
@@ -130,7 +155,7 @@ public class FelhasznalokReszletesController extends Controller {
         reszletes.setPermission(0);
 
         try {
-            ertekelesLista.clear();
+            //ertekelesLista.clear();
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó feloldva!");

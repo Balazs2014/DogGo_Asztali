@@ -63,8 +63,8 @@ public class Controller {
         alert.setContentText(uzenet);
         alert.getButtonTypes().add(ButtonType.OK);
         dialogPane = alert.getDialogPane();
-        //dialogPane.getStylesheets().add(getClass().getResource("style/style.css").toExternalForm());
-        //dialogPane.getStyleClass().add("dialogPane");
+        dialogPane.getStylesheets().add(getClass().getResource("style/alertStyle.css").toExternalForm());
+        dialogPane.getStyleClass().add("dialogPane");
         alert.showAndWait();
     }
 
