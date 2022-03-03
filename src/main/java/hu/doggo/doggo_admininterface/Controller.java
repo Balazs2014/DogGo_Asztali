@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -60,11 +61,14 @@ public class Controller {
 
     protected void alert(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setHeaderText("Kukics");
         alert.setContentText(uzenet);
         alert.getButtonTypes().add(ButtonType.OK);
         dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("style/alertStyle.css").toExternalForm());
+        dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
         dialogPane.getStyleClass().add("dialogPane");
+        Stage stage = (Stage) dialogPane.getScene().getWindow();
+        stage.getIcons().add(new Image(this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()));
         alert.showAndWait();
     }
 
