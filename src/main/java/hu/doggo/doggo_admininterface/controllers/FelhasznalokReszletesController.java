@@ -91,6 +91,8 @@ public class FelhasznalokReszletesController extends Controller {
 
                 if (ertekeles.getDescription().toLowerCase().contains(kereses)) {
                     return true;
+                } else if (ertekeles.getDescription().equals("")){
+                    return false;
                 } else {
                     return false;
                 }
@@ -138,7 +140,6 @@ public class FelhasznalokReszletesController extends Controller {
         reszletes.setPermission(1);
 
         try {
-            //ertekelesLista.clear();
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó tiltva!");
@@ -146,7 +147,6 @@ public class FelhasznalokReszletesController extends Controller {
                 alert("Sikertelen tiltás!");
             }
             felhAdatokBetoltese();
-            ertekelesListaFeltoltes();
         } catch (IOException e) {
             hibaKiir(e);
         }
@@ -191,6 +191,7 @@ public class FelhasznalokReszletesController extends Controller {
                 alert("Sikertelen törlés");
             }
             felhAdatokBetoltese();
+            ertekelesekTableView.refresh();
         } catch (IOException e) {
             hibaKiir(e);
         }
