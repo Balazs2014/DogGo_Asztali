@@ -40,9 +40,10 @@
                       <TableView fx:id="helyszinekTableView" maxHeight="600.0" maxWidth="1330.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onHelyszinClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/tableViewStyle.css" HBox.hgrow="SOMETIMES">
                           <columns>
                               <TableColumn fx:id="nameCol" prefWidth="350.0" text="NÉV" />
+                              <TableColumn fx:id="descriptionCol" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" text="LEÍRÁS" />
                               <TableColumn fx:id="latCol" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" text="SZÉLESSÉG" />
-                              <TableColumn fx:id="lngCol" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" text="HOSSZÚSÁG" />
-                        <TableColumn fx:id="allowedCol" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" text="ENGEDÉLYEZVE" />
+                        <TableColumn fx:id="lngCol" maxWidth="300.0" minWidth="150.0" prefWidth="200.0" text="HOSSZÚSÁG" />
+                        <TableColumn fx:id="allowedCol" prefWidth="350.0" text="ENGEDÉLYEZVE" />
                           </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

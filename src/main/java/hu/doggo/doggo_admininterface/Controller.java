@@ -61,12 +61,11 @@ public class Controller {
 
     protected void alert(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setHeaderText("Kukics");
         alert.setContentText(uzenet);
         alert.getButtonTypes().add(ButtonType.OK);
         dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
-        dialogPane.getStyleClass().add("dialogPane");
+        dialogPane.getStyleClass().add("dialog-pane");
         Stage stage = (Stage) dialogPane.getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()));
         alert.showAndWait();

@@ -146,6 +146,7 @@ public class FelhasznalokReszletesController extends Controller {
                 alert("Sikertelen tiltás!");
             }
             felhAdatokBetoltese();
+            ertekelesListaFeltoltes();
         } catch (IOException e) {
             hibaKiir(e);
         }
@@ -155,7 +156,6 @@ public class FelhasznalokReszletesController extends Controller {
         reszletes.setPermission(0);
 
         try {
-            //ertekelesLista.clear();
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó feloldva!");

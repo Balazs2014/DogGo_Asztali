@@ -32,6 +32,8 @@ public class HelyszinekController extends Controller {
     @FXML
     private TableColumn<Helyszin, Boolean> allowedCol;
     @FXML
+    private TableColumn<Helyszin, String> descriptionCol;
+    @FXML
     private TextField textFieldHelyszinKereses;
     @FXML
     private TextField inputHelyszinNev;
@@ -48,6 +50,7 @@ public class HelyszinekController extends Controller {
 
     public void initialize() {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         latCol.setCellValueFactory(new PropertyValueFactory<>("lat"));
         lngCol.setCellValueFactory(new PropertyValueFactory<>("lng"));
         allowedCol.setCellValueFactory(new PropertyValueFactory<>("allowed"));
@@ -64,6 +67,8 @@ public class HelyszinekController extends Controller {
                 String kereses = newValue.toLowerCase();
 
                 if (helyszin.getName().toLowerCase().contains(kereses)) {
+                    return true;
+                } else if (helyszin.getDescription().toLowerCase().contains(kereses)) {
                     return true;
                 } else {
                     return false;
