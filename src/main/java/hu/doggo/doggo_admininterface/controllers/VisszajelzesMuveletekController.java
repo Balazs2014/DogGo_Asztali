@@ -6,7 +6,7 @@ import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
@@ -17,48 +17,65 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class VisszajelzesLeirasController extends Controller {
+public class VisszajelzesMuveletekController extends Controller {
     @FXML
     private TextArea txtAreaLeiras;
-    @FXML
-    private CheckBox chckBoxOlvasva;
     @FXML
     private AnchorPane mainAnchor;
     @FXML
     private BorderPane borderPane;
     @FXML
     private Label lblDatum;
+    @FXML
+    private Button btnOlvas;
 
-    private Visszajelzes leiras;
+    private Visszajelzes reszletes;
     private Stage stage;
     private double x = 0;
     private double y = 0;
+    private boolean olvasva;
+    private boolean mentve = true;
 
-    public Visszajelzes getLeiras() {
-        return leiras;
+    public Visszajelzes getReszletes() {
+        return reszletes;
     }
 
-    public void setLeiras(Visszajelzes leiras) {
-        this.leiras = leiras;
+    public void setReszletes(Visszajelzes reszletes) {
+        this.reszletes = reszletes;
 
+        adatokKiirasa();
+    }
+
+    public void adatokKiirasa() {
         txtAreaLeiras.setFont(Font.font("Verdana", 12));
-        txtAreaLeiras.setText(leiras.getComment());
-        lblDatum.setText(leiras.getFormattedDate());
-        chckBoxOlvasva.setSelected(leiras.getRead());
+        txtAreaLeiras.setText(reszletes.getComment());
+        lblDatum.setText(reszletes.getFormattedDate());
+
+        btnOlvas.setDisable(reszletes.isRead());
+    }
+
+    private void bezárás() {
+        if (!mentve) {
+            if (!confirm("A módosítások el fognak veszni!")) {
+                return;
+            }
+        }
+
+        ((Stage) mainAnchor.getScene().getWindow()).close();
     }
 
     @FXML
     public void onMentesClick(ActionEvent actionEvent) {
 
-        leiras.setRead(chckBoxOlvasva.isSelected());
+        reszletes.setRead(olvasva);
 
         try {
-            Visszajelzes olvasottLeiras = VisszajelzesApi.updateVisszajelzes(leiras);
+            Visszajelzes olvasottLeiras = VisszajelzesApi.updateVisszajelzes(reszletes);
             if (olvasottLeiras != null) {
-                alert("Sikeres mentés");
+                alert("Sikeres mentés!");
                 ((Stage) mainAnchor.getScene().getWindow()).close();
             } else {
-                alert("Sikertelen mentés");
+                alert("Sikertelen mentés!");
             }
         } catch (IOException e) {
             hibaKiir(e);
@@ -66,8 +83,22 @@ public class VisszajelzesLeirasController extends Controller {
     }
 
     @FXML
+    public void onMegseClick(ActionEvent actionEvent) {
+        bezárás();
+    }
+
+    @FXML
+    public void onOlvasvaClick(ActionEvent actionEvent) {
+        olvasva = true;
+        mentve = false;
+        btnOlvas.setDisable(olvasva);
+    }
+
+
+
+    @FXML
     public void onCloseClick(Event event) {
-        ((Stage) mainAnchor.getScene().getWindow()).close();
+        bezárás();
     }
 
     @FXML

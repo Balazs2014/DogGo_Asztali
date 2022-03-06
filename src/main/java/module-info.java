@@ -10,7 +10,6 @@ module hu.doggo.doggo_admininterface {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.google.gson;
-    requires com.jfoenix;
 
     opens hu.doggo.doggo_admininterface to javafx.fxml, com.google.gson;
     exports hu.doggo.doggo_admininterface;

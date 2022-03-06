@@ -1,6 +1,5 @@
 package hu.doggo.doggo_admininterface.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.ErtekelesApi;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
@@ -44,9 +43,9 @@ public class FelhasznalokReszletesController extends Controller {
     @FXML
     private TextField textFieldLeirasKereses;
     @FXML
-    private JFXButton btnTiltas;
+    private Button btnTiltas;
     @FXML
-    private JFXButton btnAdmin;
+    private Button btnAdmin;
 
     private Felhasznalo reszletes;
     private ObservableList<Ertekeles> ertekelesLista = FXCollections.observableArrayList();
@@ -81,7 +80,7 @@ public class FelhasznalokReszletesController extends Controller {
         ertekelesListaFeltoltes();
 
         FilteredList<Ertekeles> filteredList = new FilteredList<>(ertekelesLista, b -> true);
-        textFieldLeirasKereses.textProperty().addListener((observable, oldValue, newValue ) -> {
+        textFieldLeirasKereses.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(ertekeles -> {
                 if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
@@ -89,10 +88,10 @@ public class FelhasznalokReszletesController extends Controller {
 
                 String kereses = newValue.toLowerCase();
 
-                if (ertekeles.getDescription().toLowerCase().contains(kereses)) {
-                    return true;
-                } else if (ertekeles.getDescription().equals("")){
+                if (ertekeles.getDescription() == null) {
                     return false;
+                } else if (ertekeles.getDescription().toLowerCase().contains(kereses)) {
+                    return true;
                 } else {
                     return false;
                 }
@@ -138,7 +137,6 @@ public class FelhasznalokReszletesController extends Controller {
 
     public void kitiltas() {
         reszletes.setPermission(1);
-
         try {
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {
@@ -154,7 +152,6 @@ public class FelhasznalokReszletesController extends Controller {
 
     public void feloldas() {
         reszletes.setPermission(0);
-
         try {
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
             if (felhTiltasa != null) {

@@ -58,4 +58,23 @@ public class Felhasznalo {
         SimpleDateFormat format = new SimpleDateFormat("yyyy MMM d.");
         return format.format(created_at);
     }
+
+    public String getFormattedPermission() {
+        String jog;
+        switch (permission) {
+            case 1:
+                jog = "tiltva";
+                break;
+            case 2:
+                jog = "admin";
+                break;
+            case 3:
+                jog = "szuperadmin";
+                break;
+            default:
+                jog = "default";
+        }
+
+        return jog;
+    }
 }

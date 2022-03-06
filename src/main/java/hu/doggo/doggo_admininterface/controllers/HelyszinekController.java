@@ -1,6 +1,5 @@
 package hu.doggo.doggo_admininterface.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
@@ -10,10 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -30,19 +26,13 @@ public class HelyszinekController extends Controller {
     @FXML
     private TableColumn<Helyszin, Double> latCol;
     @FXML
-    private TableColumn<Helyszin, Boolean> allowedCol;
-    @FXML
     private TableColumn<Helyszin, String> descriptionCol;
+    @FXML
+    private TableColumn<Helyszin, String> statusCol;
     @FXML
     private TextField textFieldHelyszinKereses;
     @FXML
-    private TextField inputHelyszinNev;
-    @FXML
-    private JFXButton btnModositas;
-    @FXML
-    private JFXButton btnTorles;
-    @FXML
-    private JFXButton btnEngedelyezes;
+    private Button btnTorles;
     @FXML
     private ChoiceBox<String> choiceBoxHelyszin;
 
@@ -53,7 +43,7 @@ public class HelyszinekController extends Controller {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         latCol.setCellValueFactory(new PropertyValueFactory<>("lat"));
         lngCol.setCellValueFactory(new PropertyValueFactory<>("lng"));
-        allowedCol.setCellValueFactory(new PropertyValueFactory<>("allowed"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("formattedAllowed"));
 
         helyszinListaFeltoltes();
 
@@ -100,26 +90,16 @@ public class HelyszinekController extends Controller {
                 if (newValue.equals("engedélyezésre vár")) {
                     helyszinLista.clear();
                     helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
-                    alaphelyzet();
                 } else if (newValue.equals("engedélyezve")) {
                     helyszinLista.clear();
                     helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
-                    alaphelyzet();
                 } else {
                     helyszinListaFeltoltes();
-                    alaphelyzet();
                 }
             } catch (IOException e) {
                 hibaKiir(e);
             }
         });
-    }
-
-    private void alaphelyzet() {
-        btnEngedelyezes.setDisable(true);
-        btnTorles.setDisable(true);
-        btnModositas.setDisable(true);
-        inputHelyszinNev.setText("");
     }
 
     @FXML
@@ -132,7 +112,7 @@ public class HelyszinekController extends Controller {
             boolean siker = HelyszinApi.deleteHelyszin(torlendo.getId());
             if (siker) {
                 alert("Sikeres törlés!");
-                alaphelyzet();
+                btnTorles.setDisable(true);
                 helyszinListaFeltoltes();
             } else {
                 alert("Sikertelen törlés!");
@@ -143,62 +123,20 @@ public class HelyszinekController extends Controller {
     }
 
     @FXML
-    public void onModositasClick(ActionEvent actionEvent) {
-        String helyszinNev = inputHelyszinNev.getText().trim();
-
-        if (helyszinNev.isEmpty() || helyszinNev.isBlank()) {
-            alert("Helyszín nevének megadása kötelező!");
-            return;
-        }
-
-        Helyszin modositando = (Helyszin) helyszinekTableView.getSelectionModel().getSelectedItem();
-
-        modositando.setName(helyszinNev);
-
-        try {
-            Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
-            if (helyszinModositas != null) {
-                alert("Név módosítva!");
-                alaphelyzet();
-                helyszinekTableView.refresh();
-                helyszinekTableView.getSelectionModel().select(null);
-            } else {
-                alert("Sikertelen módosítás!");
-            }
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
-    }
-
-    @FXML
-    public void onHelyszinClick(MouseEvent event) {
+    public void onHelyszinDoubleClick(MouseEvent mouseEvent) {
         int selectedIndex = helyszinekTableView.getSelectionModel().getSelectedIndex();
-        Helyszin helyszinModositas = helyszinekTableView.getSelectionModel().getSelectedItem();
-        if (!(selectedIndex == -1)) {
-            inputHelyszinNev.setText(helyszinModositas.getName());
-            btnModositas.setDisable(false);
-            btnTorles.setDisable(false);
-            btnEngedelyezes.setDisable(helyszinModositas.isAllowed());
-        }
-    }
-
-    @FXML
-    public void onEngedelyezesClick(ActionEvent actionEvent) {
-        Helyszin modositando = (Helyszin) helyszinekTableView.getSelectionModel().getSelectedItem();
-
-        modositando.setAllowed(true);
-
-        try {
-            Helyszin helyszinModositas = HelyszinApi.updateHelyszin(modositando);
-            if (helyszinModositas != null) {
-                alert("Sikeres engedélyezés!");
-                helyszinekTableView.refresh();
-                btnEngedelyezes.setDisable(true);
-            } else {
-                alert("Sikertelen engedélyezés!");
+        Helyszin reszletesHelyszin = helyszinekTableView.getSelectionModel().getSelectedItem();
+        if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
+            try {
+                HelyszinMuveletekController reszletes = (HelyszinMuveletekController) ujAblak("fxml/helyszin-muveletek-view.fxml", "Helyszín", 365, 400);
+                reszletes.setReszletes(reszletesHelyszin);
+                reszletes.getStage().setOnHiding(event -> helyszinekTableView.refresh());
+                reszletes.getStage().show();
+            } catch (Exception e) {
+                hibaKiir(e);
             }
-        } catch (IOException e) {
-            hibaKiir(e);
+        } else if (!(selectedIndex == -1)){
+            btnTorles.setDisable(false);
         }
     }
 }

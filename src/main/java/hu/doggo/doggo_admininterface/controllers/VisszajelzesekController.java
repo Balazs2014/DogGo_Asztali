@@ -1,6 +1,5 @@
 package hu.doggo.doggo_admininterface.controllers;
 
-import com.jfoenix.controls.JFXButton;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
@@ -10,10 +9,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -25,13 +21,13 @@ public class VisszajelzesekController extends Controller {
     @FXML
     private TableView<Visszajelzes> visszajelzesekTableView;
     @FXML
-    private TableColumn<Visszajelzes, Boolean> readCol;
-    @FXML
     private TextField textFieldVisszajelzesKereses;
     @FXML
     private TableColumn<Visszajelzes, String> created_atCol;
     @FXML
-    private JFXButton btnTorles;
+    private TableColumn<Visszajelzes, String> statusCol;
+    @FXML
+    private Button btnTorles;
     @FXML
     private ChoiceBox<String> choiceBoxVisszajelzes;
 
@@ -40,7 +36,7 @@ public class VisszajelzesekController extends Controller {
     public void initialize() {
         commentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
         created_atCol.setCellValueFactory(new PropertyValueFactory<>("formattedDate"));
-        readCol.setCellValueFactory(new PropertyValueFactory<>("read"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("formattedRead"));
 
         visszajelzesekListaFeltoltese();
 
@@ -50,7 +46,7 @@ public class VisszajelzesekController extends Controller {
                 if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
-
+                btnTorles.setDisable(true);
                 String kereses = newValue.toLowerCase();
 
                 if (visszajelzes.getComment().toLowerCase().contains(kereses)) {
@@ -126,8 +122,8 @@ public class VisszajelzesekController extends Controller {
         Visszajelzes visszajelzesLeiras = visszajelzesekTableView.getSelectionModel().getSelectedItem();
         if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
             try {
-                VisszajelzesLeirasController leiras = (VisszajelzesLeirasController) ujAblak("fxml/visszajelzes-leiras-view.fxml", "Visszajelzés", 300, 320);
-                leiras.setLeiras(visszajelzesLeiras);
+                VisszajelzesMuveletekController leiras = (VisszajelzesMuveletekController) ujAblak("fxml/visszajelzes-muveletek-view.fxml", "Visszajelzés", 365, 400);
+                leiras.setReszletes(visszajelzesLeiras);
                 leiras.getStage().setOnHiding(event -> visszajelzesekTableView.refresh());
                 leiras.getStage().show();
             } catch (Exception e) {

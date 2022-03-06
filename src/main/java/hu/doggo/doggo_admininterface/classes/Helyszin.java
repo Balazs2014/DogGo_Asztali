@@ -60,4 +60,15 @@ public class Helyszin {
     public void setAllowed(boolean allowed) {
         this.allowed = allowed;
     }
+
+    public String getFormattedAllowed() {
+        String engedelyezve;
+        if (allowed) {
+            engedelyezve = "engedélyezve";
+        } else {
+            engedelyezve = "nincs";
+        }
+
+        return engedelyezve;
+    }
 }

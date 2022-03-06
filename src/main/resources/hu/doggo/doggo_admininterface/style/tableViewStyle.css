@@ -11,6 +11,7 @@
 .table-view .column-header-background .filler {
     -fx-cell-size: 20;
     -fx-background-color: #1C1D1F;
+    -fx-padding: 0px 0px 0px 2px;
 }
 
 .table-view .column-header .label {
@@ -38,7 +39,7 @@
 
 .table-view .table-cell{
     -fx-border-color: transparent;
-    -fx-padding: 2 0 2 10px;
+    -fx-padding: 0px 20px 0px 2px;
 }
 
 .table-row-cell .text {

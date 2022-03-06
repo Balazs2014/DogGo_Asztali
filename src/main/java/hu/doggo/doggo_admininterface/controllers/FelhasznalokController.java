@@ -22,7 +22,7 @@ public class FelhasznalokController extends Controller {
     @FXML
     private TableColumn<Felhasznalo, String> usernameCol;
     @FXML
-    private TableColumn<Felhasznalo, Integer> permissionCol;
+    private TableColumn<Felhasznalo, String> permissionCol;
     @FXML
     private TableColumn<Felhasznalo, String> emailCol;
     @FXML
@@ -36,7 +36,7 @@ public class FelhasznalokController extends Controller {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
         emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
         created_atCol.setCellValueFactory(new PropertyValueFactory<>("formattedDate"));
-        permissionCol.setCellValueFactory(new PropertyValueFactory<>("permission"));
+        permissionCol.setCellValueFactory(new PropertyValueFactory<>("formattedPermission"));
 
         felhasznaloListaFeltoltes();
 

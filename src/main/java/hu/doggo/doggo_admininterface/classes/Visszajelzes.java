@@ -28,7 +28,7 @@ public class Visszajelzes {
         this.comment = comment;
     }
 
-    public Boolean getRead() {
+    public Boolean isRead() {
         return read;
     }
 
@@ -47,5 +47,16 @@ public class Visszajelzes {
     public String getFormattedDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy MMM d.");
         return format.format(created_at);
+    }
+
+    public String getFormattedRead() {
+        String olvasva;
+        if (read) {
+            olvasva = "olvasva";
+        } else {
+            olvasva = "olvasatlan";
+        }
+
+        return olvasva;
     }
 }

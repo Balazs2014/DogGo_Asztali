@@ -46,4 +46,8 @@
 .muveletButton {
     -fx-background-color: #4A6A21;
     -fx-background-radius: 0;
+    -fx-border-width: 0;
+    -fx-border-color: #4A6A21;
+    -fx-background-insets: 0;
+    -fx-effect: dropshadow(three-pass-box, black, 5.0, 0.0, 1.0, 1.0);
 }
