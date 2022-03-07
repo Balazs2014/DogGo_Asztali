@@ -51,3 +51,11 @@
     -fx-background-insets: 0;
     -fx-effect: dropshadow(three-pass-box, black, 5.0, 0.0, 1.0, 1.0);
 }
+
+.muveletButton:hover {
+    -fx-background-color: #61892F;
+}
+
+.muveletButton:pressed {
+    -fx-background-color: #557A24;
+}

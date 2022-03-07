@@ -10,7 +10,7 @@
 .table-view .column-header,
 .table-view .column-header-background .filler {
     -fx-cell-size: 20;
-    -fx-background-color: #1C1D1F;
+    -fx-background-color: black;
     -fx-padding: 0px 0px 0px 2px;
 }
 
@@ -70,5 +70,9 @@
 
 .table-row-cell:hover {
     -fx-background-color: #BCBCBC;
+}
+
+.table-view .arrow {
+    -fx-mark-color: white;
 }
 

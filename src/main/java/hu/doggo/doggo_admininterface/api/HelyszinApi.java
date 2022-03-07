@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
+import hu.doggo.doggo_admininterface.classes.HelyszinErtekeles;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -49,5 +50,14 @@ public class HelyszinApi extends Controller {
 
     public static boolean deleteHelyszin(int id) throws IOException {
         return Api.delete(API_URL + "/locations", id).getResponseCode() == 204;
+    }
+
+    public static HelyszinErtekeles getLegjobbErtekeles() throws IOException {
+        String json = Api.get(API_URL + "/best_rating");
+
+        Type type = new TypeToken<HelyszinErtekeles>() {
+        }.getType();
+
+        return jsonConverter.fromJson(json, type);
     }
 }

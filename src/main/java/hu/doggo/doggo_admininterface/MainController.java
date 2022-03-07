@@ -31,7 +31,7 @@ public class MainController extends Controller {
 
 
     public void initialize() throws IOException {
-        changeStage("fxml/statisztikak-view.fxml");
+        changeStage("fxml/iranyitopult-view.fxml");
     }
 
     private void changeStage(String fxml) throws IOException {
@@ -41,7 +41,7 @@ public class MainController extends Controller {
 
     @FXML
     public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
-        changeStage("fxml/statisztikak-view.fxml");
+        changeStage("fxml/iranyitopult-view.fxml");
     }
 
     @FXML
