@@ -39,14 +39,20 @@ public class VisszajelzesekController extends Controller {
         statusCol.setCellValueFactory(new PropertyValueFactory<>("formattedRead"));
 
         visszajelzesekListaFeltoltese();
+        kereses();
+        megkotesKivalasztas();
+    }
 
+    private void kereses() {
         FilteredList<Visszajelzes> filteredList = new FilteredList<>(visszajelzesLista, b -> true);
         textFieldVisszajelzesKereses.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(visszajelzes -> {
                 if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
+
                 btnTorles.setDisable(true);
+                visszajelzesekTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
                 if (visszajelzes.getComment().toLowerCase().contains(kereses)) {
@@ -62,33 +68,37 @@ public class VisszajelzesekController extends Controller {
         sortedList.comparatorProperty().bind(visszajelzesekTableView.comparatorProperty());
 
         visszajelzesekTableView.setItems(sortedList);
-
-        megkotesKivalasztas();
     }
 
     private void visszajelzesekListaFeltoltese() {
         try {
-            visszajelzesLista.clear();
-            visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
+            if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("összes")) {
+                visszajelzesLista.clear();
+                visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
+            } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasatlan")) {
+                visszajelzesLista.clear();
+                visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
+            } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasott")) {
+                visszajelzesLista.clear();
+                visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
+            }
         } catch (IOException e) {
             hibaKiir(e);
         }
     }
 
-    public void megkotesKivalasztas() {
+    private void megkotesKivalasztas() {
         choiceBoxVisszajelzes.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+            btnTorles.setDisable(true);
             try {
                 if (newValue.equals("olvasatlan")) {
                     visszajelzesLista.clear();
                     visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
-                    btnTorles.setDisable(true);
                 } else if (newValue.equals("olvasott")) {
                     visszajelzesLista.clear();
                     visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
-                    btnTorles.setDisable(true);
                 } else {
                     visszajelzesekListaFeltoltese();
-                    btnTorles.setDisable(true);
                 }
             } catch (IOException e) {
                 hibaKiir(e);

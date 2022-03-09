@@ -26,9 +26,9 @@
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </TextField>
-                        <TextArea fx:id="txtAreaLeiras" editable="false" layoutX="10.0" layoutY="78.0" prefHeight="161.0" prefWidth="323.0" stylesheets="@../style/layoutStyle.css" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+                        <TextArea fx:id="txtAreaLeiras" layoutX="10.0" layoutY="78.0" prefHeight="161.0" prefWidth="323.0" promptText="Leírás" stylesheets="@../style/layoutStyle.css" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
                            <font>
-                              <Font name="Verdana" size="13.0" />
+                              <Font name="Verdana" size="14.0" />
                            </font>
                         </TextArea>
                         <Button layoutX="182.0" layoutY="324.0" mnemonicParsing="false" onAction="#onMentesClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Mentés" textFill="WHITE">
@@ -41,7 +41,7 @@
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="274.0" layoutY="319.0" mnemonicParsing="false" onAction="#onMegseClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Mégse" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                        <Button layoutX="274.0" layoutY="319.0" mnemonicParsing="false" onAction="#onMegseClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Vissza" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>

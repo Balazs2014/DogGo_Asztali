@@ -61,7 +61,7 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <TextField fx:id="textFieldHelyszinKereses" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0" promptText="Név" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
+                        <TextField fx:id="textFieldHelyszinKereses" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0" promptText="Név / Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
                             <font>
                                 <Font name="Verdana" size="14.0" />
                             </font>

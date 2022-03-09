@@ -45,7 +45,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="lblLegjobb" alignment="CENTER" layoutY="14.0" prefHeight="84.0" prefWidth="325.0" text="4.0" textFill="#86c232">
+                              <Label fx:id="lblLegjobb" alignment="CENTER" layoutY="14.0" prefHeight="84.0" prefWidth="325.0" stylesheets="@../style/tabPaneStyle.css" text="4.0" textFill="#86c232">
                                  <font>
                                     <Font name="Arial Narrow Bold" size="80.0" />
                                  </font>

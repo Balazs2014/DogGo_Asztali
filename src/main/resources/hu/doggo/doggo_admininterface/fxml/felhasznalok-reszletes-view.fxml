@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,18 +25,26 @@
           <center>
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="744.0" minWidth="650.0" prefHeight="744.0" prefWidth="650.0" styleClass="borderPane" stylesheets="@../style/layoutStyle.css">
                   <children>
-                      <GridPane layoutX="18.0" layoutY="249.0" prefHeight="431.0" prefWidth="599.0" vgap="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="249.0">
+                        <Label fx:id="felhnev" layoutX="15.0" layoutY="30.0" prefHeight="51.0" prefWidth="620.0" styleClass="cimLabel" stylesheets="@../style/layoutStyle.css" text="{felhasznalónév}" textFill="WHITE">
+                            <font>
+                                <Font name="Verdana Bold" size="40.0" />
+                            </font>
+                            <padding>
+                                <Insets left="15.0" />
+                            </padding>
+                        </Label>
+                      <GridPane layoutX="24.0" layoutY="111.0" prefHeight="615.0" prefWidth="604.0" vgap="10.0" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="110.0">
                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="100.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="377.0" minWidth="100.0" prefWidth="377.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="190.0" prefWidth="190.0" />
                           </columnConstraints>
                           <rowConstraints>
-                              <RowConstraints maxHeight="247.0" minHeight="150.0" prefHeight="150.0" valignment="CENTER" vgrow="NEVER" />
+                              <RowConstraints maxHeight="249.0" minHeight="150.0" prefHeight="249.0" valignment="CENTER" vgrow="NEVER" />
                         <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="282.0" vgrow="ALWAYS" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="294.0" vgrow="ALWAYS" />
                           </rowConstraints>
                           <children>
-                              <TableView fx:id="ertekelesekTableView" prefHeight="383.0" prefWidth="564.0" stylesheets="@../style/tableViewStyle.css" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                              <TableView fx:id="ertekelesekTableView" onMouseClicked="#onHozzaszolasClick" prefHeight="383.0" prefWidth="564.0" stylesheets="@../style/tableViewStyle.css" GridPane.columnSpan="2" GridPane.rowIndex="2">
                                   <columns>
                                       <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="LEÍRÁS" />
                                       <TableColumn fx:id="starsCol" prefWidth="75.0" text="CSILLAGOK" />
@@ -44,67 +53,90 @@
                                       <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                                   </columnResizePolicy>
                               </TableView>
-                              <HBox minHeight="150.0" minWidth="100.0" prefHeight="150.0" prefWidth="100.0">
+                        <VBox>
+                           <children>
+                                    <HBox minHeight="67.0" minWidth="100.0" prefHeight="67.0" prefWidth="367.0">
+                                        <children>
+                                            <VBox alignment="TOP_RIGHT" prefHeight="96.0" prefWidth="102.0">
+                                                <children>
+                                                    <Label styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="Email:" textFill="WHITE">
+                                                        <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="Regisztráció:" textFill="WHITE">
+                                                        <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="Jogosultság:" textFill="WHITE">
+                                                        <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                                <HBox.margin>
+                                                    <Insets />
+                                                </HBox.margin>
+                                                <padding>
+                                                    <Insets right="5.0" />
+                                                </padding>
+                                            </VBox>
+                                            <VBox prefHeight="96.0" prefWidth="251.0">
+                                                <children>
+                                                    <Label fx:id="felhEmail" maxHeight="18.0" maxWidth="251.0" minHeight="18.0" minWidth="220.0" prefHeight="18.0" prefWidth="251.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{email}" textFill="WHITE" wrapText="true">
+                                                        <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label fx:id="felhReg" prefHeight="18.0" prefWidth="265.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{regisztráció}" textFill="WHITE" wrapText="true">
+                                                        <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                        </font>
+                                                    </Label>
+                                                    <Label fx:id="felhJog" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{jogosultság}" textFill="WHITE">
+                                                        <font>
+                                                            <Font name="Verdana" size="14.0" />
+                                                        </font>
+                                                    </Label>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </HBox>
+                              <VBox>
+                                 <VBox.margin>
+                                    <Insets right="20.0" />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="138.0" text="Teljes hozzászólás:" textFill="WHITE">
+                                       <font>
+                                          <Font name="Verdana" size="14.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="2.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextArea fx:id="txtAreaHozzaszolas" editable="false" prefHeight="135.0" prefWidth="357.0" promptText="Hozzászólás" wrapText="true">
+                                       <font>
+                                          <Font name="Verdana" size="13.0" />
+                                       </font></TextArea>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                              <VBox prefHeight="249.0" prefWidth="218.0" spacing="20.0" GridPane.columnIndex="1">
                                   <children>
-                                      <VBox alignment="TOP_RIGHT" prefHeight="150.0" prefWidth="143.0">
-                                          <children>
-                                              <Label styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="Email:" textFill="WHITE">
-                                                  <font>
-                                                      <Font name="Verdana" size="14.0" />
-                                                  </font>
-                                              </Label>
-                                              <Label styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="Regisztráció:" textFill="WHITE">
-                                                  <font>
-                                                      <Font name="Verdana" size="14.0" />
-                                                  </font>
-                                              </Label>
-                                              <Label styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="Jogosultság:" textFill="WHITE">
-                                                  <font>
-                                                      <Font name="Verdana" size="14.0" />
-                                                  </font>
-                                              </Label>
-                                          </children>
-                                          <HBox.margin>
-                                              <Insets />
-                                          </HBox.margin>
-                                          <padding>
-                                              <Insets right="5.0" />
-                                          </padding>
-                                      </VBox>
-                                      <VBox prefHeight="150.0" prefWidth="291.0">
-                                          <children>
-                                              <Label fx:id="felhEmail" maxHeight="18.0" maxWidth="220.0" minHeight="18.0" minWidth="220.0" prefHeight="18.0" prefWidth="220.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{email}" textFill="WHITE" wrapText="true">
-                                                  <font>
-                                                      <Font name="Verdana" size="14.0" />
-                                                  </font>
-                                              </Label>
-                                              <Label fx:id="felhReg" prefHeight="18.0" prefWidth="265.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{regisztráció}" textFill="WHITE" wrapText="true">
-                                                  <font>
-                                                      <Font name="Verdana" size="14.0" />
-                                                  </font>
-                                              </Label>
-                                              <Label fx:id="felhJog" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{jogosultság}" textFill="WHITE">
-                                                  <font>
-                                                      <Font name="Verdana" size="14.0" />
-                                                  </font>
-                                              </Label>
-                                          </children>
-                                      </VBox>
-                                  </children>
-                              </HBox>
-                              <VBox prefHeight="200.0" prefWidth="100.0" spacing="20.0" GridPane.columnIndex="1">
-                                  <children>
-                              <Button minHeight="30.0" minWidth="229.0" mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="229.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Hozzászólás törlése" textFill="WHITE">
+                              <Button fx:id="btnTorles" disable="true" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Hozzászólás törlése" textFill="WHITE">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnTiltas" minHeight="30.0" minWidth="229.0" mnemonicParsing="false" onAction="#onTiltasClick" prefHeight="30.0" prefWidth="229.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Felhasználó tiltása" textFill="WHITE">
+                              <Button fx:id="btnTiltas" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onTiltasClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Felhasználó tiltása" textFill="WHITE">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnAdmin" minHeight="30.0" minWidth="229.0" mnemonicParsing="false" onAction="#onAdminClick" prefHeight="30.0" prefWidth="229.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Admin jogosultság" textFill="WHITE">
+                              <Button fx:id="btnAdmin" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onAdminClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Admin jogosultság" textFill="WHITE">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -137,18 +169,6 @@
                               <Insets bottom="15.0" left="15.0" right="15.0" />
                           </padding>
                       </GridPane>
-                      <Pane layoutY="48.0" minHeight="150.0" minWidth="650.0" prefHeight="150.0" prefWidth="648.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                          <children>
-                              <Label fx:id="felhnev" layoutX="14.0" layoutY="46.0" styleClass="cimLabel" stylesheets="@../style/layoutStyle.css" text="{felhasznalónév}" textFill="WHITE">
-                                  <font>
-                                      <Font name="Verdana Bold" size="40.0" />
-                                  </font>
-                                  <padding>
-                                      <Insets left="15.0" />
-                                  </padding>
-                              </Label>
-                          </children>
-                      </Pane>
                   </children>
               </AnchorPane>
           </center>

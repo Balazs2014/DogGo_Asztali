@@ -25,7 +25,7 @@
                            </image>
                         </ImageView>
                      </children></Pane>
-                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/buttonStyle.css" text="Statisztikák" textAlignment="RIGHT" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStatisztikakButtonClick" prefHeight="65.0" prefWidth="250.0" styleClass="menuButton" stylesheets="@../style/buttonStyle.css" text="Irányítópult" textAlignment="RIGHT" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="15.0" />
                             </font>

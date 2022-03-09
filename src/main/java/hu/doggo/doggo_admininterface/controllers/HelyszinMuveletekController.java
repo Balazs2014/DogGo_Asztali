@@ -1,12 +1,8 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.api.ErtekelesApi;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
-import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
-import hu.doggo.doggo_admininterface.classes.Ertekeles;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
-import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -20,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Locale;
 
 public class HelyszinMuveletekController extends Controller {
     @FXML
@@ -51,7 +46,7 @@ public class HelyszinMuveletekController extends Controller {
         adatokkiirasa();
     }
 
-    public void adatokkiirasa() {
+    private void adatokkiirasa() {
         inputHelyszinNev.setText(reszletes.getName());
         txtAreaLeiras.setFont(Font.font("Verdana", 12));
         txtAreaLeiras.setText(reszletes.getDescription());
@@ -61,9 +56,10 @@ public class HelyszinMuveletekController extends Controller {
         btnEngedelyezes.setDisable(engedelyezve);
     }
 
-    private void bezárás() {
+    private void bezaras() {
         String nev = inputHelyszinNev.getText().trim();
-        if (!reszletes.getName().equals(nev)) {
+        String leiras = txtAreaLeiras.getText().trim();
+        if (!reszletes.getName().equals(nev) || !reszletes.getDescription().equals(leiras)) {
             mentve = false;
         }
 
@@ -79,18 +75,19 @@ public class HelyszinMuveletekController extends Controller {
     @FXML
     public void onMentesClick(ActionEvent actionEvent) {
         String nev = inputHelyszinNev.getText().trim();
+        String leiras = txtAreaLeiras.getText().trim();
         if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
         }
 
         reszletes.setName(nev);
+        reszletes.setDescription(leiras);
         reszletes.setAllowed(engedelyezve);
 
         try {
             Helyszin modositandoHelyszin = HelyszinApi.updateHelyszin(reszletes);
             if (modositandoHelyszin != null) {
                 alert("Sikeres mentés!");
-                ((Stage) mainAnchor.getScene().getWindow()).close();
             } else {
                 alert("Sikertelen mentés!");
             }
@@ -101,7 +98,7 @@ public class HelyszinMuveletekController extends Controller {
 
     @FXML
     public void onMegseClick(ActionEvent actionEvent) {
-        bezárás();
+        bezaras();
     }
 
     @FXML
@@ -113,7 +110,7 @@ public class HelyszinMuveletekController extends Controller {
 
     @FXML
     public void onCloseClick(Event event) {
-        bezárás();
+        bezaras();
     }
 
     @FXML

@@ -13,7 +13,6 @@
 
 .tab-pane .tab
 {
-    /*-fx-background-color: #e6e6e6;*/
     -fx-background-color: transparent;
 }
 
@@ -51,4 +50,10 @@
     -fx-border-color: transparent;
     -fx-border-insets: 0;
     -fx-border-radius: 0;
+}
+
+.tab-pane .label {
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-size: 80px;
 }

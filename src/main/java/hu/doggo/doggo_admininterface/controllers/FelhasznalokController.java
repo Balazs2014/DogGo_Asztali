@@ -39,7 +39,10 @@ public class FelhasznalokController extends Controller {
         permissionCol.setCellValueFactory(new PropertyValueFactory<>("formattedPermission"));
 
         felhasznaloListaFeltoltes();
+        kereses();
+    }
 
+    private void kereses() {
         FilteredList<Felhasznalo> filteredList = new FilteredList<>(felhasznaloLista, b -> true);
         textFieldFelhKereses.textProperty().addListener((observable, oldValue, newValue ) -> {
             filteredList.setPredicate(felhasznalo -> {
@@ -47,6 +50,7 @@ public class FelhasznalokController extends Controller {
                     return true;
                 }
 
+                felhasznalokTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
                 if (felhasznalo.getUsername().toLowerCase().contains(kereses)) {

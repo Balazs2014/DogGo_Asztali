@@ -45,8 +45,12 @@ public class HelyszinekController extends Controller {
         lngCol.setCellValueFactory(new PropertyValueFactory<>("lng"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("formattedAllowed"));
 
+        megkotesKivalasztas();
         helyszinListaFeltoltes();
+        kereses();
+    }
 
+    private void kereses() {
         FilteredList<Helyszin> filteredList = new FilteredList<>(helyszinLista, b -> true);
         textFieldHelyszinKereses.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(helyszin -> {
@@ -54,6 +58,8 @@ public class HelyszinekController extends Controller {
                     return true;
                 }
 
+                btnTorles.setDisable(true);
+                helyszinekTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
                 if (helyszin.getName().toLowerCase().contains(kereses)) {
@@ -71,21 +77,28 @@ public class HelyszinekController extends Controller {
         sortedList.comparatorProperty().bind(helyszinekTableView.comparatorProperty());
 
         helyszinekTableView.setItems(sortedList);
-
-        megkotesKivalasztas();
     }
 
-    public void helyszinListaFeltoltes() {
+    private void helyszinListaFeltoltes() {
         try {
-            helyszinLista.clear();
-            helyszinLista.addAll(HelyszinApi.getHelyszin());
+            if (choiceBoxHelyszin.getSelectionModel().getSelectedItem().equals("összes")) {
+                helyszinLista.clear();
+                helyszinLista.addAll(HelyszinApi.getHelyszin());
+            } else if (choiceBoxHelyszin.getSelectionModel().getSelectedItem().equals("engedélyezésre vár")) {
+                helyszinLista.clear();
+                helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
+            } else {
+                helyszinLista.clear();
+                helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
+            }
         } catch (IOException e) {
             hibaKiir(e);
         }
     }
 
-    public void megkotesKivalasztas() {
-        choiceBoxHelyszin.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+    private void megkotesKivalasztas() {
+        choiceBoxHelyszin.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
+            btnTorles.setDisable(true);
             try {
                 if (newValue.equals("engedélyezésre vár")) {
                     helyszinLista.clear();
@@ -112,8 +125,8 @@ public class HelyszinekController extends Controller {
             boolean siker = HelyszinApi.deleteHelyszin(torlendo.getId());
             if (siker) {
                 alert("Sikeres törlés!");
-                btnTorles.setDisable(true);
                 helyszinListaFeltoltes();
+                btnTorles.setDisable(true);
             } else {
                 alert("Sikertelen törlés!");
             }
@@ -135,7 +148,7 @@ public class HelyszinekController extends Controller {
             } catch (Exception e) {
                 hibaKiir(e);
             }
-        } else if (!(selectedIndex == -1)){
+        } else if (!(selectedIndex == -1)) {
             btnTorles.setDisable(false);
         }
     }

@@ -46,7 +46,7 @@ public class VisszajelzesMuveletekController extends Controller {
         adatokKiirasa();
     }
 
-    public void adatokKiirasa() {
+    private void adatokKiirasa() {
         txtAreaLeiras.setFont(Font.font("Verdana", 12));
         txtAreaLeiras.setText(reszletes.getComment());
         lblDatum.setText(reszletes.getFormattedDate());
@@ -93,9 +93,7 @@ public class VisszajelzesMuveletekController extends Controller {
         mentve = false;
         btnOlvas.setDisable(olvasva);
     }
-
-
-
+    
     @FXML
     public void onCloseClick(Event event) {
         bezárás();

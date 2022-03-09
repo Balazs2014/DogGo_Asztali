@@ -46,6 +46,10 @@ public class FelhasznalokReszletesController extends Controller {
     private Button btnTiltas;
     @FXML
     private Button btnAdmin;
+    @FXML
+    private Button btnTorles;
+    @FXML
+    private TextArea txtAreaHozzaszolas;
 
     private Felhasznalo reszletes;
     private ObservableList<Ertekeles> ertekelesLista = FXCollections.observableArrayList();
@@ -53,7 +57,7 @@ public class FelhasznalokReszletesController extends Controller {
     private double x = 0;
     private double y = 0;
 
-    private Felhasznalo getReszletes() {
+    public Felhasznalo getReszletes() {
         return reszletes;
     }
 
@@ -79,6 +83,10 @@ public class FelhasznalokReszletesController extends Controller {
 
         ertekelesListaFeltoltes();
 
+        kereses();
+    }
+
+    private void kereses() {
         FilteredList<Ertekeles> filteredList = new FilteredList<>(ertekelesLista, b -> true);
         textFieldLeirasKereses.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(ertekeles -> {
@@ -86,6 +94,9 @@ public class FelhasznalokReszletesController extends Controller {
                     return true;
                 }
 
+                btnTorles.setDisable(true);
+                txtAreaHozzaszolas.setText("");
+                ertekelesekTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
                 if (ertekeles.getDescription() == null) {
@@ -135,7 +146,7 @@ public class FelhasznalokReszletesController extends Controller {
         }
     }
 
-    public void kitiltas() {
+    private void kitiltas() {
         reszletes.setPermission(1);
         try {
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
@@ -150,7 +161,7 @@ public class FelhasznalokReszletesController extends Controller {
         }
     }
 
-    public void feloldas() {
+    private void feloldas() {
         reszletes.setPermission(0);
         try {
             Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
@@ -172,7 +183,7 @@ public class FelhasznalokReszletesController extends Controller {
             alert("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
             return;
         }
-        Ertekeles modositando = (Ertekeles) ertekelesekTableView.getSelectionModel().getSelectedItem();
+        Ertekeles modositando = ertekelesekTableView.getSelectionModel().getSelectedItem();
 
         if (!confirm("Biztos hogy törölni szeretné az alábbi leírást: " + modositando.getDescription())) {
             return;
@@ -184,6 +195,9 @@ public class FelhasznalokReszletesController extends Controller {
             Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
             if (modositandoErtekeles != null) {
                 alert("Sikeres törlés");
+                btnTorles.setDisable(true);
+                txtAreaHozzaszolas.setText("");
+                ertekelesekTableView.getSelectionModel().select(null);
             } else {
                 alert("Sikertelen törlés");
             }
@@ -191,6 +205,19 @@ public class FelhasznalokReszletesController extends Controller {
             ertekelesekTableView.refresh();
         } catch (IOException e) {
             hibaKiir(e);
+        }
+    }
+
+    @FXML
+    public void onHozzaszolasClick(MouseEvent mouseEvent) {
+        int selectedIndex = ertekelesekTableView.getSelectionModel().getSelectedIndex();
+        Ertekeles ertekeles = ertekelesekTableView.getSelectionModel().getSelectedItem();
+        if (!(selectedIndex == -1) && ertekeles.getDescription() != null){
+            btnTorles.setDisable(false);
+            txtAreaHozzaszolas.setText(ertekeles.getDescription());
+        } else {
+            btnTorles.setDisable(true);
+            txtAreaHozzaszolas.setText("");
         }
     }
 
@@ -231,4 +258,5 @@ public class FelhasznalokReszletesController extends Controller {
     @FXML
     public void onAdminClick(ActionEvent actionEvent) {
     }
+
 }

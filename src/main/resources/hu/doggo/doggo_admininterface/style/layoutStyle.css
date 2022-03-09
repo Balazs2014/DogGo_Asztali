@@ -42,6 +42,7 @@
     -fx-font-size: 14px;
     -fx-text-fill: white;
     -fx-font-family: Verdana;
+    -fx-effect: dropshadow(three-pass-box, #15181A, 10.0, 0.0, 5.0, 5.0);
 }
 
 .keresesPane {
@@ -75,6 +76,7 @@
     -fx-background-color: #4A6A21;
     -fx-mark-color: white;
     -fx-background-radius: 0;
+    -fx-effect: dropshadow(three-pass-box, #15181A, 10.0, 0.0, 5.0, 5.0);
 }
 
 
@@ -92,11 +94,14 @@
 }
 
 .text-area {
+    -fx-font-size: 13px;
+    -fx-font-family: Verdana;
     -fx-background-color: transparent;
     -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, #15181A, 10.0, 0.0, 5.0, 5.0);
 }
 
 .text-area .content {
-    -fx-background-color:  #222629;
+    -fx-background-color:  #202427;
     -fx-background-radius: 0;
 }
