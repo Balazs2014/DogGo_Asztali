@@ -56,7 +56,7 @@ public class VisszajelzesMuveletekController extends Controller {
 
     private void bezárás() {
         if (!mentve) {
-            if (!confirm("A módosítások el fognak veszni!")) {
+            if (!megerosites("A módosítások el fognak veszni!")) {
                 return;
             }
         }

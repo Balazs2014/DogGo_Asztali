@@ -118,7 +118,7 @@ public class HelyszinekController extends Controller {
     @FXML
     public void onTorlesClick(ActionEvent actionEvent) {
         Helyszin torlendo = helyszinekTableView.getSelectionModel().getSelectedItem();
-        if (!confirm("Biztos törölni szeretné a(z) " + torlendo.getName())) {
+        if (!megerosites("Biztos törölni szeretné a(z) " + torlendo.getName())) {
             return;
         }
         try {

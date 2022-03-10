@@ -82,7 +82,6 @@ public class FelhasznalokReszletesController extends Controller {
         btnAdmin.setVisible(true);
 
         ertekelesListaFeltoltes();
-
         kereses();
     }
 
@@ -185,7 +184,7 @@ public class FelhasznalokReszletesController extends Controller {
         }
         Ertekeles modositando = ertekelesekTableView.getSelectionModel().getSelectedItem();
 
-        if (!confirm("Biztos hogy törölni szeretné az alábbi leírást: " + modositando.getDescription())) {
+        if (!megerosites("Biztos hogy törölni szeretné az alábbi leírást: " + modositando.getDescription())) {
             return;
         }
 

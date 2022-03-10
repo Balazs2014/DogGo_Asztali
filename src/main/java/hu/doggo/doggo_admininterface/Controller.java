@@ -37,7 +37,7 @@ public class Controller {
         return controller;
     }
 
-    protected boolean confirm(String uzenet) {
+    protected boolean megerosites(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Biztos?");
         alert.setContentText(uzenet);

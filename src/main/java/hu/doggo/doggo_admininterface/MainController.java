@@ -61,7 +61,7 @@ public class MainController extends Controller {
 
     @FXML
     public void onKijelentkezesButtonClick(ActionEvent actionEvent) {
-        if(!(confirm("Ki szeretne jelentkezni?"))) {
+        if(!(megerosites("Ki szeretne jelentkezni?"))) {
             return;
         }
         System.exit(0);
@@ -69,7 +69,7 @@ public class MainController extends Controller {
 
     @FXML
     public void onCloseClick(Event event) {
-        if(!(confirm("Ki szeretne lépni a programból?"))) {
+        if(!(megerosites("Ki szeretne lépni a programból?"))) {
             return;
         }
         System.exit(0);

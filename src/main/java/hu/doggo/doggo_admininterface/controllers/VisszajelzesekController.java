@@ -109,7 +109,7 @@ public class VisszajelzesekController extends Controller {
     @FXML
     public void onTorlesClick(ActionEvent actionEvent) {
         Visszajelzes torlendo = visszajelzesekTableView.getSelectionModel().getSelectedItem();
-        if (!confirm("Biztos törölni szeretné?")) {
+        if (!megerosites("Biztos törölni szeretné?")) {
             return;
         }
         try {

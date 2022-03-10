@@ -64,7 +64,7 @@ public class HelyszinMuveletekController extends Controller {
         }
 
         if (!mentve) {
-            if (!confirm("A módosítások el fognak veszni!")) {
+            if (!megerosites("A módosítások el fognak veszni!")) {
                 return;
             }
         }
