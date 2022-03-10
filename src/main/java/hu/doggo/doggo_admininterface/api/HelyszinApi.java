@@ -60,4 +60,13 @@ public class HelyszinApi extends Controller {
 
         return jsonConverter.fromJson(json, type);
     }
+
+    public static HelyszinErtekeles getLegrosszabbErtekeles() throws IOException {
+        String json = Api.get(API_URL + "/worst_rating");
+
+        Type type = new TypeToken<HelyszinErtekeles>() {
+        }.getType();
+
+        return jsonConverter.fromJson(json, type);
+    }
 }

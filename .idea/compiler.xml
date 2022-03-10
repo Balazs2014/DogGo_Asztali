@@ -10,7 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="DogGo_AdminInterface" target="17" />
+      <module name="DogGo_AdminInterface" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>
