@@ -26,4 +26,19 @@ public class FelhasznaloApi extends Controller {
 
         return jsonConverter.fromJson(json, Felhasznalo.class);
     }
+
+    public static int getFelhasznalokCount() throws IOException {
+        String countString = Api.get(API_URL + "/user_count");
+        return Integer.parseInt(countString);
+    }
+
+    public static int getKitiltottCount() throws IOException {
+        String countString = Api.get(API_URL + "/banned_user_count");
+        return Integer.parseInt(countString);
+    }
+
+    public static int getAdminCount() throws IOException {
+        String countString = Api.get(API_URL + "/admin_user_count");
+        return Integer.parseInt(countString);
+    }
 }

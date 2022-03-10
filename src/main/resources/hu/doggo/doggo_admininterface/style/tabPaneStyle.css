@@ -55,5 +55,15 @@
 .tab-pane .label {
     -fx-font-weight: bold;
     -fx-font-family: "Arial Narrow";
-    -fx-font-size: 80px;
+    -fx-fill: #86c232;
+    -fx-font-size: 60px;
+}
+
+.tab-pane .text-area {
+    -fx-effect: dropshadow(three-pass-box, #15181A, 0.0, 0.0, 0.0, 0.0)
+}
+
+.tab-pane .text-area *.text {
+    -fx-text-alignment: center;
+    -fx-background-color: #222629;;
 }

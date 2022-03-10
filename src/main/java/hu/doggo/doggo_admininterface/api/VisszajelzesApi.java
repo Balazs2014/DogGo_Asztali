@@ -50,4 +50,14 @@ public class VisszajelzesApi extends Controller {
     public static boolean deleteVisszajelzes(int id) throws IOException {
         return Api.delete(API_URL + "/feedbacks", id).getResponseCode() == 204;
     }
+
+    public static int getReadCount() throws IOException {
+        String countString = Api.get(API_URL + "/read_feedback_count");
+        return Integer.parseInt(countString);
+    }
+
+    public static int getNewCount() throws IOException {
+        String countString = Api.get(API_URL + "/new_feedback_count");
+        return Integer.parseInt(countString);
+    }
 }

@@ -69,4 +69,14 @@ public class HelyszinApi extends Controller {
 
         return jsonConverter.fromJson(json, type);
     }
+
+    public static int getAllowedCount() throws IOException {
+        String countString = Api.get(API_URL + "/allowed_location_count");
+        return Integer.parseInt(countString);
+    }
+
+    public static int getNewCount() throws IOException {
+        String countString = Api.get(API_URL + "/new_location_count");
+        return Integer.parseInt(countString);
+    }
 }

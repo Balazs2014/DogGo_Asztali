@@ -3,7 +3,7 @@
 }
 
 .background {
-    -fx-background-color:  #222629;
+    -fx-background-color:  #202427;
 }
 
 .menuVBox {
@@ -96,7 +96,7 @@
 .text-area {
     -fx-font-size: 13px;
     -fx-font-family: Verdana;
-    -fx-background-color: transparent;
+    -fx-background-color: #222629;
     -fx-text-fill: #ffffff;
     -fx-effect: dropshadow(three-pass-box, #15181A, 10.0, 0.0, 5.0, 5.0);
 }
