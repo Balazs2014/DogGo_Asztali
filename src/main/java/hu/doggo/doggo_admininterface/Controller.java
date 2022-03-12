@@ -41,6 +41,9 @@ public class Controller {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Biztos?");
         alert.setContentText(uzenet);
+        dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
+        dialogPane.getStyleClass().add("alert");
         Optional<ButtonType> result = alert.showAndWait();
         return  result.get() == ButtonType.OK;
     }
@@ -50,6 +53,9 @@ public class Controller {
         alert.setTitle("Hiba");
         alert.setHeaderText(e.getClass().toString());
         alert.setContentText(e.getMessage());
+        dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
+        dialogPane.getStyleClass().add("alert");
         Timer alertTimer = new Timer();
         alertTimer.schedule(new TimerTask() {
             @Override
@@ -65,7 +71,7 @@ public class Controller {
         alert.getButtonTypes().add(ButtonType.OK);
         dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
-        dialogPane.getStyleClass().add("dialog-pane");
+        dialogPane.getStyleClass().add("alert");
         Stage stage = (Stage) dialogPane.getScene().getWindow();
         stage.getIcons().add(new Image(this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()));
         alert.showAndWait();

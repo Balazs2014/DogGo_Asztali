@@ -126,7 +126,7 @@
                         </VBox>
                               <VBox prefHeight="249.0" prefWidth="218.0" spacing="20.0" GridPane.columnIndex="1">
                                   <children>
-                              <Button fx:id="btnTorles" disable="true" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Hozzászólás törlése" textFill="WHITE">
+                              <Button fx:id="btnTorles" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Hozzászólás törlése" textFill="WHITE">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>

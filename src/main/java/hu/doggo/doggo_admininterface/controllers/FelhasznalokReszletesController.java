@@ -79,6 +79,11 @@ public class FelhasznalokReszletesController extends Controller {
             btnTiltas.setText("Feloldás");
         }
 
+        /*if (permission > 1) {
+            btnTorles.setDisable(true);
+            btnTiltas.setDisable(true);
+        }*/
+
         /*if (user.getPermission() == 2) {
             btnAdmin.setVisible(true);
             System.out.println(user.getPermission());

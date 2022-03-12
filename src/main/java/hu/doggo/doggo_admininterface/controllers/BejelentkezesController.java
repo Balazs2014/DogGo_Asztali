@@ -1,9 +1,7 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.MainController;
 import hu.doggo.doggo_admininterface.api.LoginApi;
-import hu.doggo.doggo_admininterface.classes.BejelentkezettFelhasznalo;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import hu.doggo.doggo_admininterface.classes.Login;
 import hu.doggo.doggo_admininterface.classes.Token;

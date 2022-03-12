@@ -3,17 +3,17 @@
 }
 
 .dialog-pane > .content.label {
-    -fx-background-color: #4A6A21;
+    -fx-background-color: #202427;
     -fx-text-fill: white;
     -fx-font-size: 15px;
 }
 
 .dialog-pane[type=header] .header-panel {
-    -fx-background-color: black;
+    -fx-background-color: #202427;
 }
 
 .dialog-pane[type=header] .header-panel .label {
-    -fx-background-color: #4A6A21;
+    -fx-background-color: #202427;
     -fx-background-radius: 10px;
     -fx-text-fill: white;
     -fx-font-size: 15px;

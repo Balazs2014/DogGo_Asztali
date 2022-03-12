@@ -59,9 +59,6 @@
     -fx-font-size: 60px;
 }
 
-.tab-pane .text-area {
-    -fx-effect: dropshadow(three-pass-box, #15181A, 0.0, 0.0, 0.0, 0.0)
-}
 
 .tab-pane .text-area *.text {
     -fx-text-alignment: center;
