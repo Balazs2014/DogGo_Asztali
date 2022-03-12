@@ -136,7 +136,7 @@
                                     <Font name="Verdana" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnAdmin" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onAdminClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Admin jogosultság" textFill="WHITE">
+                              <Button fx:id="btnAdmin" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onAdminClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Admin jogosultság" textFill="WHITE" visible="false">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>

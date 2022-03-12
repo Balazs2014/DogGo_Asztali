@@ -1,5 +1,9 @@
 package hu.doggo.doggo_admininterface;
 
+import hu.doggo.doggo_admininterface.api.LoginApi;
+import hu.doggo.doggo_admininterface.classes.Felhasznalo;
+import hu.doggo.doggo_admininterface.classes.Login;
+import hu.doggo.doggo_admininterface.classes.Token;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -28,7 +32,6 @@ public class MainController extends Controller {
     private double x = 0;
     private double y = 0;
     private boolean teljesKepernyo = false;
-
 
     public void initialize() throws IOException {
         changeStage("fxml/iranyitopult-view.fxml");

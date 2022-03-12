@@ -19,15 +19,16 @@ public class AdminInterface extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("fxml/main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1300, 700);
+        //FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("fxml/main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/bejelentkezes-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 550, 420);
         stage.initStyle(StageStyle.UNDECORATED);
         Image icon = new Image(getClass().getResourceAsStream("icons/logo.png"));
         stage.getIcons().add(icon);
-        stage.setTitle("DogGo - Admin interface");
+        stage.setTitle("DogGo - Bejelentkezés");
         stage.setScene(scene);
-        stage.setMinWidth(1300);
-        stage.setMinHeight(700);
+        stage.setMinWidth(550);
+        stage.setMinHeight(420);
         stage.show();
     }
 

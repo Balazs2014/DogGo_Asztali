@@ -21,6 +21,17 @@ public class Api extends Controller {
         return json;
     }
 
+    public static String post(String url, String ujJson) throws IOException {
+        Gson jsonConverter = new Gson();
+        Response response = RequestHandler.post(url, ujJson);
+        String json = response.getContent();
+        if (response.getResponseCode() > 400) {
+            String message = jsonConverter.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+        return json;
+    }
+
     public static String put(String url, int id, String jsonModositando) throws IOException {
         Response response = RequestHandler.put(url + "/" + id, jsonModositando);
         String json = response.getContent();
@@ -43,5 +54,18 @@ public class Api extends Controller {
             throw new IOException(msg);
         }
         return respone;
+    }
+
+    public static String getLoginData(String url, String token) throws IOException {
+        Response response = RequestHandler.tokenAuthorization(url, token);
+        String json = response.getContent();
+        Gson jsonConverter = new Gson();
+
+        if (response.getResponseCode() >= 400) {
+            String message = jsonConverter.fromJson(json, ApiError.class).getMessage();
+            throw new IOException(message);
+        }
+
+        return json;
     }
 }

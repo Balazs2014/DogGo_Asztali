@@ -41,6 +41,14 @@ public class RequestHandler {
         return getResponse(conn);
     }
 
+    public static Response tokenAuthorization(String url, String token) throws IOException {
+        HttpURLConnection conn = setConnection(url);
+
+        conn.setRequestProperty("Authorization", "Bearer " + token);
+
+        return getResponse(conn);
+    }
+
     private static Response getResponse(HttpURLConnection conn) throws IOException {
         int responseCode = conn.getResponseCode();
         InputStream is;
