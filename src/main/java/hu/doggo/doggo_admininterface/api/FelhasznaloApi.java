@@ -20,9 +20,9 @@ public class FelhasznaloApi extends Controller {
         return jsonConverter.fromJson(json, type);
     }
 
-    public static Felhasznalo updateFelhasznalo(Felhasznalo modositando) throws IOException {
-        String felhasznaloJson = jsonConverter.toJson(modositando);
-        String json = Api.put(API_URL + "/users", modositando.getId(), felhasznaloJson);
+    public static Felhasznalo jogFelhasznalo(Felhasznalo felhasznalo) throws IOException {
+        String felhasznaloJson = jsonConverter.toJson(felhasznalo);
+        String json = Api.put(API_URL + "/users", felhasznalo.getId(), felhasznaloJson);
 
         return jsonConverter.fromJson(json, Felhasznalo.class);
     }

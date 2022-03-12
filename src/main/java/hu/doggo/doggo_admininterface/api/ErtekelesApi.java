@@ -21,9 +21,9 @@ public class ErtekelesApi extends Controller {
         return jsonConverter.fromJson(json, type);
     }
 
-    public static Ertekeles updateLeiras(Ertekeles modositando) throws IOException {
-        String ertekelesJson = jsonConverter.toJson(modositando);
-        String json = Api.put(API_URL + "/ratings", modositando.getId(), ertekelesJson);
+    public static Ertekeles deleteLeiras(Ertekeles ertekels) throws IOException {
+        String ertekelesJson = jsonConverter.toJson(ertekels);
+        String json = Api.put(API_URL + "/ratings", ertekels.getId(), ertekelesJson);
 
         return jsonConverter.fromJson(json, Ertekeles.class);
     }
