@@ -114,9 +114,9 @@ public class HelyszinMuveletekController extends Controller {
     }
 
     @FXML
-    public void onBorderPaneTopDragged(MouseEvent event) {
+    public void onBorderPaneTopDragged(MouseEvent mouseEvent) {
         Stage stage = (Stage) borderPane.getScene().getWindow();
-        dragWindow(stage, event, x, y);
+        dragWindow(stage, mouseEvent, x, y);
     }
 
     @FXML
@@ -125,8 +125,8 @@ public class HelyszinMuveletekController extends Controller {
     }
 
     @FXML
-    public void onBorderPaneTopPressed(MouseEvent event) {
-        x = event.getSceneX();
-        y = event.getSceneY();
+    public void onBorderPaneTopPressed(MouseEvent mouseEvent) {
+        x = mouseEvent.getSceneX();
+        y = mouseEvent.getSceneY();
     }
 }
