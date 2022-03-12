@@ -10,6 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -17,7 +18,28 @@
    <children>
       <HBox minHeight="420.0" minWidth="550.0" prefHeight="420.0" prefWidth="550.0">
          <children>
-            <AnchorPane minHeight="420.0" minWidth="275.0" prefHeight="420.0" prefWidth="275.0" style="-fx-background-color: #4A6A21;" />
+            <AnchorPane minHeight="420.0" minWidth="275.0" prefHeight="420.0" prefWidth="275.0" style="-fx-background-color: #4A6A21;">
+               <children>
+                  <ImageView fitHeight="426.0" fitWidth="632.0" layoutX="-162.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icons/dog_login.png" />
+                     </image>
+                  </ImageView>
+                  <Pane layoutY="346.0" prefHeight="60.0" prefWidth="275.0" styleClass="cimPane" stylesheets="@../style/layoutStyle.css">
+                     <children>
+                        <Label layoutX="74.0" layoutY="14.0" text="Email: info@doggo.hu ">
+                           <font>
+                              <Font name="Verdana" size="11.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="67.0" layoutY="33.0" text="Telefon: +36 01 187 876">
+                           <font>
+                              <Font name="Verdana" size="11.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children></AnchorPane>
             <AnchorPane minHeight="420.0" minWidth="275.0" prefHeight="420.0" prefWidth="275.0">
                <children>
                   <VBox alignment="TOP_CENTER" minHeight="420.0" minWidth="275.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #222629;">

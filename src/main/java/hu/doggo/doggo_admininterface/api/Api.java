@@ -61,10 +61,10 @@ public class Api extends Controller {
         String json = response.getContent();
         Gson jsonConverter = new Gson();
 
-        if (response.getResponseCode() >= 400) {
+        /*if (response.getResponseCode() >= 400) {
             String message = jsonConverter.fromJson(json, ApiError.class).getMessage();
             throw new IOException(message);
-        }
+        }*/
 
         return json;
     }

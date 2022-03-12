@@ -104,3 +104,9 @@
     -fx-background-color:  #202427;
     -fx-background-radius: 0;
 }
+
+.loginLabel {
+    -fx-font-family: Verdana;
+    -fx-font-size: 12px;
+    -fx-background-color: #86C232;
+}

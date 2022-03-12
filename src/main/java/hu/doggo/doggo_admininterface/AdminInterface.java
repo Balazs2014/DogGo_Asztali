@@ -19,8 +19,8 @@ public class AdminInterface extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("fxml/main-view.fxml"));
-        //FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/bejelentkezes-view.fxml"));
+        //FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource("fxml/main-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxml/bejelentkezes-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 550, 420);
         stage.initStyle(StageStyle.UNDECORATED);
         Image icon = new Image(getClass().getResourceAsStream("icons/logo.png"));
