@@ -156,7 +156,7 @@ public class FelhasznalokReszletesController extends Controller {
     private void kitiltas() {
         reszletes.setPermission(1);
         try {
-            Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
+            Felhasznalo felhTiltasa = FelhasznaloApi.jogFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó tiltva!");
             } else {
@@ -171,7 +171,7 @@ public class FelhasznalokReszletesController extends Controller {
     private void feloldas() {
         reszletes.setPermission(0);
         try {
-            Felhasznalo felhTiltasa = FelhasznaloApi.updateFelhasznalo(reszletes);
+            Felhasznalo felhTiltasa = FelhasznaloApi.jogFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó feloldva!");
             } else {
@@ -190,17 +190,17 @@ public class FelhasznalokReszletesController extends Controller {
             alert("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
             return;
         }
-        Ertekeles modositando = ertekelesekTableView.getSelectionModel().getSelectedItem();
+        Ertekeles ertekeles = ertekelesekTableView.getSelectionModel().getSelectedItem();
 
-        if (!megerosites("Biztos hogy törölni szeretné az alábbi leírást: " + modositando.getDescription())) {
+        if (!megerosites("Biztos hogy törölni szeretné az alábbi leírást: " + ertekeles.getDescription())) {
             return;
         }
 
-        modositando.setDescription("");
+        ertekeles.setDescription("");
 
         try {
-            Ertekeles modositandoErtekeles = ErtekelesApi.updateLeiras(modositando);
-            if (modositandoErtekeles != null) {
+            Ertekeles toroltErtekeles = ErtekelesApi.deleteLeiras(ertekeles);
+            if (toroltErtekeles != null) {
                 alert("Sikeres törlés");
                 btnTorles.setDisable(true);
                 txtAreaHozzaszolas.setText("");
@@ -231,12 +231,15 @@ public class FelhasznalokReszletesController extends Controller {
     @FXML
     public void onTiltasClick(ActionEvent actionEvent) {
         int permission = reszletes.getPermission();
-        if (permission == 0) {
-            kitiltas();
-            btnTiltas.setText("Feloldás");
-        } else if (permission == 1) {
-            feloldas();
-            btnTiltas.setText("Tiltás");
+        switch (permission) {
+            case 0:
+                kitiltas();
+                btnTiltas.setText("Feloldás");
+                break;
+            case 1:
+                feloldas();
+                btnTiltas.setText("Tiltás");
+                break;
         }
     }
 
@@ -251,15 +254,15 @@ public class FelhasznalokReszletesController extends Controller {
     }
 
     @FXML
-    public void onBorderPaneTopDragged(MouseEvent event) {
+    public void onBorderPaneTopDragged(MouseEvent mouseEvent) {
         Stage stage = (Stage) borderPane.getScene().getWindow();
-        dragWindow(stage, event, x, y);
+        dragWindow(stage, mouseEvent, x, y);
     }
 
     @FXML
-    public void onBorderPaneTopPressed(MouseEvent event) {
-        x = event.getSceneX();
-        y = event.getSceneY();
+    public void onBorderPaneTopPressed(MouseEvent mouseEvent) {
+        x = mouseEvent.getSceneX();
+        y = mouseEvent.getSceneY();
     }
 
     @FXML
