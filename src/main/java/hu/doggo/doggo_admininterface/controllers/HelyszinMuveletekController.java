@@ -39,7 +39,6 @@ public class HelyszinMuveletekController extends Controller {
     public Helyszin getReszletes() {
         return reszletes;
     }
-
     public void setReszletes(Helyszin reszletes) {
         this.reszletes = reszletes;
 
@@ -64,20 +63,28 @@ public class HelyszinMuveletekController extends Controller {
         }
 
         if (!mentve) {
-            if (!megerosites("A módosítások el fognak veszni!")) {
+            if (!megerosites("A módosítások el fognak veszni! Szerete menteni?")) {
+                ((Stage) mainAnchor.getScene().getWindow()).close();
                 return;
             }
+            mentes();
         }
 
-        ((Stage) mainAnchor.getScene().getWindow()).close();
+        if (mentve) {
+            ((Stage) mainAnchor.getScene().getWindow()).close();
+        }
+
     }
 
-    @FXML
-    public void onMentesClick(ActionEvent actionEvent) {
+    private void mentes() {
         String nev = inputHelyszinNev.getText().trim();
         String leiras = txtAreaLeiras.getText().trim();
         if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
+            return;
+        } else if (nev.length() < 5) {
+            alert("A névnek minimum 5 karakter hosszúnak kell lennie!");
+            return;
         }
 
         reszletes.setName(nev);
@@ -88,6 +95,7 @@ public class HelyszinMuveletekController extends Controller {
             Helyszin modositandoHelyszin = HelyszinApi.updateHelyszin(reszletes);
             if (modositandoHelyszin != null) {
                 alert("Sikeres mentés!");
+                mentve = true;
             } else {
                 alert("Sikertelen mentés!");
             }
@@ -97,7 +105,12 @@ public class HelyszinMuveletekController extends Controller {
     }
 
     @FXML
-    public void onMegseClick(ActionEvent actionEvent) {
+    public void onMentesClick(ActionEvent actionEvent) {
+        mentes();
+    }
+
+    @FXML
+    public void onVisszaClick(ActionEvent actionEvent) {
         bezaras();
     }
 

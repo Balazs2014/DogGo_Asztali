@@ -54,19 +54,21 @@ public class VisszajelzesMuveletekController extends Controller {
         btnOlvas.setDisable(reszletes.isRead());
     }
 
-    private void bezárás() {
+    private void bezaras() {
+        if (mentve) {
+            ((Stage) mainAnchor.getScene().getWindow()).close();
+        }
         if (!mentve) {
-            if (!megerosites("A módosítások el fognak veszni!")) {
+            if (!megerosites("A módosítások el fognak veszni! Szerete menteni?")) {
+                ((Stage) mainAnchor.getScene().getWindow()).close();
                 return;
             }
+            mentes();
         }
 
-        ((Stage) mainAnchor.getScene().getWindow()).close();
     }
 
-    @FXML
-    public void onMentesClick(ActionEvent actionEvent) {
-
+    private void mentes() {
         reszletes.setRead(olvasva);
 
         try {
@@ -83,8 +85,14 @@ public class VisszajelzesMuveletekController extends Controller {
     }
 
     @FXML
+    public void onMentesClick(ActionEvent actionEvent) {
+
+
+    }
+
+    @FXML
     public void onMegseClick(ActionEvent actionEvent) {
-        bezárás();
+        bezaras();
     }
 
     @FXML
@@ -96,7 +104,7 @@ public class VisszajelzesMuveletekController extends Controller {
     
     @FXML
     public void onCloseClick(Event event) {
-        bezárás();
+        bezaras();
     }
 
     @FXML
