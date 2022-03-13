@@ -1,6 +1,7 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
+import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
 import javafx.collections.FXCollections;
@@ -14,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class HelyszinekController extends Controller {
 
@@ -37,6 +40,7 @@ public class HelyszinekController extends Controller {
     private ChoiceBox<String> choiceBoxHelyszin;
 
     private ObservableList<Helyszin> helyszinLista = FXCollections.observableArrayList();
+    private Timer timer = new Timer();
 
     public void initialize() {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -80,20 +84,26 @@ public class HelyszinekController extends Controller {
     }
 
     private void helyszinListaFeltoltes() {
-        try {
-            if (choiceBoxHelyszin.getSelectionModel().getSelectedItem().equals("összes")) {
-                helyszinLista.clear();
-                helyszinLista.addAll(HelyszinApi.getHelyszin());
-            } else if (choiceBoxHelyszin.getSelectionModel().getSelectedItem().equals("engedélyezésre vár")) {
-                helyszinLista.clear();
-                helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
-            } else {
-                helyszinLista.clear();
-                helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    if (choiceBoxHelyszin.getSelectionModel().getSelectedItem().equals("összes")) {
+                        helyszinLista.clear();
+                        helyszinLista.addAll(HelyszinApi.getHelyszin());
+                    } else if (choiceBoxHelyszin.getSelectionModel().getSelectedItem().equals("engedélyezésre vár")) {
+                        helyszinLista.clear();
+                        helyszinLista.addAll(HelyszinApi.getNemEngedelyezettHelyszin());
+                    } else {
+                        helyszinLista.clear();
+                        helyszinLista.addAll(HelyszinApi.getEngedelyezettHelyszin());
+                    }
+                } catch (IOException e) {
+                    hibaKiir(e);
+                }
             }
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
+        };
+        timer.schedule(timerTask, 1);
     }
 
     private void megkotesKivalasztas() {

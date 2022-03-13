@@ -2,11 +2,17 @@ package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
+import hu.doggo.doggo_admininterface.api.HelyszinApi;
+import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
+import hu.doggo.doggo_admininterface.classes.HelyszinErtekeles;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -15,6 +21,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.CountDownLatch;
 
 public class FelhasznalokController extends Controller {
     @FXML
@@ -31,6 +40,7 @@ public class FelhasznalokController extends Controller {
     private TextField textFieldFelhKereses;
 
     private ObservableList<Felhasznalo> felhasznaloLista = FXCollections.observableArrayList();
+    private Timer timer = new Timer();
 
     public void initialize() {
         usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -71,12 +81,18 @@ public class FelhasznalokController extends Controller {
     }
 
     private void felhasznaloListaFeltoltes() {
-        try {
-            felhasznaloLista.clear();
-            felhasznaloLista.addAll(FelhasznaloApi.getFelhasznalok());
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    felhasznaloLista.clear();
+                    felhasznaloLista.addAll(FelhasznaloApi.getFelhasznalok());
+                } catch (IOException e) {
+                    hibaKiir(e);
+                }
+            }
+        };
+        timer.schedule(timerTask, 1);
     }
 
     @FXML

@@ -12,6 +12,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
+import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.CountDownLatch;
 
 public class IranyitopultController extends Controller {
@@ -38,55 +43,81 @@ public class IranyitopultController extends Controller {
     @FXML
     private Label lblOlvasottVisszajelzes;
 
+    private HelyszinErtekeles legjobb;
+    private HelyszinErtekeles legrosszabb;
+    private int osszFelh;
+    private int kitiltottFelh;
+    private int adminFelh;
+    private int engedelyezettHely;
+    private int ujHely;
+    private int olvasottVisszajelzes;
+    private int ujVisszajelzes;
+    private Timer timer = new Timer();
+
     public void initialize() {
-        Service<Void> service = new Service<Void>() {
+
+        TimerTask timerTask = new TimerTask() {
             @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {
+            public void run() {
+                try {
+                    legjobb = HelyszinApi.getLegjobbErtekeles();
+
+                    osszFelh = FelhasznaloApi.getFelhasznalokCount();
+
+                    engedelyezettHely = HelyszinApi.getAllowedCount();
+
+                    olvasottVisszajelzes = VisszajelzesApi.getReadCount();
+                } catch (IOException e) {
+                    hibaKiir(e);
+                }
+                Platform.runLater(new Runnable() {
                     @Override
-                    protected Void call() throws Exception {
-                        HelyszinErtekeles legjobb = HelyszinApi.getLegjobbErtekeles();
-                        HelyszinErtekeles legrosszabb = HelyszinApi.getLegrosszabbErtekeles();
+                    public void run() {
+                        lblLegjobbHely.setText(legjobb.getAtlag() + "");
+                        textareaLegjobbHelyNev.setText(legjobb.getName());
 
-                        int osszFelh = FelhasznaloApi.getFelhasznalokCount();
-                        int kitiltottFelh = FelhasznaloApi.getKitiltottCount();
-                        int adminFelh = FelhasznaloApi.getAdminCount();
+                        lblOsszFelh.setText(osszFelh + "");
 
-                        int engedelyezettHely = HelyszinApi.getAllowedCount();
-                        int ujHely = HelyszinApi.getNewCount();
+                        lblEngedelyezettHely.setText(engedelyezettHely + "");
 
-                        int olvasottVisszajelzes = VisszajelzesApi.getReadCount();
-                        int ujVisszajelzes = VisszajelzesApi.getNewCount();
-                        final CountDownLatch latch = new CountDownLatch(1);
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                try{
-                                    lblLegjobbHely.setText(legjobb.getAtlag() + "");
-                                    textareaLegjobbHelyNev.setText(legjobb.getName());
-                                    lblLegrosszabbHely.setText(legrosszabb.getAtlag() + "");
-                                    textareaLegrosszabbHelyNev.setText(legrosszabb.getName());
-
-                                    lblOsszFelh.setText(osszFelh + "");
-                                    lblKitiltottFelh.setText(kitiltottFelh + "");
-                                    lblAdminFelh.setText(adminFelh + "");
-
-                                    lblEngedelyezettHely.setText(engedelyezettHely + "");
-                                    lblUjHely.setText(ujHely + "");
-
-                                    lblOlvasottVisszajelzes.setText(olvasottVisszajelzes + "");
-                                    lblUjVisszajelzes.setText(ujVisszajelzes + "");
-                                }finally{
-                                    latch.countDown();
-                                }
-                            }
-                        });
-                        latch.await();
-                        return null;
+                        lblOlvasottVisszajelzes.setText(olvasottVisszajelzes + "");
                     }
-                };
+                });
             }
         };
-        service.start();
+        timer.schedule(timerTask, 1);
+
+        TimerTask timerTask2 = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    legrosszabb = HelyszinApi.getLegrosszabbErtekeles();
+
+                    kitiltottFelh = FelhasznaloApi.getKitiltottCount();
+                    adminFelh = FelhasznaloApi.getAdminCount();
+
+                    ujHely = HelyszinApi.getNewCount();
+
+                    ujVisszajelzes = VisszajelzesApi.getNewCount();
+                } catch (IOException e) {
+                    hibaKiir(e);
+                }
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        lblLegrosszabbHely.setText(legrosszabb.getAtlag() + "");
+                        textareaLegrosszabbHelyNev.setText(legrosszabb.getName());
+
+                        lblKitiltottFelh.setText(kitiltottFelh + "");
+                        lblAdminFelh.setText(adminFelh + "");
+
+                        lblUjHely.setText(ujHely + "");
+
+                        lblUjVisszajelzes.setText(ujVisszajelzes + "");
+                    }
+                });
+            }
+        };
+        timer.schedule(timerTask2, 1);
     }
 }

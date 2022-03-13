@@ -1,6 +1,7 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
+import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 import javafx.collections.FXCollections;
@@ -14,6 +15,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class VisszajelzesekController extends Controller {
     @FXML
@@ -32,6 +35,7 @@ public class VisszajelzesekController extends Controller {
     private ChoiceBox<String> choiceBoxVisszajelzes;
 
     private ObservableList<Visszajelzes> visszajelzesLista = FXCollections.observableArrayList();
+    private Timer timer = new Timer();
 
     public void initialize() {
         commentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
@@ -71,20 +75,26 @@ public class VisszajelzesekController extends Controller {
     }
 
     private void visszajelzesekListaFeltoltese() {
-        try {
-            if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("összes")) {
-                visszajelzesLista.clear();
-                visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
-            } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasatlan")) {
-                visszajelzesLista.clear();
-                visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
-            } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasott")) {
-                visszajelzesLista.clear();
-                visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("összes")) {
+                        visszajelzesLista.clear();
+                        visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
+                    } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasatlan")) {
+                        visszajelzesLista.clear();
+                        visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
+                    } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasott")) {
+                        visszajelzesLista.clear();
+                        visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
+                    }
+                } catch (IOException e) {
+                    hibaKiir(e);
+                }
             }
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
+        };
+        timer.schedule(timerTask, 1);
     }
 
     private void megkotesKivalasztas() {
