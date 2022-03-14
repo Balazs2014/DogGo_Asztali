@@ -34,32 +34,32 @@ public class MainController extends Controller {
     private boolean teljesKepernyo = false;
 
     public void initialize() throws IOException {
-        changeStage("fxml/iranyitopult-view.fxml");
+        changeScene("fxml/iranyitopult-view.fxml");
     }
 
-    private void changeStage(String fxml) throws IOException {
+    private void changeScene(String fxml) throws IOException {
         AnchorPane view = FXMLLoader.load(getClass().getResource(fxml));
         borderPane.setCenter(view);
     }
 
     @FXML
     public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
-        changeStage("fxml/iranyitopult-view.fxml");
+        changeScene("fxml/iranyitopult-view.fxml");
     }
 
     @FXML
     public void onFelhasznalokButtonClick(ActionEvent event) throws IOException {
-        changeStage("fxml/felhasznalok-view.fxml");
+        changeScene("fxml/felhasznalok-view.fxml");
     }
 
     @FXML
     public void onHelyszinekButtonClick(ActionEvent event) throws IOException {
-        changeStage("fxml/helyszinek-view.fxml");
+        changeScene("fxml/helyszinek-view.fxml");
     }
 
     @FXML
     public void onVisszajelzesButtonClick(ActionEvent actionEvent) throws IOException {
-        changeStage("fxml/visszajelzesek-view.fxml");
+        changeScene("fxml/visszajelzesek-view.fxml");
     }
 
     @FXML
