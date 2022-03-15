@@ -72,7 +72,7 @@
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="összes" />
                            <String fx:value="olvasott" />
-                           <String fx:value="olvasatlan" />
+                           <String fx:value="új" />
                         </FXCollections>
                      </items>
                   </ChoiceBox>
