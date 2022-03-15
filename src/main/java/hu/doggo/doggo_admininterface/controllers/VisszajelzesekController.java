@@ -79,16 +79,8 @@ public class VisszajelzesekController extends Controller {
             @Override
             public void run() {
                 try {
-                    if (feedbackStatusChoiceBox.getSelectionModel().getSelectedItem().equals("összes")) {
-                        feedbackList.clear();
-                        feedbackList.addAll(VisszajelzesApi.getFeedbacks());
-                    } else if (feedbackStatusChoiceBox.getSelectionModel().getSelectedItem().equals("olvasatlan")) {
-                        feedbackList.clear();
-                        feedbackList.addAll(VisszajelzesApi.getNewFeedbacks());
-                    } else if (feedbackStatusChoiceBox.getSelectionModel().getSelectedItem().equals("olvasott")) {
-                        feedbackList.clear();
-                        feedbackList.addAll(VisszajelzesApi.getReadFeedbacks());
-                    }
+                    feedbackList.clear();
+                    feedbackList.addAll(VisszajelzesApi.getFeedbacks());
                 } catch (IOException e) {
                     error(e);
                 }

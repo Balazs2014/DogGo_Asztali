@@ -58,16 +58,8 @@ public class HelyszinekController extends Controller {
             @Override
             public void run() {
                 try {
-                    if (locationStatusChoiceBox.getSelectionModel().getSelectedItem().equals("összes")) {
-                        locationList.clear();
-                        locationList.addAll(HelyszinApi.getLocations());
-                    } else if (locationStatusChoiceBox.getSelectionModel().getSelectedItem().equals("engedélyezésre vár")) {
-                        locationList.clear();
-                        locationList.addAll(HelyszinApi.getNewLocations());
-                    } else {
-                        locationList.clear();
-                        locationList.addAll(HelyszinApi.getAllowedLocations());
-                    }
+                    locationList.clear();
+                    locationList.addAll(HelyszinApi.getLocations());
                 } catch (IOException e) {
                     error(e);
                 }

@@ -31,8 +31,8 @@ public class HelyszinMuveletekController extends Controller {
 
     private Stage stage;
     private Helyszin reszletes;
-    private boolean engedelyezve;
-    private boolean mentve = true;
+    private boolean allowed;
+    private boolean saved = true;
     private double x = 0;
     private double y = 0;
 
@@ -51,9 +51,9 @@ public class HelyszinMuveletekController extends Controller {
         descriptionInput.setFont(Font.font("Verdana", 12));
         descriptionInput.setText(reszletes.getDescription());
 
-        engedelyezve = reszletes.isAllowed();
+        allowed = reszletes.isAllowed();
 
-        allowButton.setDisable(engedelyezve);
+        allowButton.setDisable(allowed);
     }
 
     private void save() {
@@ -67,16 +67,16 @@ public class HelyszinMuveletekController extends Controller {
             return;
         }
 
-        if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras) && reszletes.isAllowed() == engedelyezve)) {
+        if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras) && reszletes.isAllowed() == allowed)) {
             reszletes.setName(nev);
             reszletes.setDescription(leiras);
-            reszletes.setAllowed(engedelyezve);
+            reszletes.setAllowed(allowed);
 
             try {
                 Helyszin modositandoHelyszin = HelyszinApi.updateLocation(reszletes);
                 if (modositandoHelyszin != null) {
                     alert("Sikeres mentés!");
-                    mentve = true;
+                    saved = true;
                 } else {
                     alert("Sikertelen mentés!");
                 }
@@ -92,10 +92,10 @@ public class HelyszinMuveletekController extends Controller {
         String nev = nameInput.getText().trim();
         String leiras = descriptionInput.getText().trim();
         if (!reszletes.getName().equals(nev) || !reszletes.getDescription().equals(leiras)) {
-            mentve = false;
+            saved = false;
         }
 
-        if (!mentve) {
+        if (!saved) {
             if (!confirmation("A módosítások el fognak veszni! Szerete menteni?")) {
                 ((Stage) mainAnchor.getScene().getWindow()).close();
                 return;
@@ -103,7 +103,7 @@ public class HelyszinMuveletekController extends Controller {
             save();
         }
 
-        if (mentve) {
+        if (saved) {
             ((Stage) mainAnchor.getScene().getWindow()).close();
         }
 
@@ -111,9 +111,9 @@ public class HelyszinMuveletekController extends Controller {
 
     @FXML
     public void onAllowClick(ActionEvent actionEvent) {
-        engedelyezve = true;
-        mentve = false;
-        allowButton.setDisable(engedelyezve);
+        allowed = true;
+        saved = false;
+        allowButton.setDisable(allowed);
     }
 
     @FXML
