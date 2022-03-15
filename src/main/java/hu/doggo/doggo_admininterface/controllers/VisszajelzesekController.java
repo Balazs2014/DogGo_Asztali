@@ -1,7 +1,6 @@
 package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 import javafx.collections.FXCollections;
@@ -20,43 +19,44 @@ import java.util.TimerTask;
 
 public class VisszajelzesekController extends Controller {
     @FXML
+    private TextField feedbackSearchField;
+    @FXML
+    private ChoiceBox<String> feedbackStatusChoiceBox;
+    @FXML
+    private Button feedbackDeleteButton;
+    @FXML
+    private TableView<Visszajelzes> feedbacksTableView;
+    @FXML
     private TableColumn<Visszajelzes, String> commentCol;
-    @FXML
-    private TableView<Visszajelzes> visszajelzesekTableView;
-    @FXML
-    private TextField textFieldVisszajelzesKereses;
     @FXML
     private TableColumn<Visszajelzes, String> created_atCol;
     @FXML
     private TableColumn<Visszajelzes, String> statusCol;
-    @FXML
-    private Button btnTorles;
-    @FXML
-    private ChoiceBox<String> choiceBoxVisszajelzes;
 
-    private ObservableList<Visszajelzes> visszajelzesLista = FXCollections.observableArrayList();
+    private ObservableList<Visszajelzes> feedbackList = FXCollections.observableArrayList();
     private Timer timer = new Timer();
+
 
     public void initialize() {
         commentCol.setCellValueFactory(new PropertyValueFactory<>("comment"));
         created_atCol.setCellValueFactory(new PropertyValueFactory<>("formattedDate"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("formattedRead"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("formattedStatus"));
 
-        visszajelzesekListaFeltoltese();
-        kereses();
-        megkotesKivalasztas();
+        feedbackListUpload();
+        search();
+        filter();
     }
 
-    private void kereses() {
-        FilteredList<Visszajelzes> filteredList = new FilteredList<>(visszajelzesLista, b -> true);
-        textFieldVisszajelzesKereses.textProperty().addListener((observable, oldValue, newValue) -> {
+    private void search() {
+        FilteredList<Visszajelzes> filteredList = new FilteredList<>(feedbackList, b -> true);
+        feedbackSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(visszajelzes -> {
                 if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
 
-                btnTorles.setDisable(true);
-                visszajelzesekTableView.getSelectionModel().select(null);
+                feedbackDeleteButton.setDisable(true);
+                feedbacksTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
                 if (visszajelzes.getComment().toLowerCase().contains(kereses)) {
@@ -69,90 +69,88 @@ public class VisszajelzesekController extends Controller {
 
         SortedList<Visszajelzes> sortedList = new SortedList<>(filteredList);
 
-        sortedList.comparatorProperty().bind(visszajelzesekTableView.comparatorProperty());
+        sortedList.comparatorProperty().bind(feedbacksTableView.comparatorProperty());
 
-        visszajelzesekTableView.setItems(sortedList);
+        feedbacksTableView.setItems(sortedList);
     }
 
-    private void visszajelzesekListaFeltoltese() {
+    private void feedbackListUpload() {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
                 try {
-                    if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("összes")) {
-                        visszajelzesLista.clear();
-                        visszajelzesLista.addAll(VisszajelzesApi.getVisszajelzesek());
-                    } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasatlan")) {
-                        visszajelzesLista.clear();
-                        visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
-                    } else if (choiceBoxVisszajelzes.getSelectionModel().getSelectedItem().equals("olvasott")) {
-                        visszajelzesLista.clear();
-                        visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
+                    if (feedbackStatusChoiceBox.getSelectionModel().getSelectedItem().equals("összes")) {
+                        feedbackList.clear();
+                        feedbackList.addAll(VisszajelzesApi.getFeedbacks());
+                    } else if (feedbackStatusChoiceBox.getSelectionModel().getSelectedItem().equals("olvasatlan")) {
+                        feedbackList.clear();
+                        feedbackList.addAll(VisszajelzesApi.getNewFeedbacks());
+                    } else if (feedbackStatusChoiceBox.getSelectionModel().getSelectedItem().equals("olvasott")) {
+                        feedbackList.clear();
+                        feedbackList.addAll(VisszajelzesApi.getReadFeedbacks());
                     }
                 } catch (IOException e) {
-                    hibaKiir(e);
+                    error(e);
                 }
             }
         };
         timer.schedule(timerTask, 1);
     }
 
-    private void megkotesKivalasztas() {
-        choiceBoxVisszajelzes.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
-            btnTorles.setDisable(true);
+    private void filter() {
+        feedbackStatusChoiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+            feedbackDeleteButton.setDisable(true);
             try {
-                if (newValue.equals("olvasatlan")) {
-                    visszajelzesLista.clear();
-                    visszajelzesLista.addAll(VisszajelzesApi.getOlvasatlan());
+                if (newValue.equals("új")) {
+                    feedbackList.clear();
+                    feedbackList.addAll(VisszajelzesApi.getNewFeedbacks());
                 } else if (newValue.equals("olvasott")) {
-                    visszajelzesLista.clear();
-                    visszajelzesLista.addAll(VisszajelzesApi.getOlvasott());
+                    feedbackList.clear();
+                    feedbackList.addAll(VisszajelzesApi.getReadFeedbacks());
                 } else {
-                    visszajelzesekListaFeltoltese();
+                    feedbackListUpload();
                 }
             } catch (IOException e) {
-                hibaKiir(e);
+                error(e);
             }
         });
     }
 
     @FXML
-    public void onTorlesClick(ActionEvent actionEvent) {
-        Visszajelzes torlendo = visszajelzesekTableView.getSelectionModel().getSelectedItem();
-        if (!megerosites("Biztos törölni szeretné?")) {
+    public void onFeedbackDeleteClick(ActionEvent actionEvent) {
+        Visszajelzes torlendo = feedbacksTableView.getSelectionModel().getSelectedItem();
+        if (!confirmation("Biztos törölni szeretné?")) {
             return;
         }
         try {
-            boolean siker = VisszajelzesApi.deleteVisszajelzes(torlendo.getId());
+            boolean siker = VisszajelzesApi.deleteFeedback(torlendo.getId());
             if (siker) {
                 alert("Sikeres törlés!");
-                btnTorles.setDisable(true);
-                visszajelzesekListaFeltoltese();
+                feedbackDeleteButton.setDisable(true);
+                feedbackListUpload();
             } else {
                 alert("Sikertelen törlés!");
             }
         } catch (IOException e) {
-            hibaKiir(e);
+            error(e);
         }
     }
 
     @FXML
-    public void onVisszajelzesDoubleClick(MouseEvent mouseEvent) {
-        int selectedIndex = visszajelzesekTableView.getSelectionModel().getSelectedIndex();
-        Visszajelzes visszajelzesLeiras = visszajelzesekTableView.getSelectionModel().getSelectedItem();
+    public void onFeedbackDoubleClick(MouseEvent mouseEvent) {
+        int selectedIndex = feedbacksTableView.getSelectionModel().getSelectedIndex();
+        Visszajelzes visszajelzesLeiras = feedbacksTableView.getSelectionModel().getSelectedItem();
         if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
             try {
-                VisszajelzesMuveletekController leiras = (VisszajelzesMuveletekController) ujAblak("fxml/visszajelzes-muveletek-view.fxml", "Visszajelzés", 365, 400);
+                VisszajelzesMuveletekController leiras = (VisszajelzesMuveletekController) newWindow("fxml/visszajelzes-muveletek-view.fxml", "Visszajelzés", 365, 400);
                 leiras.setReszletes(visszajelzesLeiras);
-                leiras.getStage().setOnHiding(event -> visszajelzesekTableView.refresh());
+                leiras.getStage().setOnHiding(event -> feedbacksTableView.refresh());
                 leiras.getStage().show();
             } catch (Exception e) {
-                hibaKiir(e);
+                error(e);
             }
         } else if (!(selectedIndex == -1)){
-            btnTorles.setDisable(false);
+            feedbackDeleteButton.setDisable(false);
         }
     }
-
-
 }

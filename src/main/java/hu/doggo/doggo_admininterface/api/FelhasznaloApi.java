@@ -13,26 +13,26 @@ public class FelhasznaloApi extends Controller {
     private static final String API_URL = "http://127.0.0.1:8000/api";
     private static Gson jsonConverter = new Gson();
 
-    public static List<Felhasznalo> getFelhasznalok() throws IOException {
+    public static List<Felhasznalo> getUsers() throws IOException {
         String json = Api.get(API_URL + "/users");
         Type type = new TypeToken<List<Felhasznalo>>() {
         }.getType();
         return jsonConverter.fromJson(json, type);
     }
 
-    public static Felhasznalo jogFelhasznalo(Felhasznalo felhasznalo) throws IOException {
+    public static Felhasznalo updateUserPermission(Felhasznalo felhasznalo) throws IOException {
         String felhasznaloJson = jsonConverter.toJson(felhasznalo);
         String json = Api.put(API_URL + "/users", felhasznalo.getId(), felhasznaloJson);
 
         return jsonConverter.fromJson(json, Felhasznalo.class);
     }
 
-    public static int getFelhasznalokCount() throws IOException {
+    public static int getUsersCount() throws IOException {
         String countString = Api.get(API_URL + "/user_count");
         return Integer.parseInt(countString);
     }
 
-    public static int getKitiltottCount() throws IOException {
+    public static int getBannedCount() throws IOException {
         String countString = Api.get(API_URL + "/banned_user_count");
         return Integer.parseInt(countString);
     }

@@ -29,6 +29,7 @@ public class MainController extends Controller {
     private double y = 0;
     private boolean teljesKepernyo = false;
 
+
     public void initialize() throws IOException {
         changeScene("fxml/iranyitopult-view.fxml");
     }
@@ -60,7 +61,7 @@ public class MainController extends Controller {
 
     @FXML
     public void onKijelentkezesButtonClick(ActionEvent actionEvent) {
-        if(!(megerosites("Ki szeretne jelentkezni?"))) {
+        if(!(confirmation("Ki szeretne jelentkezni?"))) {
             return;
         }
         System.exit(0);
@@ -68,7 +69,7 @@ public class MainController extends Controller {
 
     @FXML
     public void onCloseClick(Event event) {
-        if(!(megerosites("Ki szeretne lépni a programból?"))) {
+        if(!(confirmation("Ki szeretne lépni a programból?"))) {
             return;
         }
         System.exit(0);

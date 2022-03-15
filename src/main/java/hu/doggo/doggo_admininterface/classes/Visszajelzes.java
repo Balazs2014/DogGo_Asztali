@@ -24,10 +24,6 @@ public class Visszajelzes {
         return comment;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public Boolean isRead() {
         return read;
     }
@@ -36,25 +32,17 @@ public class Visszajelzes {
         this.read = read;
     }
 
-    public Date getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
-    }
-
     public String getFormattedDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy MMM d.");
         return format.format(created_at);
     }
 
-    public String getFormattedRead() {
+    public String getFormattedStatus() {
         String olvasva;
         if (read) {
             olvasva = "olvasva";
         } else {
-            olvasva = "olvasatlan";
+            olvasva = "új";
         }
 
         return olvasva;

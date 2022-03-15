@@ -41,16 +41,8 @@ public class Helyszin {
         return lat;
     }
 
-    public void setLat(double lat) {
-        this.lat = lat;
-    }
-
     public double getLng() {
         return lng;
-    }
-
-    public void setLng(double lng) {
-        this.lng = lng;
     }
 
     public boolean isAllowed() {
@@ -61,12 +53,12 @@ public class Helyszin {
         this.allowed = allowed;
     }
 
-    public String getFormattedAllowed() {
+    public String getFormattedStatus() {
         String engedelyezve;
         if (allowed) {
             engedelyezve = "engedélyezve";
         } else {
-            engedelyezve = "nincs";
+            engedelyezve = "új";
         }
 
         return engedelyezve;

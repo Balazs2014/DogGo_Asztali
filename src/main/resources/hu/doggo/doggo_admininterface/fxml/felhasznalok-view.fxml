@@ -27,7 +27,7 @@
                 <RowConstraints maxHeight="1.7976931348623157E308" minHeight="380.0" prefHeight="380.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <TableView fx:id="felhasznalokTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" onMouseClicked="#onFelhasznaloDoubleClick" prefHeight="380.0" prefWidth="880.0" stylesheets="@../style/tableViewStyle.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
+                <TableView fx:id="usersTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="880.0" onMouseClicked="#onUserDoubleClick" prefHeight="380.0" prefWidth="880.0" stylesheets="@../style/tableViewStyle.css" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="SOMETIMES" GridPane.rowIndex="1" GridPane.valignment="TOP" GridPane.vgrow="SOMETIMES">
                     <columns>
                         <TableColumn fx:id="usernameCol" prefWidth="200.0" text="FELHASZNÁLÓNÉV" />
                         <TableColumn fx:id="emailCol" prefWidth="183.0" text="EMAIL" />
@@ -52,7 +52,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <TextField fx:id="textFieldFelhKereses" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" promptText="Felhasználónév / Email" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
+                  <TextField fx:id="userSearchField" maxHeight="25.0" maxWidth="1500.0" prefHeight="25.0" prefWidth="425.0" promptText="Felhasználónév / Email" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font></TextField>

@@ -56,7 +56,7 @@ public class Api extends Controller {
         return respone;
     }
 
-    public static String getLoginData(String url, String token) throws IOException {
+    public static String getLogin(String url, String token) throws IOException {
         Response response = RequestHandler.tokenAuthorization(url, token);
         String json = response.getContent();
         Gson jsonConverter = new Gson();

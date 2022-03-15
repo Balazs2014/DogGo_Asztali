@@ -19,22 +19,23 @@ import java.io.IOException;
 
 public class VisszajelzesMuveletekController extends Controller {
     @FXML
-    private TextArea txtAreaLeiras;
-    @FXML
     private AnchorPane mainAnchor;
     @FXML
     private BorderPane borderPane;
     @FXML
-    private Label lblDatum;
+    private Label receiveDateLabel;
     @FXML
-    private Button btnOlvas;
+    private TextArea descriptionTextArea;
+    @FXML
+    private Button readButton;
 
-    private Visszajelzes reszletes;
     private Stage stage;
-    private double x = 0;
-    private double y = 0;
+    private Visszajelzes reszletes;
     private boolean olvasva;
     private boolean mentve = true;
+    private double x = 0;
+    private double y = 0;
+
 
     public Visszajelzes getReszletes() {
         return reszletes;
@@ -43,68 +44,73 @@ public class VisszajelzesMuveletekController extends Controller {
     public void setReszletes(Visszajelzes reszletes) {
         this.reszletes = reszletes;
 
-        adatokKiirasa();
+        writeData();
     }
 
-    private void adatokKiirasa() {
-        txtAreaLeiras.setFont(Font.font("Verdana", 12));
-        txtAreaLeiras.setText(reszletes.getComment());
-        lblDatum.setText(reszletes.getFormattedDate());
+    private void writeData() {
+        descriptionTextArea.setFont(Font.font("Verdana", 12));
+        descriptionTextArea.setText(reszletes.getComment());
+        receiveDateLabel.setText(reszletes.getFormattedDate());
 
-        btnOlvas.setDisable(reszletes.isRead());
+        olvasva = reszletes.isRead();
+        readButton.setDisable(olvasva);
     }
 
-    private void bezaras() {
+    private void save() {
+        if (reszletes.isRead() == olvasva) {
+            reszletes.setRead(olvasva);
+
+            try {
+                Visszajelzes olvasottLeiras = VisszajelzesApi.updateReadFeedback(reszletes);
+                if (olvasottLeiras != null) {
+                    alert("Sikeres mentés!");
+                    ((Stage) mainAnchor.getScene().getWindow()).close();
+                } else {
+                    alert("Sikertelen mentés!");
+                }
+            } catch (IOException e) {
+                error(e);
+            }
+        } else {
+            alert("Nem törént változtatás!");
+        }
+
+    }
+
+    private void close() {
         if (mentve) {
             ((Stage) mainAnchor.getScene().getWindow()).close();
         }
         if (!mentve) {
-            if (!megerosites("A módosítások el fognak veszni! Szerete menteni?")) {
+            if (!confirmation("A módosítások el fognak veszni! Szerete menteni?")) {
                 ((Stage) mainAnchor.getScene().getWindow()).close();
                 return;
             }
-            mentes();
+            save();
         }
 
     }
 
-    private void mentes() {
-        reszletes.setRead(olvasva);
-
-        try {
-            Visszajelzes olvasottLeiras = VisszajelzesApi.updateVisszajelzes(reszletes);
-            if (olvasottLeiras != null) {
-                alert("Sikeres mentés!");
-                ((Stage) mainAnchor.getScene().getWindow()).close();
-            } else {
-                alert("Sikertelen mentés!");
-            }
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
-    }
-
     @FXML
-    public void onMentesClick(ActionEvent actionEvent) {
-
-
-    }
-
-    @FXML
-    public void onMegseClick(ActionEvent actionEvent) {
-        bezaras();
-    }
-
-    @FXML
-    public void onOlvasvaClick(ActionEvent actionEvent) {
+    public void onReadClick(ActionEvent actionEvent) {
         olvasva = true;
         mentve = false;
-        btnOlvas.setDisable(olvasva);
+        readButton.setDisable(olvasva);
     }
-    
+
+    @FXML
+    public void onSaveClick(ActionEvent actionEvent) {
+        save();
+    }
+
+    @FXML
+    public void onBackClick(ActionEvent actionEvent) {
+        close();
+    }
+
     @FXML
     public void onCloseClick(Event event) {
-        bezaras();
+        close();
     }
 
     @FXML

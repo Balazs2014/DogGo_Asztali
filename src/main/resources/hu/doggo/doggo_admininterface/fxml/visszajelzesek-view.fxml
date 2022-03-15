@@ -36,7 +36,7 @@
                   <Insets />
                </GridPane.margin>
                <children>
-                      <TableView fx:id="visszajelzesekTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onVisszajelzesDoubleClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/tableViewStyle.css" HBox.hgrow="SOMETIMES">
+                      <TableView fx:id="feedbacksTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onFeedbackDoubleClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/tableViewStyle.css" HBox.hgrow="SOMETIMES">
                           <columns>
                               <TableColumn fx:id="commentCol" prefWidth="350.0" text="LEÍRÁS" />
                               <TableColumn fx:id="created_atCol" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="DÁTUM" />
@@ -59,7 +59,7 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <TextField fx:id="textFieldVisszajelzesKereses" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0" promptText="Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
+                        <TextField fx:id="feedbackSearchField" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0" promptText="Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
                             <font>
                                 <Font name="Verdana" size="14.0" />
                             </font>
@@ -67,7 +67,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                         </TextField>
-                  <ChoiceBox fx:id="choiceBoxVisszajelzes" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" stylesheets="@../style/layoutStyle.css" value="összes">
+                  <ChoiceBox fx:id="feedbackStatusChoiceBox" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" stylesheets="@../style/layoutStyle.css" value="összes">
                      <items>
                         <FXCollections fx:factory="observableArrayList">
                            <String fx:value="összes" />
@@ -76,7 +76,7 @@
                         </FXCollections>
                      </items>
                   </ChoiceBox>
-                  <Button fx:id="btnTorles" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" mnemonicParsing="false" onAction="#onTorlesClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
+                  <Button fx:id="feedbackDeleteButton" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" mnemonicParsing="false" onAction="#onFeedbackDeleteClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>

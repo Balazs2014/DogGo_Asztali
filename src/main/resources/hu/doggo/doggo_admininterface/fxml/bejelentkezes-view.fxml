@@ -27,7 +27,7 @@
                   </ImageView>
                   <Pane layoutY="346.0" prefHeight="60.0" prefWidth="275.0" styleClass="cimPane" stylesheets="@../style/layoutStyle.css">
                      <children>
-                        <Label layoutX="74.0" layoutY="14.0" text="Email: info@doggo.hu ">
+                        <Label layoutX="42.0" layoutY="14.0" text="Email: infodoggo2022@gmail.com">
                            <font>
                               <Font name="Verdana" size="11.0" />
                            </font>
@@ -60,7 +60,7 @@
                               <Insets bottom="20.0" />
                            </VBox.margin>
                         </Label>
-                        <TextField fx:id="inputFelh" alignment="CENTER" promptText="Felhasználónév" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css">
+                        <TextField fx:id="usernameInput" alignment="CENTER" promptText="Felhasználónév" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css">
                            <VBox.margin>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
                            </VBox.margin>
@@ -68,7 +68,7 @@
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </TextField>
-                        <PasswordField fx:id="inputJelszo" alignment="CENTER" promptText="Jelszó" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css">
+                        <PasswordField fx:id="passwordInput" alignment="CENTER" promptText="Jelszó" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -76,7 +76,7 @@
                               <Insets bottom="40.0" left="20.0" right="20.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <Button mnemonicParsing="false" onAction="#onBejelentkezesClick" stylesheets="@../style/buttonStyle.css" text="Bejelentkezés" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onLoginClick" stylesheets="@../style/buttonStyle.css" text="Bejelentkezés" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -85,7 +85,7 @@
                               <String fx:value="muveletButton" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onBezarasClick" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Bezárás" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#onCloseClick" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Bezárás" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>

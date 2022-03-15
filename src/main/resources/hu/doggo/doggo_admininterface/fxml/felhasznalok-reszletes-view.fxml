@@ -25,7 +25,7 @@
           <center>
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="744.0" minWidth="650.0" prefHeight="744.0" prefWidth="650.0" styleClass="borderPane" stylesheets="@../style/layoutStyle.css">
                   <children>
-                        <Label fx:id="felhnev" layoutX="15.0" layoutY="30.0" prefHeight="51.0" prefWidth="620.0" styleClass="cimLabel" stylesheets="@../style/layoutStyle.css" text="{felhasznalónév}" textFill="WHITE">
+                        <Label fx:id="usernameLabel" layoutX="15.0" layoutY="30.0" prefHeight="51.0" prefWidth="620.0" styleClass="cimLabel" stylesheets="@../style/layoutStyle.css" text="{felhasznalónév}" textFill="WHITE">
                             <font>
                                 <Font name="Verdana Bold" size="40.0" />
                             </font>
@@ -44,7 +44,7 @@
                               <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="294.0" vgrow="ALWAYS" />
                           </rowConstraints>
                           <children>
-                              <TableView fx:id="ertekelesekTableView" onMouseClicked="#onHozzaszolasClick" prefHeight="383.0" prefWidth="564.0" stylesheets="@../style/tableViewStyle.css" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                              <TableView fx:id="ratingsTableView" onMouseClicked="#onDescriptionClick" prefHeight="383.0" prefWidth="564.0" stylesheets="@../style/tableViewStyle.css" GridPane.columnSpan="2" GridPane.rowIndex="2">
                                   <columns>
                                       <TableColumn fx:id="descriptionCol" prefWidth="75.0" text="LEÍRÁS" />
                                       <TableColumn fx:id="starsCol" prefWidth="75.0" text="CSILLAGOK" />
@@ -84,17 +84,17 @@
                                             </VBox>
                                             <VBox prefHeight="96.0" prefWidth="251.0">
                                                 <children>
-                                                    <Label fx:id="felhEmail" maxHeight="18.0" maxWidth="251.0" minHeight="18.0" minWidth="220.0" prefHeight="18.0" prefWidth="251.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{email}" textFill="WHITE" wrapText="true">
+                                                    <Label fx:id="emailLabel" maxHeight="18.0" maxWidth="251.0" minHeight="18.0" minWidth="220.0" prefHeight="18.0" prefWidth="251.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{email}" textFill="WHITE" wrapText="true">
                                                         <font>
                                                             <Font name="Verdana" size="14.0" />
                                                         </font>
                                                     </Label>
-                                                    <Label fx:id="felhReg" prefHeight="18.0" prefWidth="265.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{regisztráció}" textFill="WHITE" wrapText="true">
+                                                    <Label fx:id="regDateLabel" prefHeight="18.0" prefWidth="265.0" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{regisztráció}" textFill="WHITE" wrapText="true">
                                                         <font>
                                                             <Font name="Verdana" size="14.0" />
                                                         </font>
                                                     </Label>
-                                                    <Label fx:id="felhJog" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{jogosultság}" textFill="WHITE">
+                                                    <Label fx:id="permissionLabel" styleClass="felhasznaloAdataiLabel" stylesheets="@../style/layoutStyle.css" text="{jogosultság}" textFill="WHITE">
                                                         <font>
                                                             <Font name="Verdana" size="14.0" />
                                                         </font>
@@ -116,7 +116,7 @@
                                           <Insets left="2.0" />
                                        </VBox.margin>
                                     </Label>
-                                    <TextArea fx:id="txtAreaHozzaszolas" editable="false" prefHeight="135.0" prefWidth="357.0" promptText="Hozzászólás" wrapText="true">
+                                    <TextArea fx:id="descriptionTextArea" editable="false" prefHeight="135.0" prefWidth="357.0" promptText="Hozzászólás" wrapText="true">
                                        <font>
                                           <Font name="Verdana" size="13.0" />
                                        </font></TextArea>
@@ -126,17 +126,17 @@
                         </VBox>
                               <VBox prefHeight="249.0" prefWidth="218.0" spacing="20.0" GridPane.columnIndex="1">
                                   <children>
-                              <Button fx:id="btnTorles" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onHozzaszolasTorlesClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Hozzászólás törlése" textFill="WHITE">
+                              <Button fx:id="descriptionDeleteButton" disable="true" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onDescriptionDeleteClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Hozzászólás törlése" textFill="WHITE">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnTiltas" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onTiltasClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Felhasználó tiltása" textFill="WHITE">
+                              <Button fx:id="banButton" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onUserBanClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Felhasználó tiltása" textFill="WHITE">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="btnAdmin" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onAdminClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Admin jogosultság" textFill="WHITE" visible="false">
+                              <Button fx:id="adminPermissionButton" minHeight="30.0" minWidth="190.0" mnemonicParsing="false" onAction="#onAdminClick" prefHeight="30.0" prefWidth="190.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Admin jogosultság" textFill="WHITE" visible="false">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>
@@ -154,7 +154,7 @@
                                     </ImageView>
                                  </children>
                               </Pane>
-                              <TextField fx:id="textFieldLeirasKereses" maxHeight="30.0" maxWidth="1500.0" prefHeight="30.0" prefWidth="301.0" promptText="Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
+                              <TextField fx:id="ratingSearchField" maxHeight="30.0" maxWidth="1500.0" prefHeight="30.0" prefWidth="301.0" promptText="Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
                                  <font>
                                     <Font name="Verdana" size="14.0" />
                                  </font>

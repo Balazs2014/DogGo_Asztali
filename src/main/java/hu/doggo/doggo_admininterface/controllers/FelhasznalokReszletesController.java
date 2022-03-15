@@ -23,39 +23,40 @@ import java.io.IOException;
 
 public class FelhasznalokReszletesController extends Controller {
     @FXML
-    private Label felhEmail;
-    @FXML
-    private Label felhReg;
-    @FXML
-    private Label felhnev;
-    @FXML
-    private TableColumn<Ertekeles, Integer> starsCol;
-    @FXML
-    private TableColumn<Ertekeles, String> descriptionCol;
-    @FXML
-    private TableView<Ertekeles> ertekelesekTableView;
-    @FXML
     private AnchorPane mainAnchor;
     @FXML
     private BorderPane borderPane;
     @FXML
-    private Label felhJog;
+    private Label usernameLabel;
     @FXML
-    private TextField textFieldLeirasKereses;
+    private Label emailLabel;
     @FXML
-    private Button btnTiltas;
+    private Label regDateLabel;
     @FXML
-    private Button btnAdmin;
+    private Label permissionLabel;
     @FXML
-    private Button btnTorles;
+    private TextArea descriptionTextArea;
     @FXML
-    private TextArea txtAreaHozzaszolas;
+    private Button descriptionDeleteButton;
+    @FXML
+    private Button banButton;
+    @FXML
+    private Button adminPermissionButton;
+    @FXML
+    private TextField ratingSearchField;
+    @FXML
+    private TableView<Ertekeles> ratingsTableView;
+    @FXML
+    private TableColumn<Ertekeles, String> descriptionCol;
+    @FXML
+    private TableColumn<Ertekeles, Integer> starsCol;
 
-    private Felhasznalo reszletes;
-    private ObservableList<Ertekeles> ertekelesLista = FXCollections.observableArrayList();
     private Stage stage;
+    private Felhasznalo reszletes;
+    private ObservableList<Ertekeles> ratingList = FXCollections.observableArrayList();
     private double x = 0;
     private double y = 0;
+
 
     public Felhasznalo getReszletes() {
         return reszletes;
@@ -63,20 +64,21 @@ public class FelhasznalokReszletesController extends Controller {
 
     public void setReszletes(Felhasznalo reszletes) {
         this.reszletes = reszletes;
-        adatokKiirasa();
+
+        writeData();
     }
 
-    private void adatokKiirasa() {
-        felhAdatokBetoltese();
+    private void writeData() {
+        loadUserData();
 
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));
 
         int permission = reszletes.getPermission();
         if (permission == 0) {
-            btnTiltas.setText("Tiltás");
+            banButton.setText("Felhasználó tiltása");
         } else if (permission == 1) {
-            btnTiltas.setText("Feloldás");
+            banButton.setText("Felhasználó feloldása");
         }
 
         /*if (permission > 1) {
@@ -89,21 +91,45 @@ public class FelhasznalokReszletesController extends Controller {
             System.out.println(user.getPermission());
         }*/
 
-        ertekelesListaFeltoltes();
-        kereses();
+        ratingListUpload();
+        search();
     }
 
-    private void kereses() {
-        FilteredList<Ertekeles> filteredList = new FilteredList<>(ertekelesLista, b -> true);
-        textFieldLeirasKereses.textProperty().addListener((observable, oldValue, newValue) -> {
+    private void loadUserData() {
+        usernameLabel.setText(reszletes.getUsername());
+        emailLabel.setText(reszletes.getEmail());
+        regDateLabel.setText(reszletes.getFormattedDate());
+        if (reszletes.getPermission() == 0) {
+            permissionLabel.setText("default");
+        } else if (reszletes.getPermission() == 1) {
+            permissionLabel.setText("tiltva");
+        } else if (reszletes.getPermission() == 2) {
+            permissionLabel.setText("admin");
+        } else {
+            permissionLabel.setText("szuperadmin");
+        }
+    }
+
+    private void ratingListUpload() {
+        try {
+            ratingList.clear();
+            ratingList.addAll(ErtekelesApi.getUserRatings(reszletes.getId()));
+        } catch (IOException e) {
+            error(e);
+        }
+    }
+
+    private void search() {
+        FilteredList<Ertekeles> filteredList = new FilteredList<>(ratingList, b -> true);
+        ratingSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(ertekeles -> {
                 if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
                 }
 
-                btnTorles.setDisable(true);
-                txtAreaHozzaszolas.setText("");
-                ertekelesekTableView.getSelectionModel().select(null);
+                descriptionDeleteButton.setDisable(true);
+                descriptionTextArea.setText("");
+                ratingsTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
                 if (ertekeles.getDescription() == null) {
@@ -118,125 +144,105 @@ public class FelhasznalokReszletesController extends Controller {
 
         SortedList<Ertekeles> sortedList = new SortedList<>(filteredList);
 
-        sortedList.comparatorProperty().bind(ertekelesekTableView.comparatorProperty());
+        sortedList.comparatorProperty().bind(ratingsTableView.comparatorProperty());
 
-        ertekelesekTableView.setItems(sortedList);
+        ratingsTableView.setItems(sortedList);
     }
 
-    private void felhAdatokBetoltese() {
-        felhnev.setText(reszletes.getUsername());
-        felhEmail.setText(reszletes.getEmail());
-        felhReg.setText(reszletes.getFormattedDate());
-        if (reszletes.getPermission() == 0) {
-            felhJog.setText("default");
-        } else if (reszletes.getPermission() == 1) {
-            felhJog.setText("tiltva");
-        } else if (reszletes.getPermission() == 2) {
-            felhJog.setText("admin");
-        } else {
-            felhJog.setText("szuperadmin");
-        }
-    }
-
-    private void ertekelesListaFeltoltes() {
-        try {
-            ertekelesLista.clear();
-            ertekelesLista.addAll(ErtekelesApi.getFelhErtekelesek(reszletes.getId()));
-        } catch (IOException e) {
-            hibaKiir(e);
-        }
-    }
-
-    private void kitiltas() {
+    private void ban() {
         reszletes.setPermission(1);
         try {
-            Felhasznalo felhTiltasa = FelhasznaloApi.jogFelhasznalo(reszletes);
+            Felhasznalo felhTiltasa = FelhasznaloApi.updateUserPermission(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó tiltva!");
-                btnTiltas.setText("Tiltás");
+                banButton.setText("Felhasználó feoldása");
             } else {
                 alert("Sikertelen tiltás!");
             }
-            felhAdatokBetoltese();
+            loadUserData();
         } catch (IOException e) {
-            hibaKiir(e);
+            error(e);
         }
     }
 
-    private void feloldas() {
+    private void unban() {
         reszletes.setPermission(0);
         try {
-            Felhasznalo felhTiltasa = FelhasznaloApi.jogFelhasznalo(reszletes);
+            Felhasznalo felhTiltasa = FelhasznaloApi.updateUserPermission(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó feloldva!");
-                btnTiltas.setText("Feloldás");
+                banButton.setText("Felhasználó tiltása");
             } else {
                 alert("Sikertelen feloldás!");
             }
-            felhAdatokBetoltese();
+            loadUserData();
         } catch (IOException e) {
-            hibaKiir(e);
+            error(e);
         }
     }
 
     @FXML
-    public void onHozzaszolasTorlesClick(ActionEvent actionEvent) {
-        int selectedIndex = ertekelesekTableView.getSelectionModel().getSelectedIndex();
+    public void onDescriptionClick(MouseEvent mouseEvent) {
+        int selectedIndex = ratingsTableView.getSelectionModel().getSelectedIndex();
+        Ertekeles ertekeles = ratingsTableView.getSelectionModel().getSelectedItem();
+        if (!(selectedIndex == -1) && ertekeles.getDescription() != null){
+            descriptionDeleteButton.setDisable(false);
+            descriptionTextArea.setText(ertekeles.getDescription());
+        } else {
+            descriptionDeleteButton.setDisable(true);
+            descriptionTextArea.setText("");
+        }
+    }
+
+    @FXML
+    public void onDescriptionDeleteClick(ActionEvent actionEvent) {
+        int selectedIndex = ratingsTableView.getSelectionModel().getSelectedIndex();
         if (selectedIndex == -1) {
             alert("A módosításhoz előbb válasszon ki egy elemet a táblázatból");
             return;
         }
-        Ertekeles ertekeles = ertekelesekTableView.getSelectionModel().getSelectedItem();
+        Ertekeles ertekeles = ratingsTableView.getSelectionModel().getSelectedItem();
 
-        if (!megerosites("Biztos hogy törölni szeretné az alábbi leírást: " + ertekeles.getDescription())) {
+        if (!confirmation("Biztos hogy törölni szeretné az alábbi leírást: " + ertekeles.getDescription())) {
             return;
         }
 
         ertekeles.setDescription("");
 
         try {
-            Ertekeles toroltErtekeles = ErtekelesApi.deleteLeiras(ertekeles);
+            Ertekeles toroltErtekeles = ErtekelesApi.deleteDescription(ertekeles);
             if (toroltErtekeles != null) {
                 alert("Sikeres törlés");
-                btnTorles.setDisable(true);
-                txtAreaHozzaszolas.setText("");
-                ertekelesekTableView.getSelectionModel().select(null);
+                descriptionDeleteButton.setDisable(true);
+                descriptionTextArea.setText("");
+                ratingsTableView.getSelectionModel().select(null);
             } else {
                 alert("Sikertelen törlés");
             }
-            felhAdatokBetoltese();
-            ertekelesekTableView.refresh();
+            loadUserData();
+            ratingsTableView.refresh();
         } catch (IOException e) {
-            hibaKiir(e);
+            error(e);
         }
     }
 
     @FXML
-    public void onHozzaszolasClick(MouseEvent mouseEvent) {
-        int selectedIndex = ertekelesekTableView.getSelectionModel().getSelectedIndex();
-        Ertekeles ertekeles = ertekelesekTableView.getSelectionModel().getSelectedItem();
-        if (!(selectedIndex == -1) && ertekeles.getDescription() != null){
-            btnTorles.setDisable(false);
-            txtAreaHozzaszolas.setText(ertekeles.getDescription());
-        } else {
-            btnTorles.setDisable(true);
-            txtAreaHozzaszolas.setText("");
-        }
-    }
-
-    @FXML
-    public void onTiltasClick(ActionEvent actionEvent) {
+    public void onUserBanClick(ActionEvent actionEvent) {
         int permission = reszletes.getPermission();
         switch (permission) {
             case 0:
-                kitiltas();
+                ban();
 
                 break;
             case 1:
-                feloldas();
+                unban();
 
                 break;
         }
+    }
+
+    @FXML
+    public void onAdminClick(ActionEvent actionEvent) {
     }
 
     @FXML
@@ -260,9 +266,4 @@ public class FelhasznalokReszletesController extends Controller {
         x = mouseEvent.getSceneX();
         y = mouseEvent.getSceneY();
     }
-
-    @FXML
-    public void onAdminClick(ActionEvent actionEvent) {
-    }
-
 }

@@ -20,20 +20,21 @@ import java.io.IOException;
 
 public class BejelentkezesController extends Controller {
     @FXML
-    private PasswordField inputJelszo;
-    @FXML
-    private TextField inputFelh;
-    @FXML
     private AnchorPane mainAnchor;
+    @FXML
+    private TextField usernameInput;
+    @FXML
+    private PasswordField passwordInput;
+
 
     @FXML
-    public void onBejelentkezesClick(ActionEvent actionEvent) {
-        String felh = inputFelh.getText();
-        String jelszo = inputJelszo.getText();
+    public void onLoginClick(ActionEvent actionEvent) {
+        String felh = usernameInput.getText();
+        String jelszo = passwordInput.getText();
 
         Login login = new Login(felh, jelszo);
         try {
-            Token token = LoginApi.login(login);
+            Token token = LoginApi.postLogin(login);
             Felhasznalo felhAdatai = LoginApi.getLoginData(token.getToken());
             if (felhAdatai.getPermission() > 1) {
                 ((Stage) mainAnchor.getScene().getWindow()).close();
@@ -54,12 +55,12 @@ public class BejelentkezesController extends Controller {
                 alert("Nem rendelkezik admin jogosultsággal!");
             }
         } catch (IOException e) {
-            hibaKiir(e);
+            error(e);
         }
     }
 
     @FXML
-    public void onBezarasClick(ActionEvent actionEvent) {
+    public void onCloseClick(ActionEvent actionEvent) {
         System.exit(0);
     }
 }

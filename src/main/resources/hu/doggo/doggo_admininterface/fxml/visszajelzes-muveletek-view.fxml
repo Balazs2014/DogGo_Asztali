@@ -20,22 +20,22 @@
                <children>
                   <AnchorPane prefHeight="374.0" prefWidth="363.0">
                      <children>
-                        <Button fx:id="btnOlvas" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#onOlvasvaClick" prefHeight="30.0" prefWidth="120.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Olvasva" textFill="WHITE">
+                        <Button fx:id="readButton" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#onReadClick" prefHeight="30.0" prefWidth="120.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Olvasva" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <TextArea fx:id="txtAreaLeiras" editable="false" layoutX="10.0" layoutY="78.0" prefHeight="178.0" prefWidth="323.0" stylesheets="@../style/layoutStyle.css" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                        <TextArea fx:id="descriptionTextArea" editable="false" layoutX="10.0" layoutY="78.0" prefHeight="178.0" prefWidth="323.0" stylesheets="@../style/layoutStyle.css" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                            <font>
                               <Font name="Verdana" size="13.0" />
                            </font>
                         </TextArea>
-                        <Button layoutX="182.0" layoutY="324.0" mnemonicParsing="false" onAction="#onMentesClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Mentés" textFill="WHITE">
+                        <Button layoutX="182.0" layoutY="324.0" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Mentés" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
                         </Button>
-                        <Button layoutX="274.0" layoutY="319.0" mnemonicParsing="false" onAction="#onMegseClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Vissza" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                        <Button layoutX="274.0" layoutY="319.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Vissza" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
@@ -45,7 +45,7 @@
                               <Font name="Verdana" size="12.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lblDatum" layoutX="99.0" layoutY="214.0" prefHeight="15.0" prefWidth="246.0" text="{datum}" textFill="WHITE" AnchorPane.rightAnchor="20.0">
+                        <Label fx:id="receiveDateLabel" layoutX="99.0" layoutY="214.0" prefHeight="15.0" prefWidth="246.0" text="{datum}" textFill="WHITE" AnchorPane.rightAnchor="20.0">
                            <font>
                               <Font name="Verdana" size="12.0" />
                            </font>

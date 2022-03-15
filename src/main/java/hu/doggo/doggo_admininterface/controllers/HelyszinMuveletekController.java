@@ -19,66 +19,46 @@ import java.io.IOException;
 
 public class HelyszinMuveletekController extends Controller {
     @FXML
-    private BorderPane borderPane;
-    @FXML
-    private TextArea txtAreaLeiras;
-    @FXML
-    private TextField inputHelyszinNev;
-    @FXML
     private AnchorPane mainAnchor;
     @FXML
-    private Button btnEngedelyezes;
+    private BorderPane borderPane;
+    @FXML
+    private TextField nameInput;
+    @FXML
+    private TextArea descriptionInput;
+    @FXML
+    private Button allowButton;
 
-    private Helyszin reszletes;
     private Stage stage;
-    private double x = 0;
-    private double y = 0;
+    private Helyszin reszletes;
     private boolean engedelyezve;
     private boolean mentve = true;
+    private double x = 0;
+    private double y = 0;
+
 
     public Helyszin getReszletes() {
         return reszletes;
     }
+
     public void setReszletes(Helyszin reszletes) {
         this.reszletes = reszletes;
-
-        adatokkiirasa();
+        writeData();
     }
 
-    private void adatokkiirasa() {
-        inputHelyszinNev.setText(reszletes.getName());
-        txtAreaLeiras.setFont(Font.font("Verdana", 12));
-        txtAreaLeiras.setText(reszletes.getDescription());
+    public void writeData() {
+        nameInput.setText(reszletes.getName());
+        descriptionInput.setFont(Font.font("Verdana", 12));
+        descriptionInput.setText(reszletes.getDescription());
 
         engedelyezve = reszletes.isAllowed();
 
-        btnEngedelyezes.setDisable(engedelyezve);
+        allowButton.setDisable(engedelyezve);
     }
 
-    private void bezaras() {
-        String nev = inputHelyszinNev.getText().trim();
-        String leiras = txtAreaLeiras.getText().trim();
-        if (!reszletes.getName().equals(nev) || !reszletes.getDescription().equals(leiras)) {
-            mentve = false;
-        }
-
-        if (!mentve) {
-            if (!megerosites("A módosítások el fognak veszni! Szerete menteni?")) {
-                ((Stage) mainAnchor.getScene().getWindow()).close();
-                return;
-            }
-            mentes();
-        }
-
-        if (mentve) {
-            ((Stage) mainAnchor.getScene().getWindow()).close();
-        }
-
-    }
-
-    private void mentes() {
-        String nev = inputHelyszinNev.getText().trim();
-        String leiras = txtAreaLeiras.getText().trim();
+    private void save() {
+        String nev = nameInput.getText().trim();
+        String leiras = descriptionInput.getText().trim();
         if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
             return;
@@ -87,54 +67,79 @@ public class HelyszinMuveletekController extends Controller {
             return;
         }
 
-        reszletes.setName(nev);
-        reszletes.setDescription(leiras);
-        reszletes.setAllowed(engedelyezve);
+        if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras) && reszletes.isAllowed() == engedelyezve)) {
+            reszletes.setName(nev);
+            reszletes.setDescription(leiras);
+            reszletes.setAllowed(engedelyezve);
 
-        try {
-            Helyszin modositandoHelyszin = HelyszinApi.updateHelyszin(reszletes);
-            if (modositandoHelyszin != null) {
-                alert("Sikeres mentés!");
-                mentve = true;
-            } else {
-                alert("Sikertelen mentés!");
+            try {
+                Helyszin modositandoHelyszin = HelyszinApi.updateLocation(reszletes);
+                if (modositandoHelyszin != null) {
+                    alert("Sikeres mentés!");
+                    mentve = true;
+                } else {
+                    alert("Sikertelen mentés!");
+                }
+            } catch (IOException e) {
+                error(e);
             }
-        } catch (IOException e) {
-            hibaKiir(e);
+        } else {
+            alert("Nem törént változtatás!");
         }
     }
 
-    @FXML
-    public void onMentesClick(ActionEvent actionEvent) {
-        mentes();
+    private void close() {
+        String nev = nameInput.getText().trim();
+        String leiras = descriptionInput.getText().trim();
+        if (!reszletes.getName().equals(nev) || !reszletes.getDescription().equals(leiras)) {
+            mentve = false;
+        }
+
+        if (!mentve) {
+            if (!confirmation("A módosítások el fognak veszni! Szerete menteni?")) {
+                ((Stage) mainAnchor.getScene().getWindow()).close();
+                return;
+            }
+            save();
+        }
+
+        if (mentve) {
+            ((Stage) mainAnchor.getScene().getWindow()).close();
+        }
+
     }
 
     @FXML
-    public void onVisszaClick(ActionEvent actionEvent) {
-        bezaras();
-    }
-
-    @FXML
-    public void onEngedelyezesClick(ActionEvent actionEvent) {
+    public void onAllowClick(ActionEvent actionEvent) {
         engedelyezve = true;
         mentve = false;
-        btnEngedelyezes.setDisable(engedelyezve);
+        allowButton.setDisable(engedelyezve);
+    }
+
+    @FXML
+    public void onSaveClick(ActionEvent actionEvent) {
+        save();
+    }
+
+    @FXML
+    public void onBackClick(ActionEvent actionEvent) {
+        close();
     }
 
     @FXML
     public void onCloseClick(Event event) {
-        bezaras();
+        close();
+    }
+
+    @FXML
+    public void onMinimizeClick(Event event) {
+        ((Stage) mainAnchor.getScene().getWindow()).setIconified(true);
     }
 
     @FXML
     public void onBorderPaneTopDragged(MouseEvent mouseEvent) {
         Stage stage = (Stage) borderPane.getScene().getWindow();
         dragWindow(stage, mouseEvent, x, y);
-    }
-
-    @FXML
-    public void onMinimizeClick(Event event) {
-        ((Stage) mainAnchor.getScene().getWindow()).setIconified(true);
     }
 
     @FXML

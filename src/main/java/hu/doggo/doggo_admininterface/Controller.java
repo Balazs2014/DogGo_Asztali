@@ -20,11 +20,12 @@ public class Controller {
     protected DialogPane dialogPane;
     protected Stage stage;
 
+
     public Stage getStage() {
         return stage;
     }
 
-    public static Controller ujAblak(String fxml, String title, int width, int height) throws IOException {
+    public static Controller newWindow(String fxml, String title, int width, int height) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource(fxml));
         Scene scene = new Scene(fxmlLoader.load(), width, height);
@@ -37,7 +38,7 @@ public class Controller {
         return controller;
     }
 
-    protected boolean megerosites(String uzenet) {
+    protected boolean confirmation(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Biztos?");
         alert.setContentText(uzenet);
@@ -48,7 +49,7 @@ public class Controller {
         return  result.get() == ButtonType.OK;
     }
 
-    protected void hibaKiir(Exception e) {
+    protected void error(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Hiba");
         alert.setHeaderText(e.getClass().toString());

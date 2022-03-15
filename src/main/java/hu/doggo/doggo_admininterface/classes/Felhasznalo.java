@@ -26,16 +26,8 @@ public class Felhasznalo {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public int getPermission() {
@@ -44,14 +36,6 @@ public class Felhasznalo {
 
     public void setPermission(int permission) {
         this.permission = permission;
-    }
-
-    public Date getCreated_at() {
-        return created_at;
-    }
-
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
     }
 
     public String getFormattedDate() {

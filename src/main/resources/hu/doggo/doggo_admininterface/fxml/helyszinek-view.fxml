@@ -36,7 +36,7 @@
                   <Insets />
                </GridPane.margin>
                <children>
-                      <TableView fx:id="helyszinekTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onHelyszinDoubleClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/tableViewStyle.css" HBox.hgrow="SOMETIMES">
+                      <TableView fx:id="locationsTableView" maxHeight="600.0" maxWidth="1500.0" minHeight="380.0" minWidth="710.0" onMouseClicked="#onLocationDoubleClick" prefHeight="380.0" prefWidth="710.0" stylesheets="@../style/tableViewStyle.css" HBox.hgrow="SOMETIMES">
                           <columns>
                               <TableColumn fx:id="nameCol" maxWidth="500.0" minWidth="180.0" prefWidth="180.0" text="NÉV" />
                               <TableColumn fx:id="descriptionCol" minWidth="250.0" prefWidth="250.0" text="LEÍRÁS" />
@@ -61,7 +61,7 @@
                                 </ImageView>
                             </children>
                         </Pane>
-                        <TextField fx:id="textFieldHelyszinKereses" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0" promptText="Név / Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
+                        <TextField fx:id="locationSearchField" maxHeight="30.0" maxWidth="1500.0" minHeight="30.0" minWidth="490.0" prefHeight="30.0" prefWidth="490.0" promptText="Név / Leírás" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" HBox.hgrow="SOMETIMES">
                             <font>
                                 <Font name="Verdana" size="14.0" />
                             </font>
@@ -69,7 +69,7 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                         </TextField>
-                  <ChoiceBox fx:id="choiceBoxHelyszin" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" stylesheets="@../style/layoutStyle.css">
+                  <ChoiceBox fx:id="locationStatusChoiceBox" maxHeight="30.0" maxWidth="150.0" minHeight="30.0" minWidth="150.0" prefHeight="30.0" prefWidth="150.0" stylesheets="@../style/layoutStyle.css">
                       <value>
                           <String fx:value="összes" />
                       </value>
@@ -84,7 +84,7 @@
                         <Insets />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Button fx:id="btnTorles" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" mnemonicParsing="false" onAction="#onTorlesClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
+                  <Button fx:id="locationDeleteButton" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" mnemonicParsing="false" onAction="#onLocationDeleteClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>

@@ -6,53 +6,49 @@ import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.HelyszinErtekeles;
 import javafx.application.Platform;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.CountDownLatch;
 
 public class IranyitopultController extends Controller {
     @FXML
-    private Label lblKitiltottFelh;
+    private Label bestRatingLabel;
     @FXML
-    private Label lblAdminFelh;
+    private TextArea bestLocationTextArea;
     @FXML
-    private Label lblOsszFelh;
+    private Label worstRatingLabel;
     @FXML
-    private Label lblLegrosszabbHely;
+    private TextArea worstLocationTextArea;
     @FXML
-    private Label lblUjVisszajelzes;
+    private Label allUserLabel;
     @FXML
-    private Label lblLegjobbHely;
+    private Label adminUserLabel;
     @FXML
-    private Label lblUjHely;
+    private Label bannedUserLabel;
     @FXML
-    private TextArea textareaLegjobbHelyNev;
+    private Label newLocationLabel;
     @FXML
-    private TextArea textareaLegrosszabbHelyNev;
+    private Label allowedLocationLabel;
     @FXML
-    private Label lblEngedelyezettHely;
+    private Label readFeedbackLabel;
     @FXML
-    private Label lblOlvasottVisszajelzes;
+    private Label newFeedbackLabel;
 
     private HelyszinErtekeles legjobb;
     private HelyszinErtekeles legrosszabb;
-    private int osszFelh;
-    private int kitiltottFelh;
-    private int adminFelh;
-    private int engedelyezettHely;
-    private int ujHely;
-    private int olvasottVisszajelzes;
-    private int ujVisszajelzes;
     private Timer timer = new Timer();
+    private int osszFelh;
+    private int adminFelh;
+    private int kitiltottFelh;
+    private int ujHely;
+    private int engedelyezettHely;
+    private int ujVisszajelzes;
+    private int olvasottVisszajelzes;
+
 
     public void initialize() {
 
@@ -60,27 +56,27 @@ public class IranyitopultController extends Controller {
             @Override
             public void run() {
                 try {
-                    legjobb = HelyszinApi.getLegjobbErtekeles();
+                    legjobb = HelyszinApi.getBestRating();
 
-                    osszFelh = FelhasznaloApi.getFelhasznalokCount();
+                    osszFelh = FelhasznaloApi.getUsersCount();
 
-                    engedelyezettHely = HelyszinApi.getAllowedCount();
+                    ujHely = HelyszinApi.getNewCount();
 
-                    olvasottVisszajelzes = VisszajelzesApi.getReadCount();
+                    ujVisszajelzes = VisszajelzesApi.getNewCount();
                 } catch (IOException e) {
-                    hibaKiir(e);
+                    error(e);
                 }
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        lblLegjobbHely.setText(legjobb.getAtlag() + "");
-                        textareaLegjobbHelyNev.setText(legjobb.getName());
+                        bestRatingLabel.setText(legjobb.getAtlag() + "");
+                        bestLocationTextArea.setText(legjobb.getName());
 
-                        lblOsszFelh.setText(osszFelh + "");
+                        allUserLabel.setText(osszFelh + "");
 
-                        lblEngedelyezettHely.setText(engedelyezettHely + "");
+                        newLocationLabel.setText(ujHely + "");
 
-                        lblOlvasottVisszajelzes.setText(olvasottVisszajelzes + "");
+                        newFeedbackLabel.setText(ujVisszajelzes + "");
                     }
                 });
             }
@@ -91,29 +87,29 @@ public class IranyitopultController extends Controller {
             @Override
             public void run() {
                 try {
-                    legrosszabb = HelyszinApi.getLegrosszabbErtekeles();
+                    legrosszabb = HelyszinApi.getWorstRating();
 
-                    kitiltottFelh = FelhasznaloApi.getKitiltottCount();
+                    kitiltottFelh = FelhasznaloApi.getBannedCount();
                     adminFelh = FelhasznaloApi.getAdminCount();
 
-                    ujHely = HelyszinApi.getNewCount();
+                    engedelyezettHely = HelyszinApi.getAllowedCount();
 
-                    ujVisszajelzes = VisszajelzesApi.getNewCount();
+                    olvasottVisszajelzes = VisszajelzesApi.getReadCount();
                 } catch (IOException e) {
-                    hibaKiir(e);
+                    error(e);
                 }
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        lblLegrosszabbHely.setText(legrosszabb.getAtlag() + "");
-                        textareaLegrosszabbHelyNev.setText(legrosszabb.getName());
+                        worstRatingLabel.setText(legrosszabb.getAtlag() + "");
+                        worstLocationTextArea.setText(legrosszabb.getName());
 
-                        lblKitiltottFelh.setText(kitiltottFelh + "");
-                        lblAdminFelh.setText(adminFelh + "");
+                        bannedUserLabel.setText(kitiltottFelh + "");
+                        adminUserLabel.setText(adminFelh + "");
 
-                        lblUjHely.setText(ujHely + "");
+                        allowedLocationLabel.setText(engedelyezettHely + "");
 
-                        lblUjVisszajelzes.setText(ujVisszajelzes + "");
+                        readFeedbackLabel.setText(olvasottVisszajelzes + "");
                     }
                 });
             }
