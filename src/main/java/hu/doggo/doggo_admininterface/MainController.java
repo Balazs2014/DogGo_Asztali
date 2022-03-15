@@ -1,9 +1,5 @@
 package hu.doggo.doggo_admininterface;
 
-import hu.doggo.doggo_admininterface.api.LoginApi;
-import hu.doggo.doggo_admininterface.classes.Felhasznalo;
-import hu.doggo.doggo_admininterface.classes.Login;
-import hu.doggo.doggo_admininterface.classes.Token;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -27,7 +23,7 @@ public class MainController extends Controller {
     @FXML
     private ImageView maximizeImage;
 
-    private Image newIcon;
+    private Image icon;
     private Stage stage;
     private double x = 0;
     private double y = 0;
@@ -92,8 +88,8 @@ public class MainController extends Controller {
             stage.setMaxHeight(primaryScreenBounds.getHeight());
             stage.setMinHeight(primaryScreenBounds.getHeight());
 
-            newIcon = new Image(getClass().getResource("/hu/doggo/doggo_admininterface/icons/elozo_nezet.png").toExternalForm());
-            maximizeImage.setImage(newIcon);
+            icon = new Image(getClass().getResource("/hu/doggo/doggo_admininterface/icons/elozo_nezet.png").toExternalForm());
+            maximizeImage.setImage(icon);
 
             teljesKepernyo = true;
         } else {
@@ -105,8 +101,8 @@ public class MainController extends Controller {
 
             stage.centerOnScreen();
 
-            newIcon = new Image(getClass().getResource("/hu/doggo/doggo_admininterface/icons/teljes_meret.png").toExternalForm());
-            maximizeImage.setImage(newIcon);
+            icon = new Image(getClass().getResource("/hu/doggo/doggo_admininterface/icons/teljes_meret.png").toExternalForm());
+            maximizeImage.setImage(icon);
 
             teljesKepernyo = false;
         }

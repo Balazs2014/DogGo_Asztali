@@ -141,13 +141,7 @@ public class FelhasznalokReszletesController extends Controller {
     private void ertekelesListaFeltoltes() {
         try {
             ertekelesLista.clear();
-            ertekelesLista.addAll(ErtekelesApi.getErtekelesek());
-            ertekelesekTableView.getItems().clear();
-            for (Ertekeles ertekeles : ertekelesLista) {
-                if (reszletes.getId() == ertekeles.getUser_id()) {
-                    ertekelesekTableView.getItems().add(ertekeles);
-                }
-            }
+            ertekelesLista.addAll(ErtekelesApi.getFelhErtekelesek(reszletes.getId()));
         } catch (IOException e) {
             hibaKiir(e);
         }
@@ -159,6 +153,7 @@ public class FelhasznalokReszletesController extends Controller {
             Felhasznalo felhTiltasa = FelhasznaloApi.jogFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó tiltva!");
+                btnTiltas.setText("Tiltás");
             } else {
                 alert("Sikertelen tiltás!");
             }
@@ -174,6 +169,7 @@ public class FelhasznalokReszletesController extends Controller {
             Felhasznalo felhTiltasa = FelhasznaloApi.jogFelhasznalo(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó feloldva!");
+                btnTiltas.setText("Feloldás");
             } else {
                 alert("Sikertelen feloldás!");
             }
@@ -234,11 +230,11 @@ public class FelhasznalokReszletesController extends Controller {
         switch (permission) {
             case 0:
                 kitiltas();
-                btnTiltas.setText("Feloldás");
+
                 break;
             case 1:
                 feloldas();
-                btnTiltas.setText("Tiltás");
+
                 break;
         }
     }

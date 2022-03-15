@@ -50,13 +50,16 @@ public class BejelentkezesController extends Controller {
                 stage.setMinWidth(1300);
                 stage.setMinHeight(700);
                 stage.show();
+            } else {
+                alert("Nem rendelkezik admin jogosultsággal!");
             }
-            System.out.println(felhAdatai.getId());
-            System.out.println(felhAdatai.getUsername());
-            System.out.println(felhAdatai.getEmail());
-            System.out.println(felhAdatai.getPermission());
         } catch (IOException e) {
             hibaKiir(e);
         }
+    }
+
+    @FXML
+    public void onBezarasClick(ActionEvent actionEvent) {
+        System.exit(0);
     }
 }
