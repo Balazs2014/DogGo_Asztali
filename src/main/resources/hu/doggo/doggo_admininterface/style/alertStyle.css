@@ -8,11 +8,15 @@
     -fx-font-size: 15px;
 }
 
-.dialog-pane[type=header] .header-panel {
+.dialog-pane header, .dialog-pane .header-panel {
     -fx-background-color: #202427;
 }
 
-.dialog-pane[type=header] .header-panel .label {
+.dialog-pane header, .dialog-pane .header-panel .text {
+    -fx-fill: white;
+}
+
+.dialog-pane header, .dialog-pane .header-panel .label {
     -fx-background-color: #202427;
     -fx-background-radius: 10px;
     -fx-text-fill: white;
