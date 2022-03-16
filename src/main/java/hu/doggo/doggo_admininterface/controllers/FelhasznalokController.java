@@ -34,7 +34,6 @@ public class FelhasznalokController extends Controller {
     private TableColumn<Felhasznalo, String> permissionCol;
 
     private ObservableList<Felhasznalo> userList = FXCollections.observableArrayList();
-    private Timer timer = new Timer();
 
 
     public void initialize() {

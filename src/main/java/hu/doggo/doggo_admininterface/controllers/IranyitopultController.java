@@ -51,7 +51,6 @@ public class IranyitopultController extends Controller {
 
 
     public void initialize() {
-
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {

@@ -3,6 +3,7 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -54,18 +55,14 @@ public class HelyszinekController extends Controller {
     }
 
     private void locationListUpload() {
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    locationList.clear();
-                    locationList.addAll(HelyszinApi.getLocations());
-                } catch (IOException e) {
-                    error(e);
-                }
+        Platform.runLater(() -> {
+            try {
+                locationList.clear();
+                locationList.addAll(HelyszinApi.getLocations());
+            } catch (IOException e) {
+                error(e);
             }
-        };
-        timer.schedule(timerTask, 1);
+        });
     }
 
     private void filter() {

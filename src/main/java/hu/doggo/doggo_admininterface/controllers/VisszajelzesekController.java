@@ -3,6 +3,7 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -75,22 +76,18 @@ public class VisszajelzesekController extends Controller {
     }
 
     private void feedbackListUpload() {
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    feedbackList.clear();
-                    feedbackList.addAll(VisszajelzesApi.getFeedbacks());
-                } catch (IOException e) {
-                    error(e);
-                }
+        Platform.runLater(() -> {
+            try {
+                feedbackList.clear();
+                feedbackList.addAll(VisszajelzesApi.getFeedbacks());
+            } catch (IOException e) {
+                error(e);
             }
-        };
-        timer.schedule(timerTask, 1);
+        });
     }
 
     private void filter() {
-        feedbackStatusChoiceBox.getSelectionModel().selectedItemProperty().addListener( (v, oldValue, newValue) -> {
+        feedbackStatusChoiceBox.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> {
             feedbackDeleteButton.setDisable(true);
             try {
                 if (newValue.equals("új")) {
@@ -141,7 +138,7 @@ public class VisszajelzesekController extends Controller {
             } catch (Exception e) {
                 error(e);
             }
-        } else if (!(selectedIndex == -1)){
+        } else if (!(selectedIndex == -1)) {
             feedbackDeleteButton.setDisable(false);
         }
     }
