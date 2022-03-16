@@ -3,6 +3,7 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -47,23 +48,19 @@ public class FelhasznalokController extends Controller {
     }
 
     private void userListUpload() {
-        TimerTask timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    userList.clear();
-                    userList.addAll(FelhasznaloApi.getUsers());
-                } catch (IOException e) {
-                    error(e);
-                }
+        Platform.runLater(() -> {
+            try {
+                userList.clear();
+                userList.addAll(FelhasznaloApi.getUsers());
+            } catch (IOException e) {
+                error(e);
             }
-        };
-        timer.schedule(timerTask, 1);
+        });
     }
 
     private void search() {
         FilteredList<Felhasznalo> filteredList = new FilteredList<>(userList, b -> true);
-        userSearchField.textProperty().addListener((observable, oldValue, newValue ) -> {
+        userSearchField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredList.setPredicate(felhasznalo -> {
                 if (newValue.isEmpty() || newValue.isBlank()) {
                     return true;
