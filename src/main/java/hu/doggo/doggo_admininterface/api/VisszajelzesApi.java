@@ -2,15 +2,13 @@ package hu.doggo.doggo_admininterface.api;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import hu.doggo.doggo_admininterface.Controller;
-import hu.doggo.doggo_admininterface.classes.Helyszin;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class VisszajelzesApi extends Controller {
+public class VisszajelzesApi {
     private static final String API_URL = "http://127.0.0.1:8000/api";
     private static Gson jsonConverter = new Gson();
 

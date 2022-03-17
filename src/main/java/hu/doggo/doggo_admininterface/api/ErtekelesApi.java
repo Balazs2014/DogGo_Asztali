@@ -2,14 +2,13 @@ package hu.doggo.doggo_admininterface.api;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.classes.Ertekeles;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class ErtekelesApi extends Controller {
+public class ErtekelesApi {
     private static final String API_URL = "http://127.0.0.1:8000/api";
     private static Gson jsonConverter = new Gson();
 

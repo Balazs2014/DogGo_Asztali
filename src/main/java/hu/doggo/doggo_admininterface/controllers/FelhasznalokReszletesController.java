@@ -269,12 +269,8 @@ public class FelhasznalokReszletesController extends Controller {
     public void onUserBanClick(ActionEvent actionEvent) {
         int permission = reszletes.getPermission();
         switch (permission) {
-            case 0:
-                ban();
-                break;
-            case 1:
-                unban();
-                break;
+            case 0 -> ban();
+            case 1 -> unban();
         }
     }
 
@@ -282,12 +278,8 @@ public class FelhasznalokReszletesController extends Controller {
     public void onAdminClick(ActionEvent actionEvent) {
         int permission = reszletes.getPermission();
         switch (permission) {
-            case 0:
-                admin();
-                break;
-            case 2:
-                unadmin();
-                break;
+            case 0 -> admin();
+            case 2 -> unadmin();
         }
     }
 
@@ -303,7 +295,7 @@ public class FelhasznalokReszletesController extends Controller {
 
     @FXML
     public void onBorderPaneTopDragged(MouseEvent mouseEvent) {
-        Stage stage = (Stage) borderPane.getScene().getWindow();
+        stage = (Stage) borderPane.getScene().getWindow();
         dragWindow(stage, mouseEvent, x, y);
     }
 

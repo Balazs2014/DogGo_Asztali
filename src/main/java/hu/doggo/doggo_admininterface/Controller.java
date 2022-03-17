@@ -20,7 +20,6 @@ import java.util.TimerTask;
 public class Controller {
     protected DialogPane dialogPane;
     protected Stage stage;
-    protected Felhasznalo loggedIn;
 
 
     public Stage getStage() {
@@ -42,13 +41,16 @@ public class Controller {
 
     protected boolean confirmation(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Megerősítés");
         alert.setHeaderText("Biztos?");
         alert.setContentText(uzenet);
         dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
+        dialogPane.getStylesheets().add(
+                getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm()
+        );
         dialogPane.getStyleClass().add("alert");
         Optional<ButtonType> result = alert.showAndWait();
-        return  result.get() == ButtonType.OK;
+        return result.get() == ButtonType.OK;
     }
 
     protected void error(Exception e) {
@@ -57,8 +59,14 @@ public class Controller {
         alert.setHeaderText(e.getClass().toString());
         alert.setContentText(e.getMessage());
         dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
+        dialogPane.getStylesheets().add(
+                getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm()
+        );
         dialogPane.getStyleClass().add("alert");
+        Stage stage = (Stage) dialogPane.getScene().getWindow();
+        stage.getIcons().add(new Image(
+                this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()
+        ));
         Timer alertTimer = new Timer();
         alertTimer.schedule(new TimerTask() {
             @Override
@@ -70,15 +78,18 @@ public class Controller {
 
     protected void alert(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setHeaderText(uzenet);
         alert.setContentText(uzenet);
         alert.getButtonTypes().add(ButtonType.OK);
         dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(getClass()
-                .getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm());
+        dialogPane.getStylesheets().add(
+                getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm()
+        );
         dialogPane.getStyleClass().add("alert");
         Stage stage = (Stage) dialogPane.getScene().getWindow();
-        stage.getIcons().add(new Image(this.getClass()
-                .getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()));
+        stage.getIcons().add(new Image(
+                this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()
+        ));
         alert.showAndWait();
     }
 

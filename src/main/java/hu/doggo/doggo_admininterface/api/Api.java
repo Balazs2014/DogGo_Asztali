@@ -1,11 +1,10 @@
 package hu.doggo.doggo_admininterface.api;
 
 import com.google.gson.Gson;
-import hu.doggo.doggo_admininterface.Controller;
 
 import java.io.IOException;
 
-public class Api extends Controller {
+public class Api {
     private static Gson jsonConverter = new Gson();
 
     public static String get(String url) throws IOException {
