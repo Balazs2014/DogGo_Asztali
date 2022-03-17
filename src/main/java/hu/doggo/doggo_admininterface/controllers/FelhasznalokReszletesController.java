@@ -76,20 +76,23 @@ public class FelhasznalokReszletesController extends Controller {
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));
 
+        boolean superAdmin = AdminInterface.superAdmin;
+        adminPermissionButton.setVisible(superAdmin);
+
         int permission = reszletes.getPermission();
         if (permission == 0) {
             banButton.setText("Felhasználó tiltása");
-            adminPermissionButton.setText("Admin");
         } else if (permission == 1) {
             banButton.setText("Felhasználó feloldása");
+            adminPermissionButton.setDisable(true);
         } else if (permission == 2) {
+            adminPermissionButton.setText("Admin jog elvétele");
             banButton.setVisible(false);
-            adminPermissionButton.setText("Admin elvétele");
+        }  else {
+            banButton.setVisible(false);
+            descriptionDeleteButton.setVisible(false);
+            adminPermissionButton.setVisible(false);
         }
-
-        boolean superAdmin = AdminInterface.superAdmin;
-
-        adminPermissionButton.setVisible(superAdmin);
 
         ratingListUpload();
         search();
@@ -155,9 +158,10 @@ public class FelhasznalokReszletesController extends Controller {
             Felhasznalo felhTiltasa = FelhasznaloApi.updateUserPermission(reszletes);
             if (felhTiltasa != null) {
                 alert("Felhasználó tiltva!");
-                banButton.setText("Felhasználó feoldása");
+                banButton.setText("Felhasználó felodása");
+                adminPermissionButton.setDisable(true);
             } else {
-                alert("Sikertelen tiltás!");
+                alert("Sikertelen művelet!");
             }
             loadUserData();
         } catch (IOException e) {
@@ -172,8 +176,9 @@ public class FelhasznalokReszletesController extends Controller {
             if (felhTiltasa != null) {
                 alert("Felhasználó feloldva!");
                 banButton.setText("Felhasználó tiltása");
+                adminPermissionButton.setDisable(false);
             } else {
-                alert("Sikertelen feloldás!");
+                alert("Sikertelen művelet!");
             }
             loadUserData();
         } catch (IOException e) {
@@ -186,10 +191,11 @@ public class FelhasznalokReszletesController extends Controller {
         try {
             Felhasznalo felhAdmin = FelhasznaloApi.updateUserPermission(reszletes);
             if (felhAdmin != null) {
-                alert("Admin jog");
-                adminPermissionButton.setText("Admin elvétele");
+                alert("Sikeres művelet");
+                adminPermissionButton.setText("Admin jog elvétele");
+                banButton.setDisable(true);
             } else {
-                alert("Sikertelen admin!");
+                alert("Sikertelen művelet!");
             }
             loadUserData();
         } catch (IOException e) {
@@ -203,7 +209,8 @@ public class FelhasznalokReszletesController extends Controller {
             Felhasznalo felhAdmin = FelhasznaloApi.updateUserPermission(reszletes);
             if (felhAdmin != null) {
                 alert("Sikeres művelet");
-                adminPermissionButton.setText("Felhasználó admin");
+                adminPermissionButton.setText("Admin jog");
+                banButton.setDisable(false);
             } else {
                 alert("Sikertelen művelet!");
             }
