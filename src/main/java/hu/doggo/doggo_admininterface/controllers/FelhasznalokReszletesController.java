@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface.controllers;
 
+import hu.doggo.doggo_admininterface.AdminInterface;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.ErtekelesApi;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
@@ -72,26 +73,23 @@ public class FelhasznalokReszletesController extends Controller {
         loadUserData();
 
 
-
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));
 
         int permission = reszletes.getPermission();
         if (permission == 0) {
             banButton.setText("Felhasználó tiltása");
+            adminPermissionButton.setText("Admin");
         } else if (permission == 1) {
             banButton.setText("Felhasználó feloldása");
+        } else if (permission == 2) {
+            banButton.setVisible(false);
+            adminPermissionButton.setText("Admin elvétele");
         }
 
-        /*if (permission > 1) {
-            btnTorles.setDisable(true);
-            btnTiltas.setDisable(true);
-        }*/
+        boolean superAdmin = AdminInterface.superAdmin;
 
-        /*if (user.getPermission() == 2) {
-            btnAdmin.setVisible(true);
-            System.out.println(user.getPermission());
-        }*/
+        adminPermissionButton.setVisible(superAdmin);
 
         ratingListUpload();
         search();
@@ -183,11 +181,43 @@ public class FelhasznalokReszletesController extends Controller {
         }
     }
 
+    private void admin() {
+        reszletes.setPermission(2);
+        try {
+            Felhasznalo felhAdmin = FelhasznaloApi.updateUserPermission(reszletes);
+            if (felhAdmin != null) {
+                alert("Admin jog");
+                adminPermissionButton.setText("Admin elvétele");
+            } else {
+                alert("Sikertelen admin!");
+            }
+            loadUserData();
+        } catch (IOException e) {
+            error(e);
+        }
+    }
+
+    private void unadmin() {
+        reszletes.setPermission(0);
+        try {
+            Felhasznalo felhAdmin = FelhasznaloApi.updateUserPermission(reszletes);
+            if (felhAdmin != null) {
+                alert("Sikeres művelet");
+                adminPermissionButton.setText("Felhasználó admin");
+            } else {
+                alert("Sikertelen művelet!");
+            }
+            loadUserData();
+        } catch (IOException e) {
+            error(e);
+        }
+    }
+
     @FXML
     public void onDescriptionClick(MouseEvent mouseEvent) {
         int selectedIndex = ratingsTableView.getSelectionModel().getSelectedIndex();
         Ertekeles ertekeles = ratingsTableView.getSelectionModel().getSelectedItem();
-        if (!(selectedIndex == -1) && ertekeles.getDescription() != null){
+        if (!(selectedIndex == -1) && ertekeles.getDescription() != null) {
             descriptionDeleteButton.setDisable(false);
             descriptionTextArea.setText(ertekeles.getDescription());
         } else {
@@ -234,17 +264,24 @@ public class FelhasznalokReszletesController extends Controller {
         switch (permission) {
             case 0:
                 ban();
-
                 break;
             case 1:
                 unban();
-
                 break;
         }
     }
 
     @FXML
     public void onAdminClick(ActionEvent actionEvent) {
+        int permission = reszletes.getPermission();
+        switch (permission) {
+            case 0:
+                admin();
+                break;
+            case 2:
+                unadmin();
+                break;
+        }
     }
 
     @FXML

@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface.controllers;
 
+import hu.doggo.doggo_admininterface.AdminInterface;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.LoginApi;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -36,6 +38,8 @@ public class BejelentkezesController extends Controller {
             Token token = LoginApi.postLogin(login);
             Felhasznalo felhAdatai = LoginApi.getLoginData(token.getToken());
             if (felhAdatai.getPermission() > 1) {
+                AdminInterface.superAdmin = felhAdatai.getPermission() == 3;
+
                 ((Stage) mainAnchor.getScene().getWindow()).close();
 
                 Stage stage = new Stage();
@@ -50,10 +54,6 @@ public class BejelentkezesController extends Controller {
                 stage.setMinWidth(1300);
                 stage.setMinHeight(700);
                 stage.show();
-
-                /*MainController main = (MainController) newWindow("/hu/doggo/doggo_admininterface/fxml/main-view.fxml", "DogGO - Admin Interface", 1300, 700);
-                main.setLoggedIn(felhAdatai);
-                main.getStage().show();*/
             } else {
                 alert("Nem rendelkezik admin jogosultsággal!");
             }

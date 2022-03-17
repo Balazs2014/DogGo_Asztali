@@ -91,11 +91,6 @@ public class FelhasznalokController extends Controller {
 
     @FXML
     public void onUserDoubleClick(MouseEvent mouseEvent) {
-        Node node = (Node) mouseEvent.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        Felhasznalo felh = (Felhasznalo) stage.getUserData();
-        System.out.println(felh.getUsername());
-
         int selectedIndex = usersTableView.getSelectionModel().getSelectedIndex();
         Felhasznalo reszletesFelh = usersTableView.getSelectionModel().getSelectedItem();
         if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
