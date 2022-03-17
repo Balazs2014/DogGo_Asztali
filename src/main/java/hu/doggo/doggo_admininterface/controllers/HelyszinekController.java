@@ -15,8 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class HelyszinekController extends Controller {
     @FXML
@@ -39,7 +37,6 @@ public class HelyszinekController extends Controller {
     private TableColumn<Helyszin, String> statusCol;
 
     private ObservableList<Helyszin> locationList = FXCollections.observableArrayList();
-    private Timer timer = new Timer();
 
 
     public void initialize() {

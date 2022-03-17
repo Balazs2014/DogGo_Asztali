@@ -1,5 +1,6 @@
 package hu.doggo.doggo_admininterface;
 
+import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,6 +20,7 @@ import java.util.TimerTask;
 public class Controller {
     protected DialogPane dialogPane;
     protected Stage stage;
+    protected Felhasznalo loggedIn;
 
 
     public Stage getStage() {

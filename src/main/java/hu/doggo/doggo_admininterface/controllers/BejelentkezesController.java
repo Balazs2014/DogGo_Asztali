@@ -26,7 +26,6 @@ public class BejelentkezesController extends Controller {
     @FXML
     private PasswordField passwordInput;
 
-
     @FXML
     public void onLoginClick(ActionEvent actionEvent) {
         String felh = usernameInput.getText();
@@ -51,6 +50,10 @@ public class BejelentkezesController extends Controller {
                 stage.setMinWidth(1300);
                 stage.setMinHeight(700);
                 stage.show();
+
+                /*MainController main = (MainController) newWindow("/hu/doggo/doggo_admininterface/fxml/main-view.fxml", "DogGO - Admin Interface", 1300, 700);
+                main.setLoggedIn(felhAdatai);
+                main.getStage().show();*/
             } else {
                 alert("Nem rendelkezik admin jogosultsággal!");
             }

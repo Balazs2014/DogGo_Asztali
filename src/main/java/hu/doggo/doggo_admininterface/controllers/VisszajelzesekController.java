@@ -15,8 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class VisszajelzesekController extends Controller {
     @FXML
@@ -35,7 +33,6 @@ public class VisszajelzesekController extends Controller {
     private TableColumn<Visszajelzes, String> statusCol;
 
     private ObservableList<Visszajelzes> feedbackList = FXCollections.observableArrayList();
-    private Timer timer = new Timer();
 
 
     public void initialize() {

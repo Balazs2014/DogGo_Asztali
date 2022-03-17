@@ -71,6 +71,8 @@ public class FelhasznalokReszletesController extends Controller {
     private void writeData() {
         loadUserData();
 
+
+
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         starsCol.setCellValueFactory(new PropertyValueFactory<>("stars"));
 
