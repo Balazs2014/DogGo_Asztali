@@ -1,6 +1,5 @@
 package hu.doggo.doggo_admininterface;
 
-import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

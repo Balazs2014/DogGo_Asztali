@@ -67,7 +67,8 @@ public class HelyszinMuveletekController extends Controller {
             return;
         }
 
-        if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras) && reszletes.isAllowed() == allowed)) {
+        if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras)
+                && reszletes.isAllowed() == allowed)) {
             reszletes.setName(nev);
             reszletes.setDescription(leiras);
             reszletes.setAllowed(allowed);

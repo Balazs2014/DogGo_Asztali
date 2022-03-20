@@ -26,7 +26,6 @@ public class MainController extends Controller {
 
     private Image icon;
     private Stage stage;
-    private Felhasznalo loggedIn;
     private double x = 0;
     private double y = 0;
     private boolean teljesKepernyo = false;

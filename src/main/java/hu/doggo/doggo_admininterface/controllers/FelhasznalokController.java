@@ -88,7 +88,9 @@ public class FelhasznalokController extends Controller {
         Felhasznalo reszletesFelh = usersTableView.getSelectionModel().getSelectedItem();
         if (!(selectedIndex == -1) && mouseEvent.getClickCount() == 2) {
             try {
-                FelhasznalokReszletesController reszletes = (FelhasznalokReszletesController) newWindow("fxml/felhasznalok-reszletes-view.fxml", "Felhasznalo kezelése", 650, 769);
+                FelhasznalokReszletesController reszletes =
+                        (FelhasznalokReszletesController) newWindow("fxml/felhasznalok-reszletes-view.fxml",
+                                "Felhasznalo kezelése", 650, 769);
                 reszletes.setReszletes(reszletesFelh);
                 reszletes.getStage().setOnHiding(event -> usersTableView.refresh());
                 reszletes.getStage().show();
