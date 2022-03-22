@@ -84,14 +84,18 @@ public class FelhasznalokReszletesController extends Controller {
             banButton.setText("Felhasználó tiltása");
         } else if (permission == 1) {
             banButton.setText("Felhasználó feloldása");
+            banButton.setDisable(false);
             adminPermissionButton.setDisable(true);
         } else if (permission == 2) {
             adminPermissionButton.setText("Admin jog elvétele");
             banButton.setVisible(false);
-        }  else {
+        } else {
             banButton.setVisible(false);
             descriptionDeleteButton.setVisible(false);
             adminPermissionButton.setVisible(false);
+        }
+        if (superAdmin && permission != 3) {
+            banButton.setVisible(true);
         }
 
         ratingListUpload();
@@ -209,7 +213,7 @@ public class FelhasznalokReszletesController extends Controller {
             Felhasznalo felhAdmin = FelhasznaloApi.updateUserPermission(reszletes);
             if (felhAdmin != null) {
                 alert("Sikeres művelet");
-                adminPermissionButton.setText("Admin jog");
+                adminPermissionButton.setText("Admin");
                 banButton.setDisable(false);
             } else {
                 alert("Sikertelen művelet!");

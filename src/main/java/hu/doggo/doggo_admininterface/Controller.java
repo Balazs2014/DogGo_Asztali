@@ -55,7 +55,6 @@ public class Controller {
     protected void error(Exception e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Hiba");
-        alert.setHeaderText(e.getClass().toString());
         alert.setContentText(e.getMessage());
         dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(

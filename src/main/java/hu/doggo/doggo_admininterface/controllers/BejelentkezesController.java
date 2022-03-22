@@ -2,6 +2,7 @@ package hu.doggo.doggo_admininterface.controllers;
 
 import hu.doggo.doggo_admininterface.AdminInterface;
 import hu.doggo.doggo_admininterface.Controller;
+import hu.doggo.doggo_admininterface.MainController;
 import hu.doggo.doggo_admininterface.api.LoginApi;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
 import hu.doggo.doggo_admininterface.classes.Login;
@@ -41,18 +42,8 @@ public class BejelentkezesController extends Controller {
 
                 ((Stage) mainAnchor.getScene().getWindow()).close();
 
-                Stage stage = new Stage();
-
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hu/doggo/doggo_admininterface/fxml/main-view.fxml"));
-                Scene scene = new Scene(fxmlLoader.load(), 1300, 700);
-                stage.initStyle(StageStyle.UNDECORATED);
-                Image icon = new Image(getClass().getResourceAsStream("/hu/doggo/doggo_admininterface/icons/logo.png"));
-                stage.getIcons().add(icon);
-                stage.setTitle("DogGo - Admin Interface");
-                stage.setScene(scene);
-                stage.setMinWidth(1300);
-                stage.setMinHeight(700);
-                stage.show();
+                MainController main = (MainController) newWindow("/hu/doggo/doggo_admininterface/fxml/main-view.fxml", "DogGo - Admin Interface", 1300, 700);
+                main.getStage().show();
             } else {
                 alert("Nem rendelkezik admin jogosultsággal!");
             }
