@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" styleClass="background" stylesheets="@../style/layoutStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.IranyitopultController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" styleClass="background" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.IranyitopultController">
     <children>
         <Pane layoutY="48.0" maxHeight="150.0" maxWidth="1000.0" minHeight="150.0" minWidth="950.0" prefHeight="150.0" prefWidth="625.0" styleClass="cimPane" stylesheets="@../style/layoutStyle.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
@@ -227,4 +228,8 @@
          </children>
       </GridPane>
     </children>
+   <stylesheets>
+      <URL value="@../style/layoutStyle.css" />
+      <URL value="@../style/tabPaneStyle.css" />
+   </stylesheets>
 </AnchorPane>

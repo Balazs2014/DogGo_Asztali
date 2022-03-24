@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -19,7 +20,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" styleClass="background" stylesheets="@../style/layoutStyle.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.VisszajelzesekController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="680.0" minWidth="950.0" prefHeight="680.0" prefWidth="950.0" styleClass="background" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.VisszajelzesekController">
     <children>
         <GridPane alignment="CENTER" layoutX="73.0" layoutY="216.0" minHeight="444.0" minWidth="910.0" prefHeight="444.0" prefWidth="910.0" vgap="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="216.0">
             <columnConstraints>
@@ -104,4 +105,9 @@
             </children>
         </Pane>
     </children>
+   <stylesheets>
+      <URL value="@../style/layoutStyle.css" />
+      <URL value="@../style/buttonStyle.css" />
+      <URL value="@../style/tableViewStyle.css" />
+   </stylesheets>
 </AnchorPane>
