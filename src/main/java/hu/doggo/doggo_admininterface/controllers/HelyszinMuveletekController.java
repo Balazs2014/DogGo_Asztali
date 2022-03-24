@@ -111,7 +111,7 @@ public class HelyszinMuveletekController extends Controller {
         }
 
         if (!saved) {
-            if (!confirmation("A módosítások el fognak veszni! Szerete menteni?")) {
+            if (!confirmation("A módosítások el fognak veszni! Szeretne menteni?")) {
                 ((Stage) mainAnchor.getScene().getWindow()).close();
                 return;
             }
