@@ -142,6 +142,26 @@ public class HelyszinMuveletekController extends Controller {
     }
 
     @FXML
+    public void getCharCountTextField(Event event) {
+        int charCount = nameInput.getText().length();
+        if (charCount > 40 || charCount < 5) {
+            charCountLabel.setText(charCount + "");
+        }else {
+            charCountLabel.setText("");
+        }
+    }
+
+    @FXML
+    public void getCharCountTextArea(Event event) {
+        int charCount = descriptionInput.getText().length();
+        if (charCount > 255) {
+            charCountLabel2.setText(charCount + "");
+        } else {
+            charCountLabel2.setText("");
+        }
+    }
+
+    @FXML
     public void onCloseClick(Event event) {
         close();
     }
@@ -163,21 +183,4 @@ public class HelyszinMuveletekController extends Controller {
         y = mouseEvent.getSceneY();
     }
 
-    @FXML
-    public void getCharCountTextField(Event event) {
-        if (nameInput.getText().length() > 40 || nameInput.getText().length() < 5) {
-            charCountLabel.setText(nameInput.getText().length() + "");
-        }else {
-            charCountLabel.setText("");
-        }
-    }
-
-    @FXML
-    public void getCharCountTextArea(Event event) {
-        if (descriptionInput.getText().length() > 255) {
-            charCountLabel2.setText(descriptionInput.getText().length() + "");
-        } else {
-            charCountLabel2.setText("");
-        }
-    }
 }
