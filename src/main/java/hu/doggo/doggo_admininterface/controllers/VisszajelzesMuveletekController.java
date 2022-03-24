@@ -57,7 +57,7 @@ public class VisszajelzesMuveletekController extends Controller {
     }
 
     private void save() {
-        if (reszletes.isRead() == olvasva) {
+        if (!reszletes.isRead() == olvasva) {
             reszletes.setRead(olvasva);
 
             try {
