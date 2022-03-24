@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +36,10 @@ public class HelyszinMuveletekController extends Controller {
     private boolean saved = true;
     private double x = 0;
     private double y = 0;
+    @FXML
+    private Label charCountLabel;
+    @FXML
+    private Label charCountLabel2;
 
 
     public Helyszin getReszletes() {
@@ -62,11 +67,17 @@ public class HelyszinMuveletekController extends Controller {
         if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
             return;
-        } else if (nev.length() < 5) {
+        }
+        if (nev.length() < 5) {
             alert("A névnek minimum 5 karakter hosszúnak kell lennie!");
             return;
-        } else if (nev.length() > 40) {
+        }
+        if (nev.length() > 40) {
             alert("A név maximum 40 karakter hosszú lehet!");
+            return;
+        }
+        if (leiras.length() > 255) {
+            alert("A leírás maximum 255 karakter hosszú lehet!");
             return;
         }
 
@@ -150,5 +161,23 @@ public class HelyszinMuveletekController extends Controller {
     public void onBorderPaneTopPressed(MouseEvent mouseEvent) {
         x = mouseEvent.getSceneX();
         y = mouseEvent.getSceneY();
+    }
+
+    @FXML
+    public void getCharCountTextField(Event event) {
+        if (nameInput.getText().length() > 40 || nameInput.getText().length() < 5) {
+            charCountLabel.setText(nameInput.getText().length() + "");
+        }else {
+            charCountLabel.setText("");
+        }
+    }
+
+    @FXML
+    public void getCharCountTextArea(Event event) {
+        if (descriptionInput.getText().length() > 255) {
+            charCountLabel2.setText(descriptionInput.getText().length() + "");
+        } else {
+            charCountLabel2.setText("");
+        }
     }
 }

@@ -113,7 +113,7 @@ public class HelyszinekController extends Controller {
     @FXML
     public void onLocationDeleteClick(ActionEvent actionEvent) {
         Helyszin torlendo = locationsTableView.getSelectionModel().getSelectedItem();
-        if (!confirmation("Biztos törölni szeretné a(z) " + torlendo.getName())) {
+        if (!confirmation("Biztos törölni szeretné a(z) " + torlendo.getName() + " nevű helyszínt?")) {
             return;
         }
         try {
