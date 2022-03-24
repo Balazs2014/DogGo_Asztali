@@ -65,6 +65,9 @@ public class HelyszinMuveletekController extends Controller {
         } else if (nev.length() < 5) {
             alert("A névnek minimum 5 karakter hosszúnak kell lennie!");
             return;
+        } else if (nev.length() > 40) {
+            alert("A név maximum 40 karakter hosszú lehet!");
+            return;
         }
 
         if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras)

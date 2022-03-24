@@ -48,6 +48,10 @@ public class Controller {
                 getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm()
         );
         dialogPane.getStyleClass().add("alert");
+        Stage stage = (Stage) dialogPane.getScene().getWindow();
+        stage.getIcons().add(new Image(
+                this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()
+        ));
         Optional<ButtonType> result = alert.showAndWait();
         return result.get() == ButtonType.OK;
     }
@@ -76,7 +80,8 @@ public class Controller {
 
     protected void alert(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.NONE);
-        alert.setHeaderText(uzenet);
+        alert.setTitle("Alert");
+        alert.setHeaderText(" ");
         alert.setContentText(uzenet);
         alert.getButtonTypes().add(ButtonType.OK);
         dialogPane = alert.getDialogPane();

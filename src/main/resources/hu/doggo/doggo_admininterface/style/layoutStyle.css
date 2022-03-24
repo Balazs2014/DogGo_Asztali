@@ -79,6 +79,9 @@
     -fx-effect: dropshadow(three-pass-box, #15181A, 10.0, 0.0, 5.0, 5.0);
 }
 
+.choice-box:hover {
+    -fx-background-color: #61892F;
+}
 
 .choice-box > .label {
     -fx-font-family: Verdana;
@@ -103,6 +106,10 @@
 .text-area .content {
     -fx-background-color:  #202427;
     -fx-background-radius: 0;
+}
+
+.text-area .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: #474A4F;
 }
 
 .loginLabel {
