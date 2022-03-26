@@ -82,6 +82,7 @@ public class FelhasznalokReszletesController extends Controller {
         int permission = reszletes.getPermission();
         if (permission == 0) {
             banButton.setText("Felhasználó tiltása");
+            banButton.setDisable(false);
         } else if (permission == 1) {
             banButton.setText("Felhasználó feloldása");
             banButton.setDisable(false);
