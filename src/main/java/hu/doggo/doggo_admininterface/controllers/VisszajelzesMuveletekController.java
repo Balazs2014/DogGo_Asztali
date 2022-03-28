@@ -82,7 +82,7 @@ public class VisszajelzesMuveletekController extends Controller {
             ((Stage) mainAnchor.getScene().getWindow()).close();
         }
         if (!mentve) {
-            if (!confirmation("A módosítások el fognak veszni! Szerete menteni?")) {
+            if (!confirmation("A módosítások el fognak veszni! Szeretne menteni?")) {
                 ((Stage) mainAnchor.getScene().getWindow()).close();
                 return;
             }
