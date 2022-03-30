@@ -45,7 +45,7 @@ public class Controller {
         alert.setContentText(uzenet);
         dialogPane = alert.getDialogPane();
         dialogPane.getStylesheets().add(
-                getClass().getResource("/hu/doggo/doggo_admininterface/style/alertStyle.css").toExternalForm()
+                getClass().getResource("style/alertStyle.css").toExternalForm()
         );
         dialogPane.getStyleClass().add("alert");
         Stage stage = (Stage) dialogPane.getScene().getWindow();

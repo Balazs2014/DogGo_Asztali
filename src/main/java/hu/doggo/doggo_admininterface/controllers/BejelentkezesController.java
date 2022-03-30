@@ -42,7 +42,11 @@ public class BejelentkezesController extends Controller {
 
                 ((Stage) mainAnchor.getScene().getWindow()).close();
 
-                MainController main = (MainController) newWindow("/hu/doggo/doggo_admininterface/fxml/main-view.fxml", "DogGo - Admin Interface", 1300, 700);
+                MainController main = (MainController) newWindow(
+                        "/hu/doggo/doggo_admininterface/fxml/main-view.fxml", "DogGo - Admin Interface", 1300, 700
+                );
+                Image icon = new Image(getClass().getResourceAsStream("/hu/doggo/doggo_admininterface/icons/logo.png"));
+                main.getStage().getIcons().add(icon);
                 main.getStage().show();
             } else {
                 alert("Nem rendelkezik admin jogosultsággal!");
