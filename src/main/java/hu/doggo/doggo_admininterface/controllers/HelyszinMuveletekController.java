@@ -144,9 +144,11 @@ public class HelyszinMuveletekController extends Controller {
     @FXML
     public void getCharCountTextField(Event event) {
         int charCount = nameInput.getText().length();
-        if (charCount > 40 || charCount < 5) {
-            charCountLabel.setText(charCount + "");
-        }else {
+        if (charCount > 40) {
+            charCountLabel.setText("" + (40 - charCount));
+        } else if (charCount < 5) {
+            charCountLabel.setText("+" + (5 - charCount));
+        } else {
             charCountLabel.setText("");
         }
     }
@@ -155,7 +157,7 @@ public class HelyszinMuveletekController extends Controller {
     public void getCharCountTextArea(Event event) {
         int charCount = descriptionInput.getText().length();
         if (charCount > 255) {
-            charCountLabel2.setText(charCount + "");
+            charCountLabel2.setText("" + (255 - charCount));
         } else {
             charCountLabel2.setText("");
         }
