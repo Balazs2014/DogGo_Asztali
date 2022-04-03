@@ -1,0 +1,14 @@
+.chart-legend {
+    -fx-background-color:  #15181A;
+}
+
+.chart-legend-item{
+    -fx-text-fill: white;
+}
+
+.default-color0.chart-pie {
+    -fx-pie-color: #47651F;
+}
+.default-color1.chart-pie {
+    -fx-pie-color: #86C232;
+}

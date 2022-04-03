@@ -6,7 +6,11 @@ import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.HelyszinErtekeles;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
@@ -48,9 +52,35 @@ public class IranyitopultController extends Controller {
     private int engedelyezettHely;
     private int ujVisszajelzes;
     private int olvasottVisszajelzes;
+    @FXML
+    private PieChart locationsPieChart;
+    @FXML
+    private PieChart feedbacksPieChart;
 
 
     public void initialize() {
+        try {
+            ujHely = HelyszinApi.getNewCount();
+            engedelyezettHely = HelyszinApi.getAllowedCount();
+            ObservableList<PieChart.Data> locationPieChart = FXCollections.observableArrayList(
+                    new PieChart.Data("új", ujHely),
+                    new PieChart.Data("engedélyezett", engedelyezettHely)
+            );
+            locationsPieChart.setData(locationPieChart);
+            locationsPieChart.setStartAngle(70);
+
+            ujVisszajelzes = VisszajelzesApi.getNewCount();
+            olvasottVisszajelzes = VisszajelzesApi.getReadCount();
+            ObservableList<PieChart.Data> feedbackPieChart = FXCollections.observableArrayList(
+                    new PieChart.Data("új", ujVisszajelzes),
+                    new PieChart.Data("olvasott", olvasottVisszajelzes)
+            );
+            feedbacksPieChart.setData(feedbackPieChart);
+            feedbacksPieChart.setStartAngle(70);
+        } catch (IOException e) {
+            error(e);
+        }
+
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
@@ -58,10 +88,6 @@ public class IranyitopultController extends Controller {
                     legjobb = HelyszinApi.getBestRating();
 
                     osszFelh = FelhasznaloApi.getUsersCount();
-
-                    ujHely = HelyszinApi.getNewCount();
-
-                    ujVisszajelzes = VisszajelzesApi.getNewCount();
                 } catch (IOException e) {
                     error(e);
                 }
@@ -90,10 +116,6 @@ public class IranyitopultController extends Controller {
 
                     kitiltottFelh = FelhasznaloApi.getBannedCount();
                     adminFelh = FelhasznaloApi.getAdminCount();
-
-                    engedelyezettHely = HelyszinApi.getAllowedCount();
-
-                    olvasottVisszajelzes = VisszajelzesApi.getReadCount();
                 } catch (IOException e) {
                     error(e);
                 }

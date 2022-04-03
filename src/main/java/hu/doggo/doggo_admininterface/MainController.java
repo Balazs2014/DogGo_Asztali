@@ -43,7 +43,7 @@ public class MainController extends Controller {
     public  void onStatisztikakButtonClick(ActionEvent event) throws IOException {
         changeScene("fxml/iranyitopult-view.fxml");
     }
-
+    
     @FXML
     public void onFelhasznalokButtonClick(ActionEvent event) throws IOException {
         changeScene("fxml/felhasznalok-view.fxml");

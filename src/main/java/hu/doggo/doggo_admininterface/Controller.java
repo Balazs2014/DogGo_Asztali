@@ -20,7 +20,6 @@ public class Controller {
     protected DialogPane dialogPane;
     protected Stage stage;
 
-
     public Stage getStage() {
         return stage;
     }

@@ -52,7 +52,7 @@
     -fx-border-radius: 0;
 }
 
-.tab-pane .label {
+.tab-pane-label {
     -fx-font-weight: bold;
     -fx-font-family: "Arial Narrow";
     -fx-fill: #86c232;

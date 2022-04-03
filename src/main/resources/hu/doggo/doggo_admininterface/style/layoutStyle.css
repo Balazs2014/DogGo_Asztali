@@ -118,6 +118,11 @@
     -fx-background-color: #474A4F;
 }
 
+.iranyito-text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+}
+
 .loginLabel {
     -fx-font-family: Verdana;
     -fx-font-size: 12px;
