@@ -6,6 +6,7 @@ import hu.doggo.doggo_admininterface.api.ErtekelesApi;
 import hu.doggo.doggo_admininterface.api.FelhasznaloApi;
 import hu.doggo.doggo_admininterface.classes.Ertekeles;
 import hu.doggo.doggo_admininterface.classes.Felhasznalo;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -119,12 +120,14 @@ public class FelhasznalokReszletesController extends Controller {
     }
 
     private void ratingListUpload() {
-        try {
-            ratingList.clear();
-            ratingList.addAll(ErtekelesApi.getUserRatings(reszletes.getId()));
-        } catch (IOException e) {
-            error(e);
-        }
+        Platform.runLater(() -> {
+            try {
+                ratingList.clear();
+                ratingList.addAll(ErtekelesApi.getUserRatings(reszletes.getId()));
+            } catch (IOException e) {
+                error(e);
+            }
+        });
     }
 
     private void search() {
