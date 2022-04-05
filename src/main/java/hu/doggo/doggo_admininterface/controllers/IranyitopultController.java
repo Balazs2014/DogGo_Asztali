@@ -59,27 +59,29 @@ public class IranyitopultController extends Controller {
 
 
     public void initialize() {
-        try {
-            ujHely = HelyszinApi.getNewCount();
-            engedelyezettHely = HelyszinApi.getAllowedCount();
-            ObservableList<PieChart.Data> locationPieChart = FXCollections.observableArrayList(
-                    new PieChart.Data("új", ujHely),
-                    new PieChart.Data("engedélyezett", engedelyezettHely)
-            );
-            locationsPieChart.setData(locationPieChart);
-            locationsPieChart.setStartAngle(70);
+        Platform.runLater(() -> {
+            try {
+                ujHely = HelyszinApi.getNewCount();
+                engedelyezettHely = HelyszinApi.getAllowedCount();
+                ObservableList<PieChart.Data> locationPieChart = FXCollections.observableArrayList(
+                        new PieChart.Data("új", ujHely),
+                        new PieChart.Data("engedélyezett", engedelyezettHely)
+                );
+                locationsPieChart.setData(locationPieChart);
+                locationsPieChart.setStartAngle(70);
 
-            ujVisszajelzes = VisszajelzesApi.getNewCount();
-            olvasottVisszajelzes = VisszajelzesApi.getReadCount();
-            ObservableList<PieChart.Data> feedbackPieChart = FXCollections.observableArrayList(
-                    new PieChart.Data("új", ujVisszajelzes),
-                    new PieChart.Data("olvasott", olvasottVisszajelzes)
-            );
-            feedbacksPieChart.setData(feedbackPieChart);
-            feedbacksPieChart.setStartAngle(70);
-        } catch (IOException e) {
-            error(e);
-        }
+                ujVisszajelzes = VisszajelzesApi.getNewCount();
+                olvasottVisszajelzes = VisszajelzesApi.getReadCount();
+                ObservableList<PieChart.Data> feedbackPieChart = FXCollections.observableArrayList(
+                        new PieChart.Data("új", ujVisszajelzes),
+                        new PieChart.Data("olvasott", olvasottVisszajelzes)
+                );
+                feedbacksPieChart.setData(feedbackPieChart);
+                feedbacksPieChart.setStartAngle(70);
+            } catch (IOException e) {
+                error(e);
+            }
+        });
 
         TimerTask timerTask = new TimerTask() {
             @Override
