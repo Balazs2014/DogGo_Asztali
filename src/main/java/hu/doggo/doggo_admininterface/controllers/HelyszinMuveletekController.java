@@ -64,7 +64,7 @@ public class HelyszinMuveletekController extends Controller {
     private void save() {
         String nev = nameInput.getText().trim();
         String leiras = descriptionInput.getText().trim();
-        if (nev.isEmpty()) {
+        /*if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
             return;
         }
@@ -79,7 +79,7 @@ public class HelyszinMuveletekController extends Controller {
         if (leiras.length() > 255) {
             alert("A leírás maximum 255 karakter hosszú lehet!");
             return;
-        }
+        }*/
 
         if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras)
                 && reszletes.isAllowed() == allowed)) {

@@ -9,8 +9,8 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class VisszajelzesApi {
-    //private static final String API_URL = "http://127.0.0.1:8000/api";
-    private static final String API_URL = "http://doggobackend.ddns.net/DogGo_Backend/server.php/api";
+    private static final String API_URL = "http://127.0.0.1:8000/api";
+    //private static final String API_URL = "http://doggobackend.ddns.net/DogGo_Backend/server.php/api";
     private static Gson jsonConverter = new Gson();
 
     public static List<Visszajelzes> getFeedbacks() throws IOException {
