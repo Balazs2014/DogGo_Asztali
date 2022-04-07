@@ -9,6 +9,7 @@ import hu.doggo.doggo_admininterface.classes.Login;
 import hu.doggo.doggo_admininterface.classes.Token;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +25,12 @@ public class BejelentkezesController extends Controller {
     private TextField usernameInput;
     @FXML
     private PasswordField passwordInput;
+    @FXML
+    private Button loginButton;
+
+    public void initialize() {
+        loginButton.setDefaultButton(true);
+    }
 
     @FXML
     public void onLoginClick(ActionEvent actionEvent) {
