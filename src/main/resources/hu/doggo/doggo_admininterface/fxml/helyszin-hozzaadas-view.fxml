@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
 <AnchorPane fx:id="mainAnchor" prefHeight="400.0" prefWidth="365.0" styleClass="background" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.HelyszinHozzaadasController">
    <children>
       <BorderPane fx:id="borderPane" minHeight="320.0" minWidth="300.0" prefHeight="400.0" prefWidth="365.0" styleClass="borderPane" stylesheets="@../style/layoutStyle.css">
@@ -56,12 +52,12 @@
                         </Label>
                         <Spinner fx:id="longitudeInput" editable="true" layoutX="107.0" layoutY="176.0">
                            <valueFactory>
-                              <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1" initialValue="0.0" max="180" min="-180" />
+                              <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1.0" initialValue="0.0" max="180.0" min="-180.0" />
                            </valueFactory>
                         </Spinner>
                         <Spinner fx:id="latitudeInput" editable="true" layoutX="107.0" layoutY="220.0">
                            <valueFactory>
-                              <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1" initialValue="0.0" max="90" min="-90" />
+                              <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1.0" initialValue="0.0" max="90.0" min="-90.0" />
                            </valueFactory>
                         </Spinner>
                         <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="179.0" prefHeight="20.0" prefWidth="90.0" text="Hosszúság:" textFill="WHITE">
