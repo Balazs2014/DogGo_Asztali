@@ -29,6 +29,10 @@ public class HelyszinMuveletekController extends Controller {
     private TextArea descriptionInput;
     @FXML
     private Button allowButton;
+    @FXML
+    private Label charCountLabel;
+    @FXML
+    private Label charCountLabel2;
 
     private Stage stage;
     private Helyszin reszletes;
@@ -36,10 +40,6 @@ public class HelyszinMuveletekController extends Controller {
     private boolean saved = true;
     private double x = 0;
     private double y = 0;
-    @FXML
-    private Label charCountLabel;
-    @FXML
-    private Label charCountLabel2;
 
 
     public Helyszin getReszletes() {
@@ -64,7 +64,7 @@ public class HelyszinMuveletekController extends Controller {
     private void save() {
         String nev = nameInput.getText().trim();
         String leiras = descriptionInput.getText().trim();
-        /*if (nev.isEmpty()) {
+        if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
             return;
         }
@@ -79,7 +79,7 @@ public class HelyszinMuveletekController extends Controller {
         if (leiras.length() > 255) {
             alert("A leírás maximum 255 karakter hosszú lehet!");
             return;
-        }*/
+        }
 
         if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras)
                 && reszletes.isAllowed() == allowed)) {

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="mainAnchor" prefHeight="400.0" prefWidth="365.0" styleClass="background" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.doggo.doggo_admininterface.controllers.HelyszinHozzaadasController">
+   <children>
+      <BorderPane fx:id="borderPane" minHeight="320.0" minWidth="300.0" prefHeight="400.0" prefWidth="365.0" styleClass="borderPane" stylesheets="@../style/layoutStyle.css">
+         <center>
+            <VBox>
+               <children>
+                  <AnchorPane prefHeight="374.0" prefWidth="363.0">
+                     <children>
+                        <TextField fx:id="nameInput" onKeyTyped="#getCharCountTextField" prefHeight="30.0" prefWidth="255.0" promptText="Név" styleClass="keresesInput" stylesheets="@../style/layoutStyle.css" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="88.0" AnchorPane.topAnchor="20.0">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </TextField>
+                        <TextArea fx:id="descriptionInput" layoutX="10.0" layoutY="78.0" onKeyTyped="#getCharCountTextArea" prefHeight="82.0" prefWidth="323.0" promptText="Leírás" stylesheets="@../style/layoutStyle.css" wrapText="true" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </TextArea>
+                        <Button layoutX="152.0" layoutY="324.0" mnemonicParsing="false" onAction="#onAddClick" prefHeight="30.0" prefWidth="100.0" styleClass="muveletButton" text="Hozzáadás" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="allowButton" layoutX="20.0" layoutY="258.0" mnemonicParsing="false" onAction="#onAllowClick" prefHeight="30.0" prefWidth="120.0" styleClass="muveletButton" text="Engedélyezés" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="274.0" layoutY="319.0" mnemonicParsing="false" onAction="#onBackClick" prefHeight="30.0" prefWidth="70.0" styleClass="muveletButton" text="Vissza" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="charCountLabel" layoutX="289.0" layoutY="35.0" prefHeight="15.0" prefWidth="54.0" textFill="RED">
+                           <font>
+                              <Font name="Verdana Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="charCountLabel2" alignment="CENTER" layoutX="258.0" layoutY="232.0" prefHeight="15.0" prefWidth="85.0" textAlignment="CENTER" textFill="RED">
+                           <font>
+                              <Font name="Verdana Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="longitudeInput" editable="true" layoutX="107.0" layoutY="176.0">
+                           <valueFactory>
+                              <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1" initialValue="0.0" max="180" min="-180" />
+                           </valueFactory>
+                        </Spinner>
+                        <Spinner fx:id="latitudeInput" editable="true" layoutX="107.0" layoutY="220.0">
+                           <valueFactory>
+                              <SpinnerValueFactory.DoubleSpinnerValueFactory amountToStepBy="1" initialValue="0.0" max="90" min="-90" />
+                           </valueFactory>
+                        </Spinner>
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="179.0" prefHeight="20.0" prefWidth="90.0" text="Hosszúság:" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="14.0" layoutY="222.0" prefHeight="20.0" prefWidth="90.0" text="Szélesség:" textFill="WHITE">
+                           <font>
+                              <Font name="Verdana" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <AnchorPane maxHeight="25.0" minHeight="25.0" onMouseDragged="#onBorderPaneTopDragged" onMousePressed="#onBorderPaneTopPressed" prefHeight="25.0" prefWidth="265.0" styleClass="titleBar" stylesheets="@../style/layoutStyle.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="185.0" layoutY="2.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onMinimizeClick" prefHeight="24.0" prefWidth="40.0" styleClass="maxMinButton" stylesheets="@../style/buttonStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" styleClass="maxMinButton">
+                           <image>
+                              <Image url="@../icons/kis_meret.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="225.0" minHeight="24.0" minWidth="40.0" onMouseClicked="#onCloseClick" prefHeight="24.0" prefWidth="40.0" styleClass="closeButton" stylesheets="@../style/buttonStyle.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="15.0" fitWidth="15.0" layoutX="13.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" styleClass="closeButton">
+                           <image>
+                              <Image url="@../icons/bezaras.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Label prefHeight="24.0" prefWidth="150.0" styleClass="titleBarLabel" stylesheets="@../style/layoutStyle.css" text="Helyszín" textFill="#6b6e70" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="1.0">
+                     <font>
+                        <Font name="Verdana Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../style/layoutStyle.css" />
+      <URL value="@../style/buttonStyle.css" />
+   </stylesheets>
+</AnchorPane>

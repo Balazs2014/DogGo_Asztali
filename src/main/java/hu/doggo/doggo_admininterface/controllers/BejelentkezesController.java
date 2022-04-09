@@ -43,6 +43,7 @@ public class BejelentkezesController extends Controller {
             Felhasznalo felhAdatai = LoginApi.getLoginData(token.getToken());
             if (felhAdatai.getPermission() > 1) {
                 AdminInterface.superAdmin = felhAdatai.getPermission() == 3;
+                HelyszinHozzaadasController.user_id = felhAdatai.getId();
 
                 ((Stage) mainAnchor.getScene().getWindow()).close();
 

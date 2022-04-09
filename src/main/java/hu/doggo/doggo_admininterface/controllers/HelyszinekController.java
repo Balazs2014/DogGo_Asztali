@@ -147,4 +147,15 @@ public class HelyszinekController extends Controller {
             locationDeleteButton.setDisable(false);
         }
     }
+
+    @FXML
+    public void onLocationAddClick(ActionEvent actionEvent) {
+        try {
+            Controller hozzaadasAblak = newWindow("fxml/helyszin-hozzaadas-view.fxml", "Helyszín", 365, 400);
+            hozzaadasAblak.getStage().setOnHiding(event -> locationListUpload());
+            hozzaadasAblak.getStage().show();
+        } catch (IOException e) {
+            error(e);
+        }
+    }
 }

@@ -85,13 +85,18 @@
                         <Insets />
                      </HBox.margin>
                   </ChoiceBox>
-                  <Button fx:id="locationDeleteButton" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="130.0" mnemonicParsing="false" onAction="#onLocationDeleteClick" prefHeight="30.0" prefWidth="130.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
+                  <Button fx:id="locationDeleteButton" disable="true" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="97.0" mnemonicParsing="false" onAction="#onLocationDeleteClick" prefHeight="30.0" prefWidth="97.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Törlés" textFill="WHITE">
                      <font>
                         <Font name="Verdana" size="14.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="60.0" />
+                        <Insets left="30.0" right="30.0" />
                      </HBox.margin>
+                  </Button>
+                  <Button alignment="CENTER" maxHeight="30.0" maxWidth="130.0" minHeight="30.0" minWidth="33.0" mnemonicParsing="false" onAction="#onLocationAddClick" prefHeight="30.0" prefWidth="33.0" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="+" textFill="WHITE">
+                     <font>
+                        <Font name="Verdana Bold" size="14.0" />
+                     </font>
                   </Button>
                     </children>
                 </HBox>

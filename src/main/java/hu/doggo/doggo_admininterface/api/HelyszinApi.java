@@ -23,6 +23,12 @@ public class HelyszinApi {
         return jsonConverter.fromJson(json, type);
     }
 
+    public static Helyszin postLocation(Helyszin ujHelyszin) throws IOException {
+        String ujJson = jsonConverter.toJson(ujHelyszin);
+        String json = Api.post(API_URL + "/locations", ujJson);
+        return jsonConverter.fromJson(json, Helyszin.class);
+    }
+
     public static List<Helyszin> getAllowedLocations() throws IOException {
         String json = Api.get(API_URL + "/locations_allowed");
 
