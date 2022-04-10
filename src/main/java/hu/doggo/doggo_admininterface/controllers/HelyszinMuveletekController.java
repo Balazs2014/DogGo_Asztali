@@ -3,6 +3,7 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -47,6 +48,9 @@ public class HelyszinMuveletekController extends Controller {
     }
 
     public void setReszletes(Helyszin reszletes) {
+        Platform.runLater(() ->
+                mainAnchor.requestFocus()
+        );
         this.reszletes = reszletes;
         writeData();
     }

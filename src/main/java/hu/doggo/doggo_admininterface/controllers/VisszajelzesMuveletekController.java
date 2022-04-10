@@ -3,6 +3,7 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.VisszajelzesApi;
 import hu.doggo.doggo_admininterface.classes.Visszajelzes;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -42,6 +43,9 @@ public class VisszajelzesMuveletekController extends Controller {
     }
 
     public void setReszletes(Visszajelzes reszletes) {
+        Platform.runLater(() ->
+                mainAnchor.requestFocus()
+        );
         this.reszletes = reszletes;
 
         writeData();

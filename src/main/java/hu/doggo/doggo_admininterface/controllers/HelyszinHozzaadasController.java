@@ -3,6 +3,7 @@ package hu.doggo.doggo_admininterface.controllers;
 import hu.doggo.doggo_admininterface.Controller;
 import hu.doggo.doggo_admininterface.api.HelyszinApi;
 import hu.doggo.doggo_admininterface.classes.Helyszin;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -40,6 +41,12 @@ public class HelyszinHozzaadasController extends Controller {
     private double y = 0;
     public static int user_id = 0;
 
+    public void initialize() {
+        Platform.runLater(() ->
+                mainAnchor.requestFocus()
+        );
+    }
+
     @FXML
     public void onCloseClick(Event event) {
         close();
@@ -76,24 +83,30 @@ public class HelyszinHozzaadasController extends Controller {
             szelesseg = latitudeInput.getValue();
         } catch (NullPointerException e) {
             alert("A szélesség megadása kötelező");
+            return;
         } catch (Exception e) {
             alert("A szélesség minimum -90, maximum 90 lehet!");
+            return;
         }
 
         if (szelesseg < -90 || szelesseg > 90) {
             alert("A szélesség minimum -90, maximum 90 lehet!");
+            return;
         }
 
         try {
             hosszusag = longitudeInput.getValue();
         } catch (NullPointerException e) {
             alert("A hosszóság megadása kötelező");
+            return;
         } catch (Exception e) {
             alert("A hosszúság minimum -180, maximum 180 lehet!");
+            return;
         }
 
         if (hosszusag < -180 || hosszusag > 180) {
             alert("A hosszúság minimum -180, maximum 180 lehet!");
+            return;
         }
 
         try {

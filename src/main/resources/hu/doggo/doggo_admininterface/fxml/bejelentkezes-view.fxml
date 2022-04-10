@@ -86,7 +86,7 @@
                               <String fx:value="muveletButton" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onCloseClick" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Bezárás" textFill="WHITE">
+                        <Button fx:id="closeButton" mnemonicParsing="false" onAction="#onCloseClick" styleClass="muveletButton" stylesheets="@../style/buttonStyle.css" text="Bezárás" textFill="WHITE">
                            <font>
                               <Font name="Verdana" size="14.0" />
                            </font>
