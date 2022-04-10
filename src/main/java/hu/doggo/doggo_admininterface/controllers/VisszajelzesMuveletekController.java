@@ -62,7 +62,7 @@ public class VisszajelzesMuveletekController extends Controller {
 
     private void save() {
         if (!reszletes.isRead() == olvasva) {
-            reszletes.setRead(olvasva);
+            reszletes.setRead(true);
 
             try {
                 Visszajelzes olvasottLeiras = VisszajelzesApi.updateReadFeedback(reszletes);
