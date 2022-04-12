@@ -40,8 +40,8 @@ public class BejelentkezesController extends Controller {
 
     @FXML
     public void onLoginClick(ActionEvent actionEvent) {
-        String felh = usernameInput.getText();
-        String jelszo = passwordInput.getText();
+        String felh = usernameInput.getText().trim();
+        String jelszo = passwordInput.getText().trim();
 
         Login login = new Login(felh, jelszo);
         try {
