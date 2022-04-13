@@ -97,7 +97,7 @@ public class HelyszinHozzaadasController extends Controller {
         try {
             hosszusag = longitudeInput.getValue();
         } catch (NullPointerException e) {
-            alert("A hosszóság megadása kötelező");
+            alert("A hosszúság megadása kötelező");
             return;
         } catch (Exception e) {
             alert("A hosszúság minimum -180, maximum 180 lehet!");
