@@ -10,7 +10,6 @@ public class Api {
     public static String get(String url) throws IOException {
         Response response = RequestHandler.get(url);
         String json = response.getContent();
-        Gson jsonConverter = new Gson();
 
         if (response.getResponseCode() >= 400) {
             String message = jsonConverter.fromJson(json, ApiError.class).getMessage();
@@ -21,7 +20,6 @@ public class Api {
     }
 
     public static String post(String url, String ujJson) throws IOException {
-        Gson jsonConverter = new Gson();
         Response response = RequestHandler.post(url, ujJson);
         String json = response.getContent();
         if (response.getResponseCode() > 400) {
@@ -45,7 +43,6 @@ public class Api {
 
     public static Response delete(String url, int id) throws IOException {
         Response respone = RequestHandler.delete(url + "/" + id);
-        Gson jsonConverter = new Gson();
         String json = respone.getContent();
         if (respone.getResponseCode() > 400) {
             ApiError hiba = jsonConverter.fromJson(json, ApiError.class);
@@ -58,7 +55,6 @@ public class Api {
     public static String getLogin(String url, String token) throws IOException {
         Response response = RequestHandler.tokenAuthorization(url, token);
         String json = response.getContent();
-        Gson jsonConverter = new Gson();
 
         if (response.getResponseCode() >= 400) {
             String message = jsonConverter.fromJson(json, ApiError.class).getMessage();
