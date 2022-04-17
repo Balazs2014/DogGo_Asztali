@@ -19,6 +19,7 @@ import java.util.TimerTask;
 public class Controller {
     protected DialogPane dialogPane;
     protected Stage stage;
+    private static Image icon = new Image(Controller.class.getResourceAsStream("/hu/doggo/doggo_admininterface/icons/logo.png"));
 
     public Stage getStage() {
         return stage;
@@ -29,6 +30,7 @@ public class Controller {
         FXMLLoader fxmlLoader = new FXMLLoader(AdminInterface.class.getResource(fxml));
         Scene scene = new Scene(fxmlLoader.load(), width, height);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.getIcons().add(icon);
         stage.setTitle(title);
         stage.setScene(scene);
         Controller controller = fxmlLoader.getController();
@@ -48,9 +50,7 @@ public class Controller {
         );
         dialogPane.getStyleClass().add("alert");
         Stage stage = (Stage) dialogPane.getScene().getWindow();
-        stage.getIcons().add(new Image(
-                this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()
-        ));
+        stage.getIcons().add(icon);
         Optional<ButtonType> result = alert.showAndWait();
         return result.get() == ButtonType.OK;
     }
@@ -65,9 +65,7 @@ public class Controller {
         );
         dialogPane.getStyleClass().add("alert");
         Stage stage = (Stage) dialogPane.getScene().getWindow();
-        stage.getIcons().add(new Image(
-                this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()
-        ));
+        stage.getIcons().add(icon);
         Timer alertTimer = new Timer();
         alertTimer.schedule(new TimerTask() {
             @Override
@@ -89,9 +87,7 @@ public class Controller {
         );
         dialogPane.getStyleClass().add("alert");
         Stage stage = (Stage) dialogPane.getScene().getWindow();
-        stage.getIcons().add(new Image(
-                this.getClass().getResource("/hu/doggo/doggo_admininterface/icons/logo.png").toExternalForm()
-        ));
+        stage.getIcons().add(icon);
         alert.showAndWait();
     }
 
