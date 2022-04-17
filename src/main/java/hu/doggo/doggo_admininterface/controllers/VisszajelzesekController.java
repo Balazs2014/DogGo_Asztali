@@ -77,6 +77,7 @@ public class VisszajelzesekController extends Controller {
             try {
                 feedbackList.clear();
                 feedbackList.addAll(VisszajelzesApi.getFeedbacks());
+                feedbackStatusChoiceBox.setValue("összes");
             } catch (IOException e) {
                 error(e);
             }

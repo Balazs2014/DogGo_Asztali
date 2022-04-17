@@ -56,6 +56,7 @@ public class HelyszinekController extends Controller {
             try {
                 locationList.clear();
                 locationList.addAll(HelyszinApi.getLocations());
+                locationStatusChoiceBox.setValue("összes");
             } catch (IOException e) {
                 error(e);
             }
