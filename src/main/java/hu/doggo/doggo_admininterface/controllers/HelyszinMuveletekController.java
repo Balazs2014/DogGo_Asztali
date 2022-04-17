@@ -18,6 +18,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelyszinMuveletekController extends Controller {
     @FXML
@@ -67,7 +68,7 @@ public class HelyszinMuveletekController extends Controller {
 
     private void save() {
         String nev = nameInput.getText().trim();
-        String leiras = descriptionInput.getText().trim();
+        String leiras = descriptionInput.getText();
         if (nev.isEmpty()) {
             alert("Név megadása kötelező!");
             return;
@@ -80,12 +81,12 @@ public class HelyszinMuveletekController extends Controller {
             alert("A név maximum 40 karakter hosszú lehet!");
             return;
         }
-        if (leiras.length() > 255) {
+        if (leiras != null && leiras.length() > 255) {
             alert("A leírás maximum 255 karakter hosszú lehet!");
             return;
         }
 
-        if (!(reszletes.getName().equals(nev) && reszletes.getDescription().equals(leiras)
+        if (!(reszletes.getName().equals(nev) && Objects.equals(reszletes.getDescription(), leiras)
                 && reszletes.isAllowed() == allowed)) {
             reszletes.setName(nev);
             reszletes.setDescription(leiras);
@@ -109,8 +110,8 @@ public class HelyszinMuveletekController extends Controller {
 
     private void close() {
         String nev = nameInput.getText().trim();
-        String leiras = descriptionInput.getText().trim();
-        if (!reszletes.getName().equals(nev) || !reszletes.getDescription().equals(leiras)) {
+        String leiras = descriptionInput.getText();
+        if ((!reszletes.getName().equals(nev) || !Objects.equals(reszletes.getDescription(), leiras))) {
             saved = false;
         }
 

@@ -93,7 +93,9 @@ public class HelyszinekController extends Controller {
                 locationsTableView.getSelectionModel().select(null);
                 String kereses = newValue.toLowerCase();
 
-                if (helyszin.getName().toLowerCase().contains(kereses)) {
+                if (helyszin.getDescription() == null) {
+                    return false;
+                } else if (helyszin.getName().toLowerCase().contains(kereses)) {
                     return true;
                 } else if (helyszin.getDescription().toLowerCase().contains(kereses)) {
                     return true;
