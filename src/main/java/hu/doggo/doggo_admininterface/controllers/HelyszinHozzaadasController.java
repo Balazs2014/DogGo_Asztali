@@ -128,12 +128,9 @@ public class HelyszinHozzaadasController extends Controller {
     }
 
     private void close() {
-        if (!confirmation("Megszakítja a hozzáadást?")) {
+        if (confirmation("Megszakítja a hozzáadást?")) {
             ((Stage) mainAnchor.getScene().getWindow()).close();
-            return;
         }
-        ((Stage) mainAnchor.getScene().getWindow()).close();
-
     }
 
     @FXML
